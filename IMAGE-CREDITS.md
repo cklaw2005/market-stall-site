@@ -1,0 +1,29 @@
+# Product photo credits
+Photos are sourced from Wikimedia Commons and resized to 520px wide for the catalog. Their individual reuse licenses are listed below.
+
+- **Fresh red chilli.jpg** by Rukkyah · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) · [Source](https://commons.wikimedia.org/wiki/File:Fresh_red_chilli.jpg). Thumbnail resized for the website.
+- **DSC 9978 A vibrant pile of fresh red and green chili peppers ready to add a spicy kick to any dish.jpg** by PattayaPatrol · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) · [Source](https://commons.wikimedia.org/wiki/File:DSC_9978_A_vibrant_pile_of_fresh_red_and_green_chili_peppers_ready_to_add_a_spicy_kick_to_any_dish.jpg). Thumbnail resized for the website.
+- **Freshly harvested red bell pepper.jpg** by Shixart1985 · [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) · [Source](https://commons.wikimedia.org/wiki/File:Freshly_harvested_red_bell_pepper.jpg). Thumbnail resized for the website.
+- **A scene of Coriander leaves.JPG** by Thamizhpparithi Maari · [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) · [Source](https://commons.wikimedia.org/wiki/File:A_scene_of_Coriander_leaves.JPG). Thumbnail resized for the website.
+- **C hystrix kaffir lime leaves.jpg** by Jpbrigand2 · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) · [Source](https://commons.wikimedia.org/wiki/File:C_hystrix_kaffir_lime_leaves.jpg). Thumbnail resized for the website.
+- **Galangal.jpg** by Liza Daly (ld31337) · Public domain · [Source](https://commons.wikimedia.org/wiki/File:Galangal.jpg). Thumbnail resized for the website.
+- **Turmeric rhizomes.jpg** by Lavinia Engelbrecht · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) · [Source](https://commons.wikimedia.org/wiki/File:Turmeric_rhizomes.jpg). Thumbnail resized for the website.
+- **Fresh ginger (20240131).jpg** by Fumikas Sagisavas · [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en) · [Source](https://commons.wikimedia.org/wiki/File:Fresh_ginger_(20240131).jpg). Thumbnail resized for the website.
+- **3 x Small eggplant 2017 A3.jpg** by Fructibus · [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en) · [Source](https://commons.wikimedia.org/wiki/File:3_x_Small_eggplant_2017_A3.jpg). Thumbnail resized for the website.
+- **Bitter Gourd.JPG** by Miansari66 · Public domain · [Source](https://commons.wikimedia.org/wiki/File:Bitter_Gourd.JPG). Thumbnail resized for the website.
+- **Cucumber fresh from harvest.jpg** by Iyinolamercy · [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en) · [Source](https://commons.wikimedia.org/wiki/File:Cucumber_fresh_from_harvest.jpg). Thumbnail resized for the website.
+- **Ripe tomatoes.jpg** by Geems04 · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) · [Source](https://commons.wikimedia.org/wiki/File:Ripe_tomatoes.jpg). Thumbnail resized for the website.
+- **Green cabbage.jpg** by Camilopiz · [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en) · [Source](https://commons.wikimedia.org/wiki/File:Green_cabbage.jpg). Thumbnail resized for the website.
+- **Winter melon.jpg** by WingkLEE · Public domain · [Source](https://commons.wikimedia.org/wiki/File:Winter_melon.jpg). Thumbnail resized for the website.
+- **Broccoli.jpg** by USDA  Lance Cheung · [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) · [Source](https://commons.wikimedia.org/wiki/File:Broccoli.jpg). Thumbnail resized for the website.
+- **Fresh Spinach leaves.jpg** by Charipearl · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) · [Source](https://commons.wikimedia.org/wiki/File:Fresh_Spinach_leaves.jpg). Thumbnail resized for the website.
+- **Corn On The Cobb From The Garden (120857005).jpeg** by Rob Bertholf · [CC BY 3.0](https://creativecommons.org/licenses/by/3.0) · [Source](https://commons.wikimedia.org/wiki/File:Corn_On_The_Cobb_From_The_Garden_(120857005).jpeg). Thumbnail resized for the website.
+- **Garlic Bulbs.jpg** by JJ Harrison  ( https://www.jjharrison.com.au/ ) · [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) · [Source](https://commons.wikimedia.org/wiki/File:Garlic_Bulbs.jpg). Thumbnail resized for the website.
+- **Bokchoy.jpg** by Benjwong · Public domain · [Source](https://commons.wikimedia.org/wiki/File:Bokchoy.jpg). Thumbnail resized for the website.
+- **Taro root.jpg** by San906 · [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en) · [Source](https://commons.wikimedia.org/wiki/File:Taro_root.jpg). Thumbnail resized for the website.
+- **Beetroots in a basket.jpg** by W.carter · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) · [Source](https://commons.wikimedia.org/wiki/File:Beetroots_in_a_basket.jpg). Thumbnail resized for the website.
+- **Celery (1).jpg** by Renee Comet (Photographer) · Public domain · [Source](https://commons.wikimedia.org/wiki/File:Celery_(1).jpg). Thumbnail resized for the website.
+- **Lotusroots.jpg** by SeeingMole · [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en) · [Source](https://commons.wikimedia.org/wiki/File:Lotusroots.jpg). Thumbnail resized for the website.
+- **Watercress (1).JPG** by Masparasol · [CC BY 3.0](https://creativecommons.org/licenses/by/3.0) · [Source](https://commons.wikimedia.org/wiki/File:Watercress_(1).JPG). Thumbnail resized for the website.
+- **Fresh Green Beans (Unsplash).jpg** by Sonja Langford  unmorceau · [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en) · [Source](https://commons.wikimedia.org/wiki/File:Fresh_Green_Beans_(Unsplash).jpg). Thumbnail resized for the website.
+- **Snow peas - Pisum sativum.jpg** by Fumikas Sagisavas · [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en) · [Source](https://commons.wikimedia.org/wiki/File:Snow_peas_-_Pisum_sativum.jpg). Thumbnail resized for the website.

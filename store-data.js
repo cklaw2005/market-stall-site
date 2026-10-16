@@ -25,8 +25,8 @@ window.STALL = {
     { id: 'ginger', name: '老姜', category: '香料', unit: '公斤', price: null, icon: '🫚', note: '来自订货单；供应以当天为准' },
     { id: 'fuzhou-eggplant', name: '福州茄', category: '瓜果', unit: '公斤', price: null, icon: '🍆', note: '订货单原名；供应以当天为准' },
     { id: 'bitter-gourd', name: '苦瓜', category: '瓜果', unit: '公斤', price: null, icon: '🥒', note: '来自订货单；供应以当天为准' },
-    { id: 'di-wen', name: '地文', category: '根茎', unit: '公斤', price: null, icon: '🥔', note: '订货单原名，请摊主核对字样' },
-    { id: 'old-di-wen', name: '老地文', category: '根茎', unit: '公斤', price: null, icon: '🥔', note: '订货单原名，请摊主核对字样' },
+    { id: 'di-wen', name: '黄瓜', category: '瓜果', unit: '公斤', price: null, icon: '🥒', note: '来自订货单“地文”；供应以当天为准' },
+    { id: 'old-di-wen', name: '老黄瓜', category: '瓜果', unit: '公斤', price: null, icon: '🥒', note: '来自订货单“老地文”；供应以当天为准' },
     { id: 'angle-bean', name: '角豆', category: '瓜果', unit: '公斤', price: null, icon: '🫛', note: '来自订货单；供应以当天为准' },
     { id: 'mandarin', name: '桔子', category: '瓜果', unit: '公斤', price: null, icon: '🍊', note: '来自订货单；供应以当天为准' },
     { id: 'sour-lime', name: '酸柑', category: '瓜果', unit: '公斤', price: null, icon: '🍋', note: '来自订货单；供应以当天为准' },
@@ -81,4 +81,27 @@ window.STALL = {
     { id: 'sweet-potato', name: '番薯', category: '根茎', unit: '公斤', price: null, icon: '🍠', note: '来自订货单；供应以当天为准' },
     { id: 'white-carrot', name: '白菜头', category: '根茎', unit: '公斤', price: null, icon: '🥕', note: '订货单原名，请摊主核对是否为白萝卜' }
   ]
+};
+
+// English product names shown below the Chinese names.
+window.PRODUCT_EN_NAMES = {
+  'red-pepper': 'Red Chili Pepper', 'green-pepper': 'Green Bell Pepper', 'small-pepper': 'Small Chili Pepper',
+  capsicum: 'Bell Pepper', coriander: 'Coriander (Cilantro)', 'fragrant-herb': 'Fragrant Herb',
+  'lime-leaves': 'Kaffir Lime Leaves', 'young-ginger': 'Young Ginger', galangal: 'Galangal', turmeric: 'Turmeric',
+  ginger: 'Ginger', 'fuzhou-eggplant': 'Fuzhou Eggplant', 'bitter-gourd': 'Bitter Gourd', 'di-wen': 'Cucumber',
+  'old-di-wen': 'Old Cucumber', 'angle-bean': 'Winged Bean', mandarin: 'Mandarin Orange', 'sour-lime': 'Calamansi Lime',
+  taro: 'Taro', jicama: 'Jicama (Yam Bean)', 'dandong-potato': 'Dandong Potato', beetroot: 'Beetroot', corn: 'Corn',
+  'green-cauliflower': 'Broccoli', celery: 'Celery', 'ren-bean': 'Ren Bean (Local Variety)', 'sweet-peas': 'Sweet Peas',
+  'pea-shoots': 'Pea Shoots', cauliflower: 'Cauliflower', 'chive-flowers': 'Chinese Chive Flowers', 'white-mushroom': 'White Mushroom',
+  tomato: 'Tomato', cabbage: 'Cabbage', 'yuan-bai': 'Yuan Bai Cabbage (Local Name)', 'winter-melon': 'Winter Melon',
+  'turtle-bean': 'Turtle Bean (Local Variety)', 'field-bean': 'Green Beans', 'chong-yu': 'Chong Yu (Local Name)',
+  'qing-chong': 'Spring Onion', 'celery-stalk': 'Chinese Celery', 'garlic-shoots': 'Garlic Shoots',
+  'ying-cai': 'Ying Cai (Local Name)', 'xing-cai': 'Xing Cai (Local Name)', 'da-cai': 'Mustard Greens',
+  'choy-sum': 'Choy Sum', 'kailan-shoots': 'Baby Kailan', 'pak-choi': 'Bok Choy', 'cai-dan': 'Cai Dan (Local Name)',
+  'xiang-cai-dan': 'Xiang Cai Dan (Local Name)', 'glass-lettuce': 'Glass Lettuce', 'tangshan-pickle': 'Tangshan Preserved Greens',
+  'lotus-root': 'Lotus Root', watercress: 'Watercress', 'emperor-greens': 'Emperor Greens',
+  'sweet-potato-leaves': 'Sweet Potato Leaves', 'tree-greens': 'Tree Greens', spinach: 'Spinach',
+  'oil-scallion': 'Fried Shallot (Local Name)', garlic: 'Garlic', 'four-corner-bean': 'Winged Bean',
+  'hairy-gourd': 'Hairy Gourd', 'zhang-liu': 'Zhang Liu (Local Name)', mint: 'Mint', 'curry-leaves': 'Curry Leaves',
+  lettuce: 'Lettuce', asparagus: 'Asparagus', 'sweet-potato': 'Sweet Potato', 'white-carrot': 'White Radish'
 };
