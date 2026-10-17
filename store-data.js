@@ -79,7 +79,12 @@ window.STALL = {
     { id: 'lettuce', name: '生菜', category: '叶菜', unit: '公斤', price: null, icon: '🥬', note: '来自订货单；供应以当天为准' },
     { id: 'asparagus', name: '芦笋', category: '瓜果', unit: '公斤', price: null, icon: '🌱', note: '来自订货单；供应以当天为准' },
     { id: 'sweet-potato', name: '番薯', category: '根茎', unit: '公斤', price: null, icon: '🍠', note: '来自订货单；供应以当天为准' },
-    { id: 'white-carrot', name: '白菜头', category: '根茎', unit: '公斤', price: null, icon: '🥕', note: '订货单原名，请摊主核对是否为白萝卜' }
+    { id: 'white-carrot', name: '白菜头', category: '根茎', unit: '公斤', price: null, icon: '🥕', note: '订货单原名，请摊主核对是否为白萝卜' },
+    { id: 'fish-paste', name: '鱼浆', category: '其他食材', unit: '公斤', price: null, icon: '🐟', note: '摊主确认当天单价和供应' },
+    { id: 'eggs', name: '鸡蛋', category: '其他食材', unit: '粒', price: null, icon: '🥚', note: '按粒或整托订购，数量和价格由摊主确认' },
+    { id: 'rice-vermicelli', name: '米粉', category: '其他食材', unit: '包', price: null, icon: '🍜', note: '按包订购，规格和价格由摊主确认' },
+    { id: 'noodles', name: '面条', category: '其他食材', unit: '包', price: null, icon: '🍜', note: '按包订购，规格和价格由摊主确认' },
+    { id: 'coconut-milk', name: '椰浆', category: '其他食材', unit: '份', price: null, icon: '🥥', note: '按份订购，规格和价格由摊主确认' }
   ]
 };
 
@@ -103,5 +108,7 @@ window.PRODUCT_EN_NAMES = {
   'sweet-potato-leaves': 'Sweet Potato Leaves', 'tree-greens': 'Tree Greens', spinach: 'Spinach',
   'oil-scallion': 'Fried Shallot (Local Name)', garlic: 'Garlic', 'four-corner-bean': 'Winged Bean',
   'hairy-gourd': 'Hairy Gourd', 'zhang-liu': 'Zhang Liu (Local Name)', mint: 'Mint', 'curry-leaves': 'Curry Leaves',
-  lettuce: 'Lettuce', asparagus: 'Asparagus', 'sweet-potato': 'Sweet Potato', 'white-carrot': 'White Radish'
+  lettuce: 'Lettuce', asparagus: 'Asparagus', 'sweet-potato': 'Sweet Potato', 'white-carrot': 'White Radish',
+  'fish-paste': 'Fish Paste', eggs: 'Eggs', 'rice-vermicelli': 'Rice Vermicelli', noodles: 'Noodles', 'coconut-milk': 'Coconut Milk'
 };
+
