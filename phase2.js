@@ -17,6 +17,7 @@ const selected = new Map();
 const restaurantSlug = new URLSearchParams(location.search).get('restaurant') || config?.restaurantSlug || 'dad-vegetable-stall';
 const money = (value) => `RM ${Number(value || 0).toFixed(2)}`;
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const productEnglishName = (product) => String(product?.name_en || window.PRODUCT_EN_NAMES?.[product?.product_key] || '').trim();
 
 if (!config?.url || !config?.anonKey || config.url.includes('YOUR-PROJECT') || config.anonKey.includes('YOUR-SUPABASE')) {
   setupWarning.classList.remove('hidden');
@@ -88,7 +89,7 @@ async function loadCatalog() {
   if (!error && data?.length) catalog = data;
   else catalog = (window.STALL?.products || []).map((p, index) => ({ product_key: p.id, name_zh: p.name, name_en: window.PRODUCT_EN_NAMES?.[p.id] || '', category: p.category, unit: p.unit || '公斤', unit_price: p.price, display_order: index }));
   const livePrices = await fetchLivePrices();
-  catalog = catalog.map((p) => ({ ...p, unit_price: livePrices.get(p.product_key) ?? p.unit_price }));
+  catalog = catalog.map((p) => ({ ...p, name_en: productEnglishName(p), unit_price: livePrices.get(p.product_key) ?? p.unit_price }));
   const prefResult = await supabase.from('customer_preferences').select('*').eq('restaurant_id', restaurant.id).eq('user_id', user.id);
   const prefs = new Map((prefResult.data || []).map((p) => [p.product_key, p]));
   const assigned = new Set(preferredProductKeys);
@@ -186,7 +187,7 @@ async function renderPreferenceChoices() {
     const { data } = await supabase.from('menu_items').select('product_key,name_zh').eq('restaurant_id', restaurant.id).eq('active', true).order('display_order');
     catalog = data || [];
   }
-  $('#new-customer-preferences').innerHTML = catalog.map((p) => `<label class="pill"><input type="checkbox" value="${escapeHtml(p.product_key)}" data-new-customer-preference> ${escapeHtml(p.name_zh)}</label>`).join('');
+  $('#new-customer-preferences').innerHTML = catalog.map((p) => `<label class="pill"><input type="checkbox" value="${escapeHtml(p.product_key)}" data-new-customer-preference> ${escapeHtml(p.name_zh)}<small style="display:block">${escapeHtml(productEnglishName(p))}</small></label>`).join('');
   $('#new-customer-preferences').onchange = (event) => {
     if (!event.target.matches('[data-new-customer-preference]')) return;
     const checked = [...document.querySelectorAll('[data-new-customer-preference]:checked')];
@@ -252,7 +253,7 @@ async function seedAndLoadMenu() {
 async function loadOwnerMenu() {
   const { data, error } = await supabase.from('menu_items').select('*').eq('restaurant_id', restaurant.id).order('display_order').order('name_zh');
   if (error) { $('#owner-menu').textContent = `菜单读取失败：${error.message}`; return; }
-  $('#owner-menu').innerHTML = (data || []).map((p,index) => `<div class="item"><strong>${escapeHtml(p.name_zh)}<small>${escapeHtml(p.category)}</small></strong><span class="muted">${escapeHtml(p.unit)}${p.unit_price ? ` · ${money(p.unit_price)}` : ''}</span><button class="secondary" data-move="up" data-id="${p.id}" ${index===0?'disabled':''}>↑</button><button class="secondary" data-move="down" data-id="${p.id}" ${index===data.length-1?'disabled':''}>↓</button></div>`).join('') || '菜单没有商品。';
+  $('#owner-menu').innerHTML = (data || []).map((p,index) => `<div class="item"><strong>${escapeHtml(p.name_zh)}<small>${escapeHtml(productEnglishName(p))}</small><small>${escapeHtml(p.category)}</small></strong><span class="muted">${escapeHtml(p.unit)}${p.unit_price ? ` · ${money(p.unit_price)}` : ''}</span><button class="secondary" data-move="up" data-id="${p.id}" ${index===0?'disabled':''}>↑</button><button class="secondary" data-move="down" data-id="${p.id}" ${index===data.length-1?'disabled':''}>↓</button></div>`).join('') || '菜单没有商品。';
   $('#owner-menu').onclick = async (event) => {
     const button = event.target.closest('[data-move]'); if (!button) return;
     const current = data.findIndex((p) => p.id === button.dataset.id), target = current + (button.dataset.move === 'up' ? -1 : 1);
