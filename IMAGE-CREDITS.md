@@ -1,5 +1,5 @@
 # Product photo credits and rights review
-The Wikimedia Commons photos below are attributed with their listed licenses; the resized thumbnails remain available under the same license where required. The stall-owner-supplied photos have been withdrawn from the website pending written confirmation that the supplier owns each photo or has permission for website and commercial use. The supplier credits below record who supplied those images; they do not establish a license or prove copyright ownership.
+The Wikimedia Commons and Pexels photos below are listed with their source pages and stated licenses; the stall-owner-supplied photos have been withdrawn from the website pending written confirmation that the supplier owns each photo or has permission for website and commercial use. The supplier credits below record who supplied those images; they do not establish a license or prove copyright ownership.
 
 
 - **Fresh red chilli.jpg** by Rukkyah · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) · [Source](https://commons.wikimedia.org/wiki/File:Fresh_red_chilli.jpg). Thumbnail resized for the website.
@@ -103,7 +103,7 @@ The Wikimedia Commons photos below are attributed with their listed licenses; th
 
 ## 逐张核查登记（2026-10-18）
 
-本次核查范围：网站当前可展示的 32 个许可图片文件（33 个商品卡片引用，其中玉米图用于两个玉米商品）和 1 张本站原创占位图；另核对摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”当作授权证明。
+本次核查范围：网站当前可展示的 38 个许可图片文件（39 个商品卡片引用，其中玉米图用于两个玉米商品）和 1 张本站原创占位图；另核对摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”当作授权证明。
 
 ### 当前网站展示
 
@@ -141,7 +141,13 @@ The Wikimedia Commons photos below are attributed with their listed licenses; th
 | `images/products/tofu-skin-commons.png` | Tofu skin.png · Andrea Nguyen | <a href="https://commons.wikimedia.org/wiki/File:Tofu_skin.png">Commons 来源页</a> · <a href="https://www.flickr.com/photos/andrea_nguyen/7338748926">Flickr 原图页</a> · <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a> | 原图尺寸使用，未改编；作者、来源和许可已列明。核查：2026-10-18。 | Commons 的 FlickrReview 记录确认 CC BY 2.0；按署名要求使用。 |
 | `images/products/bean-sprouts-market.jpg` | Mung bean (sprouts).jpg · David E Mead | <a href="https://commons.wikimedia.org/wiki/File:Mung_bean_(sprouts).jpg">来源页</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a> | 缩放为缩略图；作者及来源作为礼貌性署名保留。核查：2026-10-18。 | 来源页描述为市场上的绿豆芽。 |
 | `images/products/pineapple-openverse.jpg` | Pineapple fruit 2.jpg · Wilfredor | <a href="https://commons.wikimedia.org/wiki/File:Pineapple_fruit_2.jpg">来源页</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a> | 缩放为缩略图；作者及来源作为礼貌性署名保留。核查：2026-10-18。 | 来源页描述为菠萝。 |
-| `images/products/image-pending.svg` | 本站原创通用占位图 | 本项目内绘制的 SVG；无外部图片来源或第三方素材。 | 原创矢量图；用于未取得图片授权证明的商品。核查：2026-10-18。 | 本站原创占位图；无第三方素材。 |
+| `images/products/noodles-pexels.jpg` | Dried Noodles on Plate · Mateusz Feliksik | [Pexels 来源页](https://www.pexels.com/photo/dried-noodles-on-plate-13373178/) · [Pexels License](https://www.pexels.com/legal-pages/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 页面标注为未煮黄面；用于黄面商品卡片。 |
+| `images/products/luffa-pexels.jpg` | A Batch of Sponge Gourds on the Ground · Md Rony | [Pexels 来源页](https://www.pexels.com/photo/a-batch-of-sponge-gourds-on-the-ground-17274469/) · [Pexels License](https://www.pexels.com/legal-pages/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 页面说明为新鲜丝瓜；用于角瓜商品卡片作外观示意。 |
+| `images/products/soy-milk-pexels.jpg` | Photo of Soybeans Near Drinking Glass With Soy Milk · Polina Tankilevitch | [Pexels 来源页](https://www.pexels.com/photo/photo-of-soybeans-near-drinking-glass-with-soy-milk-4518614/) · [Pexels License](https://www.pexels.com/legal-pages/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 页面说明为玻璃杯装豆浆和黄豆；不表示店内具体包装。 |
+| `images/products/shallots-pexels.jpg` | Shallots of a Stall · Nothing Ahead | [Pexels 来源页](https://www.pexels.com/photo/shallots-of-a-stall-20234942/) · [Pexels License](https://www.pexels.com/legal-pages/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 页面说明为市场上的红色小洋葱/shallots；用于小洋葱卡片。 |
+| `images/products/king-oyster-pexels-new.jpg` | Fresh King Oyster Mushrooms at Market · Anastasiya Badun | [Pexels 来源页](https://www.pexels.com/photo/fresh-king-oyster-mushrooms-at-market-34245179/) · [Pexels License](https://www.pexels.com/legal-pages/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 页面说明及照片均为杏鲍菇。 |
+| `images/products/lemongrass-pexels.jpg` | Fresh Lemongrass and Lettuce in Market Display · Surya Travel | [Pexels 来源页](https://www.pexels.com/photo/fresh-lemongrass-and-lettuce-in-market-display-37091865/) · [Pexels License](https://www.pexels.com/legal-pages/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 香茅与其他叶菜同框；用于香茅商品卡片。 |
+| `images/products/image-pending.svg` | 本站原创通用占位图 | 本项目内绘制的 SVG；无外部图片来源或第三方素材。 | 原创矢量图；用于未取得权利证明的商品。核查：2026-10-18。 | 本站原创占位图；无第三方素材。 |
 
 ### 已撤下、等待授权证据的摊主提供图片
 
