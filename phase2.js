@@ -123,37 +123,54 @@ $('#submit-order').addEventListener('click', async () => {
   if (!items.length) { status.textContent = '请至少选一项商品或填写一项额外要求。'; return; }
   $('#submit-order').disabled = true;
   status.textContent = '正在保存订单…';
-  const { data, error } = await supabase.rpc('submit_order', {
+  const parentOrderId = $('#add-to-order').value;
+  const { data, error } = await supabase.rpc(parentOrderId ? 'submit_addon_order' : 'submit_order', {
     target_restaurant: restaurant.id,
     customer_name: accountProfile?.display_name || '',
     customer_phone: accountProfile?.phone || user.phone || '',
     pickup_note: $('#pickup-note').value.trim(),
     customer_note: $('#customer-note').value.trim(),
-    items
+    items,
+    ...(parentOrderId ? { target_parent: parentOrderId } : {})
   });
   $('#submit-order').disabled = false;
   if (error) { status.textContent = `订单没有保存：${error.message}`; return; }
   const prefs = items.filter((item) => !item.is_custom)
     .map((item) => ({ user_id: user.id, restaurant_id: restaurant.id, product_key: item.product_key, mode: item.request_mode, usual_amount: item.requested_amount }));
   if (prefs.length) await supabase.from('customer_preferences').upsert(prefs, { onConflict: 'user_id,restaurant_id,product_key' });
-  status.textContent = `订单已保存，编号 ${data?.[0]?.order_no || ''}。摊主核价后，可在下方查看并确认。`;
+  status.textContent = parentOrderId
+    ? `追加订单已保存，编号 ${data?.[0]?.order_no || ''}，已关联原订单。`
+    : `订单已保存，编号 ${data?.[0]?.order_no || ''}。摊主核价后，可在下方查看并确认。`;
+  $('#add-to-order').value = '';
   $('#custom-items').value = '';
   await loadCustomerOrders();
 });
 
 async function loadCustomerOrders() {
-  const { data: orders, error } = await supabase.from('orders').select('id,order_no,status,created_at,pickup_note,customer_note,order_items(*),order_revisions(*)').eq('customer_id', user.id).eq('restaurant_id', restaurant.id).order('created_at', { ascending: false }).limit(30);
+  const { data: orders, error } = await supabase.from('orders').select('id,order_no,status,created_at,pickup_note,customer_note,parent_order_id,parent_order_no,cancel_requested_at,cancel_decided_at,cancel_approved,order_items(*),order_revisions(*)').eq('customer_id', user.id).eq('restaurant_id', restaurant.id).order('created_at', { ascending: false }).limit(30);
   if (error) { $('#customer-orders').textContent = `订单读取失败：${error.message}`; return; }
+  const addable = (orders || []).filter((o) => !o.cancel_requested_at && ['submitted','owner_review','awaiting_customer_confirmation','customer_requested_change','confirmed'].includes(o.status));
+  $('#add-to-order').innerHTML = '<option value="">提交为新订单</option>' + addable.map((o) => `<option value="${escapeHtml(o.id)}">追加至 ${escapeHtml(o.order_no)} · ${escapeHtml(statusName(o.status))}</option>`).join('');
   $('#customer-orders').innerHTML = orders?.length ? orders.map((o) => {
     const revision = (o.order_revisions || []).sort((a,b) => b.revision_no-a.revision_no)[0];
     const revisionLines = revision?.lines || [];
     const itemById = new Map((o.order_items || []).map((line) => [line.id, line]));
     const lineNames = new Map((o.order_items || []).map((line) => [line.id, line.product_name]));
-    return `<article class="order"><div class="row" style="justify-content:space-between"><h3>${escapeHtml(o.order_no)}</h3><span class="pill">${escapeHtml(statusName(o.status))}</span></div><p class="muted">${new Date(o.created_at).toLocaleString()} · ${escapeHtml(o.pickup_note || '取货时间待确认')}</p><div>${(o.order_items || []).map((line) => `<div class="muted">${escapeHtml(line.product_name)}：${escapeHtml(requestLabel(line))}</div>`).join('')}</div>${revision ? `<hr><strong>摊主最终确认 · ${money(revision.total)}</strong><div>${revisionLines.map((line) => { const item = itemById.get(line.id), split = item?.split_count, portion = split && item?.unit === '公斤' && line.final_quantity ? ` · 分 ${split} 份（每份约 ${(Number(line.final_quantity) / 1000 / split).toFixed(2)} 公斤）` : ''; return `<div class="muted">${escapeHtml(lineNames.get(line.id) || '商品')}：${line.availability === 'unavailable' ? '缺货' : (line.final_quantity ? `${escapeHtml(line.final_quantity)} ${item?.unit === '公斤' ? '克' : ''}${portion} · ${money(line.final_amount)}` : money(line.final_amount))}</div>`; }).join('')}</div>${o.status === 'awaiting_customer_confirmation' ? `<div class="row" style="margin-top:12px"><button data-decision="yes" data-order="${o.id}" data-revision="${revision.id}">确认最终订单</button><button class="secondary" data-decision="no" data-order="${o.id}" data-revision="${revision.id}">请摊主修改</button></div>` : ''}` : ''}</article>`;
+    const cancelAction = !['fulfilled','cancelled'].includes(o.status) && !o.cancel_requested_at ? `<button class="secondary" data-cancel-request="${o.id}">申请取消</button>` : '';
+    const cancelMessage = o.cancel_requested_at ? `<p class="muted ${o.cancel_approved === false ? 'danger' : ''}">${o.cancel_decided_at ? (o.cancel_approved ? '摊主已确认取消此单。' : '摊主拒绝了取消申请，订单仍有效。') : '取消申请已送出，等待摊主确认。'}</p>` : '';
+    const parentLabel = o.parent_order_no ? `<p class="muted">追加单 · 关联原订单 ${escapeHtml(o.parent_order_no)}</p>` : '';
+    return `<article class="order"><div class="row" style="justify-content:space-between"><h3>${escapeHtml(o.order_no)}</h3><span class="pill">${escapeHtml(statusName(o.status))}</span></div><p class="muted">${new Date(o.created_at).toLocaleString()} · ${escapeHtml(o.pickup_note || '取货时间待确认')}</p>${parentLabel}${cancelMessage}<div>${(o.order_items || []).map((line) => `<div class="muted">${escapeHtml(line.product_name)}：${escapeHtml(requestLabel(line))}</div>`).join('')}</div>${revision ? `<hr><strong>摊主最终确认 · ${money(revision.total)}</strong><div>${revisionLines.map((line) => { const item = itemById.get(line.id), split = item?.split_count, portion = split && item?.unit === '公斤' && line.final_quantity ? ` · 分 ${split} 份（每份约 ${(Number(line.final_quantity) / 1000 / split).toFixed(2)} 公斤）` : ''; return `<div class="muted">${escapeHtml(lineNames.get(line.id) || '商品')}：${line.availability === 'unavailable' ? '缺货' : (line.final_quantity ? `${escapeHtml(line.final_quantity)} ${item?.unit === '公斤' ? '克' : ''}${portion} · ${money(line.final_amount)}` : money(line.final_amount))}</div>`; }).join('')}</div>${o.status === 'awaiting_customer_confirmation' ? `<div class="row" style="margin-top:12px"><button data-decision="yes" data-order="${o.id}" data-revision="${revision.id}">确认最终订单</button><button class="secondary" data-decision="no" data-order="${o.id}" data-revision="${revision.id}">请摊主修改</button></div>` : ''}` : ''}<div class="row" style="margin-top:12px">${cancelAction}</div></article>`;
   }).join('') : '<p class="muted">还没有网站订单。</p>';
 }
 
 $('#customer-orders').addEventListener('click', async (event) => {
+  const cancel = event.target.closest('[data-cancel-request]');
+  if (cancel) {
+    if (!confirm('要向摊主提交这张订单的取消申请吗？订单不会立即删除，摊主确认后才会取消。')) return;
+    const { error } = await supabase.rpc('customer_request_order_cancel', { target_order: cancel.dataset.cancelRequest });
+    if (error) alert(`取消申请未送出：${error.message}`); else await loadCustomerOrders();
+    return;
+  }
   const button = event.target.closest('[data-decision]');
   if (!button) return;
   const { error } = await supabase.rpc('customer_decide_order', { target_order: button.dataset.order, target_revision: button.dataset.revision, accept: button.dataset.decision === 'yes' });
@@ -321,9 +338,9 @@ function sheetDate(value) {
 }
 
 async function loadOwnerOrders() {
-  const { data, error } = await supabase.from('orders').select('id,order_no,status,created_at,customer_name,customer_phone,customer_id,pickup_note,customer_note,order_items(*)').eq('restaurant_id', restaurant.id).not('status','in','(fulfilled,cancelled)').order('created_at',{ascending:true}).limit(100);
+  const { data, error } = await supabase.from('orders').select('id,order_no,status,created_at,customer_name,customer_phone,customer_id,pickup_note,customer_note,parent_order_id,parent_order_no,cancel_requested_at,cancel_decided_at,cancel_approved,order_items(*)').eq('restaurant_id', restaurant.id).neq('status','fulfilled').order('created_at',{ascending:false}).limit(100);
   if (error) { $('#owner-orders').textContent = `订单读取失败：${error.message}`; return; }
-  $('#owner-orders').innerHTML = data?.length ? data.map((o) => `<article class="order" data-owner-order="${o.id}"><div class="row" style="justify-content:space-between"><h3>${escapeHtml(o.order_no)} · ${escapeHtml(o.customer_name || '顾客')}</h3><span class="pill">${escapeHtml(statusName(o.status))}</span></div><p class="muted">顾客电话：${escapeHtml(o.customer_phone || '未提供')} · ${new Date(o.created_at).toLocaleString()} · ${escapeHtml(o.pickup_note || '未提供取货时间')}</p><p class="muted">备注：${escapeHtml(o.customer_note || '无')}</p>${(o.order_items||[]).map((line) => `<div class="ownerline" data-line="${line.id}" data-unit="${escapeHtml(line.unit)}" data-split="${escapeHtml(line.split_count ?? '')}" data-custom="${line.is_custom}"><strong>${escapeHtml(line.product_name)}<small>顾客要求：${escapeHtml(requestLabel(line))}</small></strong><select data-availability><option value="pending" ${line.availability==='pending'?'selected':''}>待确认</option><option value="available" ${line.availability==='available'?'selected':''}>有货</option><option value="unavailable" ${line.availability==='unavailable'?'selected':''}>缺货</option></select><input type="number" min="0" step="1" data-final-qty value="${escapeHtml(line.final_quantity ?? '')}" placeholder="实称克数/数量"><input type="number" min="0" step="0.01" data-final-price value="${escapeHtml(line.is_custom ? line.final_amount ?? '' : line.final_unit_price ?? '')}" placeholder="${line.is_custom ? '最终金额 RM' : line.unit==='公斤' ? 'RM/公斤' : 'RM/单位'}"><small class="muted" data-portion-preview>${line.split_count && line.final_quantity && line.unit === '公斤' ? `实称后每份约 ${(Number(line.final_quantity)/1000/line.split_count).toFixed(2)} 公斤；此分装要求不改变总价计算。` : line.split_count ? `平均分 ${line.split_count} 份；此分装要求不改变总价计算。` : ''}</small></div>`).join('')}${['submitted','owner_review','customer_requested_change'].includes(o.status) ? `<button data-publish="${o.id}">计算并发给顾客确认</button>` : ''}${o.status==='confirmed' ? `<button data-fulfill="${o.id}">标记已备货/完成</button>` : ''}<div class="status" data-order-status></div></article>`).join('') : '<p class="muted">目前没有待处理订单。</p>';
+  $('#owner-orders').innerHTML = data?.length ? data.map((o) => `<article class="order" data-owner-order="${o.id}"><div class="row" style="justify-content:space-between"><h3>${escapeHtml(o.order_no)} · ${escapeHtml(o.customer_name || '顾客')}</h3><span class="pill">${escapeHtml(statusName(o.status))}</span></div><p class="muted">顾客电话：${escapeHtml(o.customer_phone || '未提供')} · ${new Date(o.created_at).toLocaleString()} · ${escapeHtml(o.pickup_note || '未提供取货时间')}</p>${o.parent_order_no ? `<p class="muted">追加单 · 关联原订单 ${escapeHtml(o.parent_order_no)}</p>` : ''}${o.cancel_requested_at && !o.cancel_decided_at ? `<div class="card"><strong>顾客申请取消此单</strong><div class="row" style="margin-top:8px"><button data-cancel-decision="approve" data-order="${o.id}">确认取消</button><button class="secondary" data-cancel-decision="decline" data-order="${o.id}">拒绝取消，保留订单</button></div></div>` : o.cancel_requested_at ? `<p class="muted">取消申请处理结果：${o.cancel_approved ? '已确认取消' : '已拒绝取消'}</p>` : ''}<p class="muted">备注：${escapeHtml(o.customer_note || '无')}</p>${(o.order_items||[]).map((line) => `<div class="ownerline" data-line="${line.id}" data-unit="${escapeHtml(line.unit)}" data-split="${escapeHtml(line.split_count ?? '')}" data-custom="${line.is_custom}"><strong>${escapeHtml(line.product_name)}<small>顾客要求：${escapeHtml(requestLabel(line))}</small></strong><select data-availability><option value="pending" ${line.availability==='pending'?'selected':''}>待确认</option><option value="available" ${line.availability==='available'?'selected':''}>有货</option><option value="unavailable" ${line.availability==='unavailable'?'selected':''}>缺货</option></select><input type="number" min="0" step="1" data-final-qty value="${escapeHtml(line.final_quantity ?? '')}" placeholder="实称克数/数量"><input type="number" min="0" step="0.01" data-final-price value="${escapeHtml(line.is_custom ? line.final_amount ?? '' : line.final_unit_price ?? '')}" placeholder="${line.is_custom ? '最终金额 RM' : line.unit==='公斤' ? 'RM/公斤' : 'RM/单位'}"><small class="muted" data-portion-preview>${line.split_count && line.final_quantity && line.unit === '公斤' ? `实称后每份约 ${(Number(line.final_quantity)/1000/line.split_count).toFixed(2)} 公斤；此分装要求不改变总价计算。` : line.split_count ? `平均分 ${line.split_count} 份；此分装要求不改变总价计算。` : ''}</small></div>`).join('')}${['submitted','owner_review','customer_requested_change'].includes(o.status) ? `<button data-publish="${o.id}">计算并发给顾客确认</button>` : ''}${o.status==='confirmed' ? `<button data-fulfill="${o.id}">标记已备货/完成</button>` : ''}<div class="status" data-order-status></div></article>`).join('') : '<p class="muted">目前没有待处理订单。</p>';
 }
 
 $('#owner-orders').addEventListener('input', (event) => {
@@ -335,6 +352,15 @@ $('#owner-orders').addEventListener('input', (event) => {
 });
 
 $('#owner-orders').addEventListener('click', async (event) => {
+  const cancelDecision = event.target.closest('[data-cancel-decision]');
+  if (cancelDecision) {
+    const approve = cancelDecision.dataset.cancelDecision === 'approve';
+    const message = approve ? '确认取消这张订单吗？记录会保留在历史中。' : '拒绝取消申请并保留此订单？';
+    if (!confirm(message)) return;
+    const { error } = await supabase.rpc('owner_decide_order_cancellation', { target_order: cancelDecision.dataset.order, approve });
+    if (error) alert(`操作失败：${error.message}`); else await loadOwnerOrders();
+    return;
+  }
   const fulfilled = event.target.closest('[data-fulfill]');
   if (fulfilled) {
     const { error } = await supabase.rpc('owner_mark_fulfilled', { target_order: fulfilled.dataset.fulfill });
@@ -367,4 +393,3 @@ if (supabase) {
 
 $('#phone').addEventListener('keydown', (event) => { if (event.key === 'Enter') $('#password-sign-in').click(); });
 $('#password').addEventListener('keydown', (event) => { if (event.key === 'Enter') $('#password-sign-in').click(); });
-
