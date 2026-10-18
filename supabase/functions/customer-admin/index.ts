@@ -69,7 +69,7 @@ Deno.serve(async (request) => {
       const phone = phoneValue(input.phone);
       const keys = [...new Set((Array.isArray(input.preferred_product_keys) ? input.preferred_product_keys : []).map(String))].slice(0, 100);
       if (!displayName) throw new Error("请填写顾客姓名。");
-      if (keys.length > 10) throw new Error("每位顾客最多选择 10 项常买偏好。");
+      if (keys.length > 40) throw new Error("每位顾客最多选择 40 项常买偏好。");
       if (keys.length) {
         const { data: menuRows, error: menuError } = await admin.from("menu_items").select("product_key").eq("restaurant_id", restaurantId).eq("active", true).in("product_key", keys);
         if (menuError) throw menuError;
@@ -95,7 +95,7 @@ Deno.serve(async (request) => {
 
     if (action === "set_preferences") {
       const keys = [...new Set((Array.isArray(input.preferred_product_keys) ? input.preferred_product_keys : []).map(String))];
-      if (keys.length > 10) throw new Error("每位顾客最多选择 10 项常买偏好。");
+      if (keys.length > 40) throw new Error("每位顾客最多选择 40 项常买偏好。");
       if (keys.length) {
         const { data: menuRows, error: menuError } = await admin.from("menu_items").select("product_key").eq("restaurant_id", restaurantId).eq("active", true).in("product_key", keys);
         if (menuError) throw menuError;
