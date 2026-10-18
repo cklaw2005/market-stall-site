@@ -11,18 +11,21 @@ window.PRODUCT_IMAGES = {
   "bitter-gourd": "images/products/bitter-gourd.jpg",
   "di-wen": "images/products/di-wen.jpg",
   "tomato": "images/products/tomato.jpg",
-  "cabbage": "images/products/cabbage.jpg",
   "winter-melon": "images/products/winter-melon.jpg",
-  "green-cauliflower": "images/products/green-cauliflower.jpg",
   "spinach": "images/products/spinach.jpg",
   "corn": "images/products/corn.jpg",
   "garlic": "images/products/garlic.jpg",
   "pak-choi": "images/products/pak-choi.jpg",
   "taro": "images/products/taro.jpg",
+  "cabbage": "images/products/cabbage.jpg",
+  "cabbage-beijing": "images/products/cabbage.jpg",
   "beetroot": "images/products/beetroot.jpg",
   "celery": "images/products/celery.jpg",
   "lotus-root": "images/products/lotus-root.jpg",
   "watercress": "images/products/watercress.jpg",
   "field-bean": "images/products/field-bean.jpg",
+  "french-bean": "images/products/field-bean.jpg",
+  "chinese-baby-bok-choy": "images/products/pak-choi.jpg",
   "sweet-peas": "images/products/sweet-peas.jpg"
 };
+
