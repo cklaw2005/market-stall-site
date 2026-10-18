@@ -103,7 +103,7 @@ The Wikimedia Commons and Pexels photos below are listed with their source pages
 
 ## 逐张核查登记（2026-10-18）
 
-本次核查范围：网站当前可展示的 38 个许可图片文件（39 个商品卡片引用，其中玉米图用于两个玉米商品）和 1 张本站原创占位图；另核对摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”当作授权证明。
+本次核查范围：网站当前可展示的 39 个许可图片文件（40 个商品卡片引用，其中玉米图用于两个玉米商品）和 1 张本站原创占位图；另核对摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”当作授权证明。
 
 ### 当前网站展示
 
@@ -147,6 +147,7 @@ The Wikimedia Commons and Pexels photos below are listed with their source pages
 | `images/products/shallots-pexels.jpg` | Shallots of a Stall · Nothing Ahead | [Pexels 来源页](https://www.pexels.com/photo/shallots-of-a-stall-20234942/) · [Pexels License](https://www.pexels.com/legal-pages/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 页面说明为市场上的红色小洋葱/shallots；用于小洋葱卡片。 |
 | `images/products/king-oyster-pexels-new.jpg` | Fresh King Oyster Mushrooms at Market · Anastasiya Badun | [Pexels 来源页](https://www.pexels.com/photo/fresh-king-oyster-mushrooms-at-market-34245179/) · [Pexels License](https://www.pexels.com/legal-pages/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 页面说明及照片均为杏鲍菇。 |
 | `images/products/lemongrass-pexels.jpg` | Fresh Lemongrass and Lettuce in Market Display · Surya Travel | [Pexels 来源页](https://www.pexels.com/photo/fresh-lemongrass-and-lettuce-in-market-display-37091865/) · [Pexels License](https://www.pexels.com/legal-pages/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 香茅与其他叶菜同框；用于香茅商品卡片。 |
+| `images/products/carrot-australia-pixabay.jpg` | Carrots, Basket, Vegetables · jackmac34 | [Pixabay 来源页](https://pixabay.com/photos/carrots-basket-vegetables-market-673184/) · [Pixabay Content License](https://pixabay.com/service/license-summary/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 图片与用户提供的参考图一致；作为胡萝卜外观示意，不证明本店商品产地为澳洲。 |
 | `images/products/image-pending.svg` | 本站原创通用占位图 | 本项目内绘制的 SVG；无外部图片来源或第三方素材。 | 原创矢量图；用于未取得权利证明的商品。核查：2026-10-18。 | 本站原创占位图；无第三方素材。 |
 
 ### 已撤下、等待授权证据的摊主提供图片

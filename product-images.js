@@ -26,7 +26,7 @@ window.PRODUCT_IMAGES = {
   "jicama": null,
   "dandong-potato": null,
   "beetroot": null,
-  "carrot-australia": null,
+  "carrot-australia": "images/products/carrot-australia-pixabay.jpg",
   "corn": "images/products/corn-openverse.jpg",
   "green-cauliflower": null,
   "celery": "images/products/celery.jpg",
