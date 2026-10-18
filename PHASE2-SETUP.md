@@ -54,6 +54,7 @@ The no-cost Supabase project has been created and connected:
 
 - The first owner login seeds the existing catalog into that restaurant's menu table. Owners can reorder items; the public menu reflects the saved order.
 - The Phase 2 customer page reads the published Google Sheet price feed and stores the requested values on each order. The owner enters final quantity/weight and final price; database functions calculate the total.
+- Customers may optionally request equal portions for kilogram-based items. The split count is stored as a packing instruction and shown to the owner and customer. It does not enter the amount formula: the total remains based on seller-confirmed final weight and unit price.
 - The owner publishes a final order revision. The customer signs in to review and confirm it. WhatsApp is not the order database or calculator.
 - Keep the current public menu/Phase 1 flow available. Do not describe Phase 2 as live until the Supabase project, Edge Function, customer onboarding, and complete order path work on the published site.
 
