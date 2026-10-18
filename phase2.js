@@ -98,7 +98,8 @@ async function loadCatalog() {
     const pref = prefs.get(p.product_key), isAssigned = assigned.has(p.product_key);
     const unitOptions = p.unit === '公斤' || p.unit === 'kg' ? `<option value="weight" ${pref?.mode === 'weight' ? 'selected' : ''}>按重量（克）</option><option value="money" ${pref?.mode === 'money' ? 'selected' : ''}>按预算（RM）</option>` : `<option value="count" ${pref?.mode === 'count' ? 'selected' : ''}>按件/包</option><option value="money" ${pref?.mode === 'money' ? 'selected' : ''}>按预算（RM）</option>`;
     const suggestion = pref ? `常买 ${escapeHtml(pref.usual_amount)}（本次请重新输入）` : '输入数量/金额';
-    return `<div class="item"><strong>${escapeHtml(p.name_zh)}<small>${isAssigned ? '★ 常买 · ' : ''}${escapeHtml(p.name_en)} · ${escapeHtml(p.category)} · ${p.unit_price ? money(p.unit_price)+' / '+escapeHtml(p.unit) : '摊主确认当天价格'}</small></strong><select data-mode="${escapeHtml(p.product_key)}">${unitOptions}</select><input type="number" min="0.1" step="0.1" placeholder="${suggestion}" value="" data-amount="${escapeHtml(p.product_key)}"></div>`;
+    const splitField = p.unit === '公斤' || p.unit === 'kg' ? `<label class="muted">平均分成几份（可选）<input type="number" min="2" step="1" inputmode="numeric" placeholder="不分装" data-split="${escapeHtml(p.product_key)}"></label>` : '';
+    return `<div class="item"><strong>${escapeHtml(p.name_zh)}<small>${isAssigned ? '★ 常买 · ' : ''}${escapeHtml(p.name_en)} · ${escapeHtml(p.category)} · ${p.unit_price ? money(p.unit_price)+' / '+escapeHtml(p.unit) : '摊主确认当天价格'}</small></strong><select data-mode="${escapeHtml(p.product_key)}">${unitOptions}</select><input type="number" min="0.1" step="0.1" placeholder="${suggestion}" value="" data-amount="${escapeHtml(p.product_key)}">${splitField}</div>`;
   }).join('');
 }
 
@@ -109,7 +110,12 @@ $('#submit-order').addEventListener('click', async () => {
     const amount = Number(input?.value);
     if (!amount) continue;
     const mode = document.querySelector(`[data-mode="${CSS.escape(p.product_key)}"]`).value;
-    items.push({ product_key: p.product_key, product_name: p.name_zh, unit: p.unit || '公斤', request_mode: mode, requested_amount: amount, requested_unit_price: p.unit_price || null, is_custom: false });
+    const splitInput = document.querySelector(`[data-split="${CSS.escape(p.product_key)}"]`);
+    const splitValue = splitInput?.value.trim() || '';
+    const splitCount = splitValue ? Number(splitValue) : null;
+    if (splitValue && (!Number.isInteger(splitCount) || splitCount < 2)) { splitInput.setCustomValidity('请输入 2 或以上的整数份数。'); splitInput.reportValidity(); splitInput.focus(); return; }
+    if (splitInput) splitInput.setCustomValidity('');
+    items.push({ product_key: p.product_key, product_name: p.name_zh, unit: p.unit || '公斤', request_mode: mode, requested_amount: amount, requested_unit_price: p.unit_price || null, split_count: splitCount, is_custom: false });
   }
   const custom = $('#custom-items').value.split(/\n+/).map((x) => x.trim()).filter(Boolean);
   custom.forEach((text) => items.push({ product_name: text.slice(0,120), unit: '手写商品', request_mode: 'custom', requested_amount: 1, is_custom: true }));
@@ -141,8 +147,9 @@ async function loadCustomerOrders() {
   $('#customer-orders').innerHTML = orders?.length ? orders.map((o) => {
     const revision = (o.order_revisions || []).sort((a,b) => b.revision_no-a.revision_no)[0];
     const revisionLines = revision?.lines || [];
+    const itemById = new Map((o.order_items || []).map((line) => [line.id, line]));
     const lineNames = new Map((o.order_items || []).map((line) => [line.id, line.product_name]));
-    return `<article class="order"><div class="row" style="justify-content:space-between"><h3>${escapeHtml(o.order_no)}</h3><span class="pill">${escapeHtml(statusName(o.status))}</span></div><p class="muted">${new Date(o.created_at).toLocaleString()} · ${escapeHtml(o.pickup_note || '取货时间待确认')}</p><div>${(o.order_items || []).map((line) => `<div class="muted">${escapeHtml(line.product_name)}：${escapeHtml(requestLabel(line))}</div>`).join('')}</div>${revision ? `<hr><strong>摊主最终确认 · ${money(revision.total)}</strong><div>${revisionLines.map((line) => `<div class="muted">${escapeHtml(lineNames.get(line.id) || '商品')}：${line.availability === 'unavailable' ? '缺货' : (line.final_quantity ? `${escapeHtml(line.final_quantity)} ${escapeHtml((o.order_items || []).find(x=>x.id===line.id)?.unit === '公斤' ? '克' : '')} · ${money(line.final_amount)}` : money(line.final_amount))}</div>`).join('')}</div>${o.status === 'awaiting_customer_confirmation' ? `<div class="row" style="margin-top:12px"><button data-decision="yes" data-order="${o.id}" data-revision="${revision.id}">确认最终订单</button><button class="secondary" data-decision="no" data-order="${o.id}" data-revision="${revision.id}">请摊主修改</button></div>` : ''}` : ''}</article>`;
+    return `<article class="order"><div class="row" style="justify-content:space-between"><h3>${escapeHtml(o.order_no)}</h3><span class="pill">${escapeHtml(statusName(o.status))}</span></div><p class="muted">${new Date(o.created_at).toLocaleString()} · ${escapeHtml(o.pickup_note || '取货时间待确认')}</p><div>${(o.order_items || []).map((line) => `<div class="muted">${escapeHtml(line.product_name)}：${escapeHtml(requestLabel(line))}</div>`).join('')}</div>${revision ? `<hr><strong>摊主最终确认 · ${money(revision.total)}</strong><div>${revisionLines.map((line) => { const item = itemById.get(line.id), split = item?.split_count, portion = split && item?.unit === '公斤' && line.final_quantity ? ` · 分 ${split} 份（每份约 ${(Number(line.final_quantity) / 1000 / split).toFixed(2)} 公斤）` : ''; return `<div class="muted">${escapeHtml(lineNames.get(line.id) || '商品')}：${line.availability === 'unavailable' ? '缺货' : (line.final_quantity ? `${escapeHtml(line.final_quantity)} ${item?.unit === '公斤' ? '克' : ''}${portion} · ${money(line.final_amount)}` : money(line.final_amount))}</div>`; }).join('')}</div>${o.status === 'awaiting_customer_confirmation' ? `<div class="row" style="margin-top:12px"><button data-decision="yes" data-order="${o.id}" data-revision="${revision.id}">确认最终订单</button><button class="secondary" data-decision="no" data-order="${o.id}" data-revision="${revision.id}">请摊主修改</button></div>` : ''}` : ''}</article>`;
   }).join('') : '<p class="muted">还没有网站订单。</p>';
 }
 
@@ -179,7 +186,7 @@ async function loadCustomerAccounts() {
   const { data, error } = await supabase.from('profiles').select('user_id,display_name,phone,customer_slot,active,preferred_product_keys').eq('restaurant_id', restaurant.id).eq('role', 'customer').order('customer_slot');
   if (error) { box.textContent = `顾客账号读取失败：${error.message}`; return; }
   const active = (data || []).filter((x) => x.active);
-  box.innerHTML = `<h3>目前 ${active.length} 个启用中的顾客账号（可持续新增）</h3>` + ((data || []).map((customer) => `<article class="order"><strong>#${customer.customer_slot ?? '—'} ${escapeHtml(customer.display_name)} ${customer.active ? '' : '（已停用）'}</strong><p class="muted">${escapeHtml(customer.phone || '')}<br>常买：${(customer.preferred_product_keys || []).map((key) => escapeHtml(catalog.find((p) => p.product_key === key)?.name_zh || key)).join('、') || '尚未设置'}</p>${customer.active ? `<details><summary>编辑常买偏好（最多 10 项）</summary><div class="row">${catalog.map((p) => `<label class="pill"><input type="checkbox" value="${escapeHtml(p.product_key)}" data-account-pref="${customer.user_id}" ${(customer.preferred_product_keys || []).includes(p.product_key) ? 'checked' : ''}> ${escapeHtml(p.name_zh)}</label>`).join('')}</div><button class="secondary" data-save-account-prefs="${customer.user_id}">保存偏好</button></details><p><button class="secondary" data-reset-customer="${customer.user_id}">重设临时密码</button> <button class="secondary" data-deactivate-customer="${customer.user_id}">停用账号</button></p>` : `<button class="secondary" data-reactivate-customer="${customer.user_id}">重新启用并生成临时密码</button>`}</article>`).join('') || '<p class="muted">尚未建立顾客账号。</p>');
+  box.innerHTML = `<h3>目前 ${active.length} 个启用中的顾客账号（可持续新增）</h3>` + ((data || []).map((customer) => `<article class="order"><strong>#${customer.customer_slot ?? '—'} ${escapeHtml(customer.display_name)} ${customer.active ? '' : '（已停用）'}</strong><p class="muted">${escapeHtml(customer.phone || '')}<br>常买：${(customer.preferred_product_keys || []).map((key) => escapeHtml(catalog.find((p) => p.product_key === key)?.name_zh || key)).join('、') || '尚未设置'}</p>${customer.active ? `<details><summary>编辑常买偏好（最多 40 项）</summary><div class="row">${catalog.map((p) => `<label class="pill"><input type="checkbox" value="${escapeHtml(p.product_key)}" data-account-pref="${customer.user_id}" ${(customer.preferred_product_keys || []).includes(p.product_key) ? 'checked' : ''}> ${escapeHtml(p.name_zh)}</label>`).join('')}</div><button class="secondary" data-save-account-prefs="${customer.user_id}">保存偏好</button></details><p><button class="secondary" data-reset-customer="${customer.user_id}">重设临时密码</button> <button class="secondary" data-deactivate-customer="${customer.user_id}">停用账号</button></p>` : `<button class="secondary" data-reactivate-customer="${customer.user_id}">重新启用并生成临时密码</button>`}</article>`).join('') || '<p class="muted">尚未建立顾客账号。</p>');
 }
 
 async function renderPreferenceChoices() {
@@ -191,7 +198,7 @@ async function renderPreferenceChoices() {
   $('#new-customer-preferences').onchange = (event) => {
     if (!event.target.matches('[data-new-customer-preference]')) return;
     const checked = [...document.querySelectorAll('[data-new-customer-preference]:checked')];
-    if (checked.length > 10) { event.target.checked = false; $('#temp-password-result').textContent = '每位顾客最多设定 10 项常买偏好。'; }
+    if (checked.length > 40) { event.target.checked = false; $('#temp-password-result').textContent = '每位顾客最多设定 40 项常买偏好。'; }
   };
 }
 
@@ -236,22 +243,38 @@ $('#managed-customers').addEventListener('click', async (event) => {
   } catch (error) { status.textContent = `操作失败：${error.message}`; }
 });
 
-function requestLabel(line) { return line.request_mode === 'money' ? `预算 RM ${Number(line.requested_amount).toFixed(2)}` : line.request_mode === 'weight' ? `${line.requested_amount} 克（要求重量）` : line.request_mode === 'count' ? `${line.requested_amount} 件/包` : '请摊主确认'; }
+function requestLabel(line) { const base = line.request_mode === 'money' ? `预算 RM ${Number(line.requested_amount).toFixed(2)}` : line.request_mode === 'weight' ? `${line.requested_amount} 克（要求重量）` : line.request_mode === 'count' ? `${line.requested_amount} 件/包` : '请摊主确认'; return line.split_count ? `${base}；请平均分 ${line.split_count} 份${line.request_mode === 'weight' && line.unit === '公斤' ? `（约每份 ${(Number(line.requested_amount) / 1000 / line.split_count).toFixed(2)} 公斤）` : ''}` : base; }
 function statusName(value) { return ({submitted:'已提交，待摊主处理',owner_review:'摊主核价中',awaiting_customer_confirmation:'待你确认最终金额',customer_requested_change:'你已要求修改',confirmed:'你已确认',fulfilled:'已完成',cancelled:'已取消'})[value] || value; }
 
 async function seedAndLoadMenu() {
-  const { data: existing } = await supabase.from('menu_items').select('id').eq('restaurant_id', restaurant.id).limit(1);
-  if (!existing?.length && window.STALL?.products?.length) {
-    const rows = window.STALL.products.map((p,index) => ({ restaurant_id: restaurant.id, product_key: p.id, name_zh: p.name, name_en: window.PRODUCT_EN_NAMES?.[p.id] || '', category: p.category, unit: p.unit || '公斤', unit_price: p.price, display_order: index }));
-    const { error } = await supabase.from('menu_items').upsert(rows, { onConflict: 'restaurant_id,product_key' });
-    if (error) { $('#owner-menu').textContent = `菜单初始化失败：${error.message}`; return; }
+  if (window.STALL?.products?.length) {
+    const { data: existing, error: readError } = await supabase.from('menu_items').select('id,product_key,display_order').eq('restaurant_id', restaurant.id);
+    if (readError) { $('#owner-menu').textContent = `菜单读取失败：${readError.message}`; return; }
+    const existingByKey = new Map((existing || []).map((row) => [row.product_key, row]));
+    const desiredKeys = new Set(window.STALL.products.map((product) => product.id));
+    const additions = window.STALL.products.map((p,index) => ({ restaurant_id: restaurant.id, product_key: p.id, name_zh: p.name, name_en: window.PRODUCT_EN_NAMES?.[p.id] || '', category: p.category, unit: p.unit || '公斤', unit_price: p.price, display_order: index, active: true })).filter((row) => !existingByKey.has(row.product_key));
+    if (additions.length) {
+      const { error } = await supabase.from('menu_items').insert(additions);
+      if (error) { $('#owner-menu').textContent = `菜单新增商品失败：${error.message}`; return; }
+    }
+    for (const product of window.STALL.products) {
+      const current = existingByKey.get(product.id);
+      if (!current) continue;
+      const { error } = await supabase.from('menu_items').update({ name_zh: product.name, name_en: window.PRODUCT_EN_NAMES?.[product.id] || '', category: product.category, unit: product.unit || '公斤', active: true }).eq('id', current.id);
+      if (error) { $('#owner-menu').textContent = `菜单同步失败：${error.message}`; return; }
+    }
+    const obsolete = (existing || []).filter((row) => !desiredKeys.has(row.product_key));
+    for (const row of obsolete) {
+      const { error } = await supabase.from('menu_items').update({ active: false }).eq('id', row.id);
+      if (error) { $('#owner-menu').textContent = `旧菜单项目停用失败：${error.message}`; return; }
+    }
   }
   await loadOwnerMenu();
   await renderPreferenceChoices();
 }
 
 async function loadOwnerMenu() {
-  const { data, error } = await supabase.from('menu_items').select('*').eq('restaurant_id', restaurant.id).order('display_order').order('name_zh');
+  const { data, error } = await supabase.from('menu_items').select('*').eq('restaurant_id', restaurant.id).eq('active', true).order('display_order').order('name_zh');
   if (error) { $('#owner-menu').textContent = `菜单读取失败：${error.message}`; return; }
   $('#owner-menu').innerHTML = (data || []).map((p,index) => `<div class="item"><strong>${escapeHtml(p.name_zh)}<small>${escapeHtml(productEnglishName(p))}</small><small>${escapeHtml(p.category)}</small></strong><span class="muted">${escapeHtml(p.unit)}${p.unit_price ? ` · ${money(p.unit_price)}` : ''}</span><button class="secondary" data-move="up" data-id="${p.id}" ${index===0?'disabled':''}>↑</button><button class="secondary" data-move="down" data-id="${p.id}" ${index===data.length-1?'disabled':''}>↓</button></div>`).join('') || '菜单没有商品。';
   $('#owner-menu').onclick = async (event) => {
@@ -300,8 +323,16 @@ function sheetDate(value) {
 async function loadOwnerOrders() {
   const { data, error } = await supabase.from('orders').select('id,order_no,status,created_at,customer_name,customer_phone,customer_id,pickup_note,customer_note,order_items(*)').eq('restaurant_id', restaurant.id).not('status','in','(fulfilled,cancelled)').order('created_at',{ascending:true}).limit(100);
   if (error) { $('#owner-orders').textContent = `订单读取失败：${error.message}`; return; }
-  $('#owner-orders').innerHTML = data?.length ? data.map((o) => `<article class="order" data-owner-order="${o.id}"><div class="row" style="justify-content:space-between"><h3>${escapeHtml(o.order_no)} · ${escapeHtml(o.customer_name || '顾客')}</h3><span class="pill">${escapeHtml(statusName(o.status))}</span></div><p class="muted">顾客电话：${escapeHtml(o.customer_phone || '未提供')} · ${new Date(o.created_at).toLocaleString()} · ${escapeHtml(o.pickup_note || '未提供取货时间')}</p><p class="muted">备注：${escapeHtml(o.customer_note || '无')}</p>${(o.order_items||[]).map((line) => `<div class="ownerline" data-line="${line.id}" data-unit="${escapeHtml(line.unit)}" data-custom="${line.is_custom}"><strong>${escapeHtml(line.product_name)}<small>顾客要求：${escapeHtml(requestLabel(line))}</small></strong><select data-availability><option value="pending" ${line.availability==='pending'?'selected':''}>待确认</option><option value="available" ${line.availability==='available'?'selected':''}>有货</option><option value="unavailable" ${line.availability==='unavailable'?'selected':''}>缺货</option></select><input type="number" min="0" step="1" data-final-qty value="${escapeHtml(line.final_quantity ?? '')}" placeholder="实称克数/数量"><input type="number" min="0" step="0.01" data-final-price value="${escapeHtml(line.is_custom ? line.final_amount ?? '' : line.final_unit_price ?? '')}" placeholder="${line.is_custom ? '最终金额 RM' : line.unit==='公斤' ? 'RM/公斤' : 'RM/单位'}"></div>`).join('')}${['submitted','owner_review','customer_requested_change'].includes(o.status) ? `<button data-publish="${o.id}">计算并发给顾客确认</button>` : ''}${o.status==='confirmed' ? `<button data-fulfill="${o.id}">标记已备货/完成</button>` : ''}<div class="status" data-order-status></div></article>`).join('') : '<p class="muted">目前没有待处理订单。</p>';
+  $('#owner-orders').innerHTML = data?.length ? data.map((o) => `<article class="order" data-owner-order="${o.id}"><div class="row" style="justify-content:space-between"><h3>${escapeHtml(o.order_no)} · ${escapeHtml(o.customer_name || '顾客')}</h3><span class="pill">${escapeHtml(statusName(o.status))}</span></div><p class="muted">顾客电话：${escapeHtml(o.customer_phone || '未提供')} · ${new Date(o.created_at).toLocaleString()} · ${escapeHtml(o.pickup_note || '未提供取货时间')}</p><p class="muted">备注：${escapeHtml(o.customer_note || '无')}</p>${(o.order_items||[]).map((line) => `<div class="ownerline" data-line="${line.id}" data-unit="${escapeHtml(line.unit)}" data-split="${escapeHtml(line.split_count ?? '')}" data-custom="${line.is_custom}"><strong>${escapeHtml(line.product_name)}<small>顾客要求：${escapeHtml(requestLabel(line))}</small></strong><select data-availability><option value="pending" ${line.availability==='pending'?'selected':''}>待确认</option><option value="available" ${line.availability==='available'?'selected':''}>有货</option><option value="unavailable" ${line.availability==='unavailable'?'selected':''}>缺货</option></select><input type="number" min="0" step="1" data-final-qty value="${escapeHtml(line.final_quantity ?? '')}" placeholder="实称克数/数量"><input type="number" min="0" step="0.01" data-final-price value="${escapeHtml(line.is_custom ? line.final_amount ?? '' : line.final_unit_price ?? '')}" placeholder="${line.is_custom ? '最终金额 RM' : line.unit==='公斤' ? 'RM/公斤' : 'RM/单位'}"><small class="muted" data-portion-preview>${line.split_count && line.final_quantity && line.unit === '公斤' ? `实称后每份约 ${(Number(line.final_quantity)/1000/line.split_count).toFixed(2)} 公斤；此分装要求不改变总价计算。` : line.split_count ? `平均分 ${line.split_count} 份；此分装要求不改变总价计算。` : ''}</small></div>`).join('')}${['submitted','owner_review','customer_requested_change'].includes(o.status) ? `<button data-publish="${o.id}">计算并发给顾客确认</button>` : ''}${o.status==='confirmed' ? `<button data-fulfill="${o.id}">标记已备货/完成</button>` : ''}<div class="status" data-order-status></div></article>`).join('') : '<p class="muted">目前没有待处理订单。</p>';
 }
+
+$('#owner-orders').addEventListener('input', (event) => {
+  if (!event.target.matches('[data-final-qty]')) return;
+  const row = event.target.closest('[data-line]'), preview = row?.querySelector('[data-portion-preview]');
+  if (!row || !preview || row.dataset.unit !== '公斤' || !row.dataset.split) return;
+  const grams = Number(event.target.value), portions = Number(row.dataset.split);
+  preview.textContent = grams > 0 ? `实称后每份约 ${(grams / 1000 / portions).toFixed(2)} 公斤；此分装要求不改变总价计算。` : `平均分 ${portions} 份；此分装要求不改变总价计算。`;
+});
 
 $('#owner-orders').addEventListener('click', async (event) => {
   const fulfilled = event.target.closest('[data-fulfill]');
