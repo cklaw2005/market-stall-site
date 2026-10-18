@@ -11,7 +11,7 @@ window.PRODUCT_IMAGES = {
   "ginger": "images/products/ginger.jpg",
   "fuzhou-eggplant": "images/products/fuzhou-eggplant.jpg",
   "bitter-gourd": "images/products/bitter-gourd.jpg",
-  "di-wen": "images/products/di-wen.jpg",
+  "di-wen": null,
   "tomato": "images/products/tomato.jpg",
   "winter-melon": "images/products/winter-melon.jpg",
   "garlic": "images/products/garlic.jpg",
