@@ -13,7 +13,7 @@ begin
   if auth.uid() is null then raise exception 'Sign in required'; end if;
   select * into parent from public.orders o where o.id=target_parent and o.restaurant_id=target_restaurant and o.customer_id=auth.uid() for update;
   if parent.id is null then raise exception 'Original order not found'; end if;
-  if parent.status not in ('submitted','owner_review','awaiting_customer_confirmation','customer_requested_change','confirmed') or parent.cancel_requested_at is not null then raise exception 'Original order is not open for add-ons'; end if;
+  if parent.status not in ('submitted','owner_review','awaiting_customer_confirmation','customer_requested_change','confirmed') or (parent.cancel_requested_at is not null and parent.cancel_decided_at is null) then raise exception 'Original order is not open for add-ons'; end if;
   select s.id,s.order_no into created_id,created_order_no from public.submit_order(target_restaurant,customer_name,customer_phone,pickup_note,customer_note,items) s;
   update public.orders o set parent_order_id=parent.id,parent_order_no=parent.order_no where o.id=created_id and o.customer_id=auth.uid() returning o.* into created;
   if created.id is null then raise exception 'Could not link add-on order'; end if;
