@@ -197,7 +197,7 @@ begin
   if auth.uid() is null then raise exception 'Sign in required'; end if;
   select * into parent from public.orders o where o.id=target_parent and o.restaurant_id=target_restaurant and o.customer_id=auth.uid() for update;
   if parent.id is null then raise exception 'Original order not found'; end if;
-  if parent.status not in ('submitted','owner_review','awaiting_customer_confirmation','customer_requested_change','confirmed') or parent.cancel_requested_at is not null then raise exception 'Original order is not open for add-ons'; end if;
+  if parent.status not in ('submitted','owner_review','awaiting_customer_confirmation','customer_requested_change','confirmed') or (parent.cancel_requested_at is not null and parent.cancel_decided_at is null) then raise exception 'Original order is not open for add-ons'; end if;
   select s.id,s.order_no into created_id,created_order_no from public.submit_order(target_restaurant,customer_name,customer_phone,pickup_note,customer_note,items) s;
   update public.orders o set parent_order_id=parent.id,parent_order_no=parent.order_no where o.id=created_id and o.customer_id=auth.uid() returning o.* into created;
   if created.id is null then raise exception 'Could not link add-on order'; end if;
@@ -238,6 +238,7 @@ begin
   select restaurant_id,status into order_restaurant,order_status from public.orders where id=target_order for update;
   if order_restaurant is null or not public.is_restaurant_member(order_restaurant) then raise exception 'Not authorized for this restaurant'; end if;
   if order_status not in ('submitted','owner_review','customer_requested_change') then raise exception 'Order is not open for changes'; end if;
+  if exists(select 1 from public.orders where id=target_order and cancel_requested_at is not null and cancel_decided_at is null) then raise exception 'Order has a pending cancellation request'; end if;
   if jsonb_typeof(lines)<>'array' then raise exception 'Invalid final lines'; end if;
   select count(*) into item_count from public.order_items where order_id=target_order;
   if jsonb_array_length(lines)<>item_count then raise exception 'Every order item must be included'; end if;
@@ -291,6 +292,7 @@ begin
   select customer_id into owner_customer from public.orders where id=target_order for update;
   if owner_customer is null or owner_customer<>auth.uid() then raise exception 'Order not found'; end if;
   if not exists(select 1 from public.orders o where o.id=target_order and public.is_active_customer(o.restaurant_id)) then raise exception 'Active customer account required'; end if;
+  if exists(select 1 from public.orders where id=target_order and cancel_requested_at is not null and cancel_decided_at is null) then raise exception 'Order has a pending cancellation request'; end if;
   if not exists(select 1 from public.order_revisions r where r.id=target_revision and r.order_id=target_order and r.revision_no=(select max(latest.revision_no) from public.order_revisions latest where latest.order_id=target_order)) then raise exception 'Revision not found'; end if;
   if (select status from public.orders where id=target_order)<>'awaiting_customer_confirmation' then raise exception 'Order is not awaiting confirmation'; end if;
   update public.orders set status=case when accept then 'confirmed' else 'customer_requested_change' end,
