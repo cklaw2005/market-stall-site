@@ -56,6 +56,8 @@ The no-cost Supabase project has been created and connected:
 - The Phase 2 customer page reads the published Google Sheet price feed and stores the requested values on each order. The owner enters final quantity/weight and final price; database functions calculate the total.
 - Customers may optionally request equal portions for kilogram-based items. The split count is stored as a packing instruction and shown to the owner and customer. It does not enter the amount formula: the total remains based on seller-confirmed final weight and unit price.
 - The owner publishes a final order revision. The customer signs in to review and confirm it. WhatsApp is not the order database or calculator.
+- Each submission receives its own unique order number (`MK-日期-随机码`). A later add-on is a separate bill with its own number and a saved reference to the original order, so totals and edits never overwrite the first submission.
+- Customers can request cancellation from their order list. The seller approves or declines it in the seller dashboard; approval marks the order cancelled, while a decline leaves it active. The order and cancellation decision remain visible as history. Each linked add-on is managed and cancelled separately.
 - Keep the current public menu/Phase 1 flow available. Do not describe Phase 2 as live until the Supabase project, Edge Function, customer onboarding, and complete order path work on the published site.
 
 ## References
@@ -64,4 +66,3 @@ The no-cost Supabase project has been created and connected:
 - [Supabase admin create user](https://supabase.com/docs/reference/javascript/auth-admin-createuser)
 - [Supabase Edge Function secrets](https://supabase.com/docs/guides/functions/secrets)
 - [Securing Supabase Edge Functions](https://supabase.com/docs/guides/functions/auth)
-
