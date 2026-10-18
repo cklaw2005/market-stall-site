@@ -224,3 +224,6 @@ The Wikimedia Commons photos below are attributed with their listed licenses; th
 
 
 images/products/cartoon-assortment.png is a generic market-food cartoon illustration generated with OpenAI image_gen on 2026-10-18 for temporary use on products whose photo permissions are unconfirmed. It has no external image source and is not a product-specific photo or accurate depiction.
+
+
+Current catalogue review: 104 products are listed. Product-specific photos are shown only where a matching image and reusable source have been recorded; all other product image slots are intentionally left blank until a suitable source is verified.
