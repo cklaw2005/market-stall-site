@@ -103,12 +103,13 @@ The Wikimedia Commons and Pexels photos below are listed with their source pages
 
 ## 逐张核查登记（2026-10-18）
 
-本次核查范围：网站当前可展示的 55 个图库许可图片和 1 张由摊主提供并声明为 iPhone 实拍的图片（57 个商品卡片引用，其中玉米图用于两个玉米商品）以及 1 张本站原创占位图；另核对其他摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”本身当作授权证明。
+本次核查范围：网站当前可展示的 70 个图库许可图片和 1 张由摊主提供并声明为 iPhone 实拍的图片（72 个商品卡片引用，其中玉米图用于两个玉米商品）以及 1 张本站原创占位图；另核对其他摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”本身当作授权证明。
 
 ### 当前网站展示
 
 | 网站文件路径 | 作者 / 图片 | 来源与许可 | 修改 | 核查结果 |
 |---|---|---|---|---|
+| `images/products/garlic-scape-cc0.jpg` | Garlic scape 蒜薹.jpg · Suginami | [来源页](https://commons.wikimedia.org/wiki/File:Garlic_scape_%E8%92%9C%E8%96%B9.jpg) · [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | 原图下载，未编辑；按礼貌保留作者和来源。核查：2026-10-19。 | 来源页标为 garlic scape/蒜薹，CC0；实图为成束蒜薹。 |
 | `images/products/red-pepper.jpg` | Fresh red chilli.jpg · Rukkyah | <a href="https://commons.wikimedia.org/wiki/File:Fresh_red_chilli.jpg">来源页</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> | 缩放为缩略图；署名、来源、许可和改动已列明。核查：2026-10-18。 | Commons 来源页列有可复用许可；按页面列明的署名和许可使用。 |
 | `images/products/small-pepper.jpg` | DSC 9978 A vibrant pile of fresh red and green chili peppers ready to add a spicy kick to any dish.jpg · PattayaPatrol | <a href="https://commons.wikimedia.org/wiki/File:DSC_9978_A_vibrant_pile_of_fresh_red_and_green_chili_peppers_ready_to_add_a_spicy_kick_to_any_dish.jpg">来源页</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> | 缩放为缩略图；署名、来源、许可和改动已列明。核查：2026-10-18。 | Commons 来源页列有可复用许可；按页面列明的署名和许可使用。 |
 | `images/products/capsicum.jpg` | Freshly harvested red bell pepper.jpg · Shixart1985 | <a href="https://commons.wikimedia.org/wiki/File:Freshly_harvested_red_bell_pepper.jpg">来源页</a> · <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a> | 缩放为缩略图；署名、来源、许可和改动已列明。核查：2026-10-18。 | Commons 来源页列有可复用许可；按页面列明的署名和许可使用。 |
@@ -172,6 +173,13 @@ The Wikimedia Commons and Pexels photos below are listed with their source pages
 | `images/products/beetroot-pexels.jpg` | Close-up of Fresh Beetroots at Market · Ahmad Khan | [Pexels 来源页](https://www.pexels.com/photo/close-up-of-fresh-beetroots-at-market-37202283/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-19。 | 来源页及实图均为甜菜根/beetroot；用于甜菜根卡片作外观示意。 |
 | `images/products/ripe-mango-pexels.jpg` | Fresh Mangos Piled at a Local Market · Matheus Bertelli | [Pexels 来源页](https://www.pexels.com/photo/fresh-mangos-piled-at-a-local-market-30893290/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-19。 | 来源页及实图均为成熟芒果；用于成熟芒果卡片作外观示意，不表示具体产地或品种。 |
 | `images/products/lettuce-pexels.jpg` | Lettuce on Display · Doğan Alpaslan Demir | [Pexels 来源页](https://www.pexels.com/photo/lettuce-on-display-26951809/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-19。 | 来源页及实图均为生菜/iceberg lettuce；用于生菜卡片作外观示意。 |
+| `images/products/eggs-carton-pexels.jpg` | Fresh Brown Eggs in Carton Close-Up · Annashoots | [Pexels 来源页](https://www.pexels.com/photo/fresh-brown-eggs-in-carton-close-up-37803279/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-19。 | 来源页及实图均为未破损的鸡蛋；用于鸡蛋卡片作外观示意。 |
+| `images/products/baby-bok-choy-pexels.jpg` | Fresh Organic Baby Bok Choy at Market · Joolsmagools | [Pexels 来源页](https://www.pexels.com/photo/fresh-organic-baby-bok-choy-at-market-38078487/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-19。 | 页面及实图均为 baby bok choy/娃娃菜；用于对应商品卡片。 |
+| `images/products/water-spinach-pexels.jpg` | A Close-Up Shot of Bundles of Water Spinach · Markus Winkler | [Pexels 来源页](https://www.pexels.com/photo/a-close-up-shot-of-bundles-of-water-spinach-13768938/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；核查：2026-10-19。 | 来源页及实图均为成束空心菜/蕹菜；用于“英才”空心菜卡片作外观示意。 |
+| `images/products/okra-market-mixed-pexels.jpg` | Fresh Okra and Cucumbers at Market Stall · Bilal's Here | [Pexels 来源页](https://www.pexels.com/photo/fresh-okra-and-cucumbers-at-market-stall-38780488/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；核查：2026-10-19。 | 来源页及实图可辨认市场袋装秋葵；照片同时包含黄瓜，仅作羊角豆外观示意。 |
+| `images/products/curry-leaves-pexels.jpg` | Fresh Green Curry Leaf on White Background · Anindo Santra | [Pexels 来源页](https://www.pexels.com/photo/fresh-green-curry-leaf-on-white-background-37215213/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；核查：2026-10-19。 | 来源页与实图显示咖喱叶枝条；用于咖喱叶商品卡片外观示意。 |
+| `images/products/sweet-potato-leaves-pexels.jpg` | Photo of sweet potato leaves · Tyas Wahyu P. | [Pexels 来源页](https://www.pexels.com/photo/photo-of-sweet-potato-leaves-19067632/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；核查：2026-10-19。 | 来源页标注 sweet potato leaves / Ipomoea batatas，实图为番薯叶；用于番薯菜外观示意。 |
+| `images/products/snow-peas-cc0.jpg` | Snow peas - Pisum sativum.jpg · Fumikas Sagisavas | [Wikimedia Commons 来源页](https://commons.wikimedia.org/wiki/File:Snow_peas_-_Pisum_sativum.jpg) · [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/deed.en) | 原图下载，未编辑；作者及来源作为礼貌性记录。核查：2026-10-19。 | 来源页及实图均为荷兰豆/snow peas；用作“甜豆”外观示意，不确认摊位具体品种。 |
 | `images/products/image-pending.svg` | 本站原创通用占位图 | 本项目内绘制的 SVG；无外部图片来源或第三方素材。 | 原创矢量图；用于未取得权利证明的商品。核查：2026-10-18。 | 本站原创占位图；无第三方素材。 |
 
 ### 已撤下、等待授权证据的摊主提供图片
