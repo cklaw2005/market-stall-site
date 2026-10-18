@@ -1,3 +1,5 @@
+// Only list a photograph when it has been checked against the product.
+// Products without a confirmed match intentionally render without a photo.
 window.PRODUCT_IMAGES = {
   "red-pepper": "images/products/red-pepper.jpg",
   "small-pepper": "images/products/small-pepper.jpg",
@@ -12,20 +14,12 @@ window.PRODUCT_IMAGES = {
   "di-wen": "images/products/di-wen.jpg",
   "tomato": "images/products/tomato.jpg",
   "winter-melon": "images/products/winter-melon.jpg",
-  "spinach": "images/products/spinach.jpg",
-  "corn": "images/products/corn.jpg",
   "garlic": "images/products/garlic.jpg",
   "pak-choi": "images/products/pak-choi.jpg",
   "taro": "images/products/taro.jpg",
   "cabbage": "images/products/cabbage.jpg",
-  "cabbage-beijing": "images/products/cabbage.jpg",
-  "beetroot": "images/products/beetroot.jpg",
   "celery": "images/products/celery.jpg",
   "lotus-root": "images/products/lotus-root.jpg",
   "watercress": "images/products/watercress.jpg",
-  "field-bean": "images/products/field-bean.jpg",
-  "french-bean": "images/products/field-bean.jpg",
-  "chinese-baby-bok-choy": "images/products/pak-choi.jpg",
-  "sweet-peas": "images/products/sweet-peas.jpg"
+  "field-bean": "images/products/field-bean.jpg"
 };
-

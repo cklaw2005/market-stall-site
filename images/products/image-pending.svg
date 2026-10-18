@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img" aria-labelledby="title desc">
+  <title id="title">Product photo pending</title>
+  <desc id="desc">Neutral placeholder used while a product photo is being cleared for use.</desc>
+  <rect width="800" height="560" rx="32" fill="#eef2e6"/>
+  <circle cx="400" cy="226" r="112" fill="#dce6cf"/>
+  <path d="M400 302c-16-70-64-119-137-139 8 74 55 124 137 139Zm0 0c17-83 71-135 154-156-10 82-63 137-154 156Z" fill="#6f8e58"/>
+  <path d="M400 307v-91" fill="none" stroke="#527047" stroke-linecap="round" stroke-width="12"/>
+  <rect x="244" y="376" width="312" height="74" rx="37" fill="#fffdf5"/>
+  <text x="400" y="407" text-anchor="middle" fill="#344637" font-family="Arial,sans-serif" font-size="24" font-weight="700">图片待确认</text>
+  <text x="400" y="434" text-anchor="middle" fill="#687662" font-family="Arial,sans-serif" font-size="16">PHOTO PENDING</text>
+</svg>
