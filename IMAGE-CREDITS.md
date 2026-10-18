@@ -103,7 +103,7 @@ The Wikimedia Commons and Pexels photos below are listed with their source pages
 
 ## 逐张核查登记（2026-10-18）
 
-本次核查范围：网站当前可展示的 52 个图库许可图片和 1 张由摊主提供并声明为 iPhone 实拍的图片（54 个商品卡片引用，其中玉米图用于两个玉米商品）以及 1 张本站原创占位图；另核对其他摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”本身当作授权证明。
+本次核查范围：网站当前可展示的 55 个图库许可图片和 1 张由摊主提供并声明为 iPhone 实拍的图片（57 个商品卡片引用，其中玉米图用于两个玉米商品）以及 1 张本站原创占位图；另核对其他摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”本身当作授权证明。
 
 ### 当前网站展示
 
@@ -169,6 +169,9 @@ The Wikimedia Commons and Pexels photos below are listed with their source pages
 | `images/products/jicama-pexels.jpg` | Fresh Jicama Tubers Piled in a Market Display · L. Lum | [Pexels 来源页](https://www.pexels.com/photo/fresh-jicama-tubers-piled-in-a-market-display-35614101/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-19。 | 来源页及实图均为凉薯/jicama；用于对应商品卡片作外观示意。 |
 | `images/products/french-beans-pexels.jpg` | Fresh Green Beans Piled Together Closeup · Ram Kondisetti | [Pexels 来源页](https://www.pexels.com/photo/fresh-green-beans-piled-together-closeup-34387471/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-19。 | 来源页标签及实图均为 green/French beans；用于四季豆卡片作外观示意，不确认具体本地品种。 |
 | `images/products/winged-bean-cc0.jpg` | Winged bean fruit.jpg · Bim24 | [Wikimedia Commons 来源页](https://commons.wikimedia.org/wiki/File:Winged_bean_fruit.jpg) · [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/deed.en) | 原图下载，未编辑；作者及来源作为礼貌性记录。核查：2026-10-19。 | 来源页及实图为 winged bean pods/四棱豆；用于四角豆卡片作外观示意。 |
+| `images/products/beetroot-pexels.jpg` | Close-up of Fresh Beetroots at Market · Ahmad Khan | [Pexels 来源页](https://www.pexels.com/photo/close-up-of-fresh-beetroots-at-market-37202283/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-19。 | 来源页及实图均为甜菜根/beetroot；用于甜菜根卡片作外观示意。 |
+| `images/products/ripe-mango-pexels.jpg` | Fresh Mangos Piled at a Local Market · Matheus Bertelli | [Pexels 来源页](https://www.pexels.com/photo/fresh-mangos-piled-at-a-local-market-30893290/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-19。 | 来源页及实图均为成熟芒果；用于成熟芒果卡片作外观示意，不表示具体产地或品种。 |
+| `images/products/lettuce-pexels.jpg` | Lettuce on Display · Doğan Alpaslan Demir | [Pexels 来源页](https://www.pexels.com/photo/lettuce-on-display-26951809/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-19。 | 来源页及实图均为生菜/iceberg lettuce；用于生菜卡片作外观示意。 |
 | `images/products/image-pending.svg` | 本站原创通用占位图 | 本项目内绘制的 SVG；无外部图片来源或第三方素材。 | 原创矢量图；用于未取得权利证明的商品。核查：2026-10-18。 | 本站原创占位图；无第三方素材。 |
 
 ### 已撤下、等待授权证据的摊主提供图片
