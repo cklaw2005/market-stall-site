@@ -103,7 +103,7 @@ The Wikimedia Commons and Pexels photos below are listed with their source pages
 
 ## 逐张核查登记（2026-10-18）
 
-本次核查范围：网站当前可展示的 39 个许可图片文件（40 个商品卡片引用，其中玉米图用于两个玉米商品）和 1 张本站原创占位图；另核对摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”当作授权证明。
+本次核查范围：网站当前可展示的 45 个许可图片文件（46 个商品卡片引用，其中玉米图用于两个玉米商品）和 1 张本站原创占位图；另核对摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”当作授权证明。
 
 ### 当前网站展示
 
@@ -155,6 +155,12 @@ The Wikimedia Commons and Pexels photos below are listed with their source pages
 | `images/products/di-wen-cucumber-pexels.jpg` | Pile of Cucumbers · Doğan Alpaslan Demir | [Pexels 来源页](https://www.pexels.com/photo/pile-of-cucumbers-19392088/) · [Pexels License](https://www.pexels.com/legal-pages/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 实图为普通黄瓜；只作外观示意，不确认“地文”具体品种或本店商品来源。 |
 | `images/products/white-onion-pexels.jpg` | Fresh onions on food market · Michael Burrows | [Pexels 来源页](https://www.pexels.com/photo/fresh-onions-on-food-market-7129709/) · [Pexels License](https://www.pexels.com/legal-pages/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 页面说明及实图均为白洋葱；用于白洋葱商品卡片作外观示意。 |
 | `images/products/pandan-leaf-pexels.jpg` | Green Pandan Leaves with Water Droplets · James Sebastian | [Pexels 来源页](https://www.pexels.com/photo/green-pandan-leaves-with-water-droplets-5857656/) · [Pexels License](https://www.pexels.com/legal-pages/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 来源页及标签说明为 pandan / Pandanus amaryllifolius；用于斑斓叶外观示意。 |
+| `images/products/celery-stalk-pexels.jpg` | Close-up Photo of Celery Stalks · Néstor Santos | [Pexels 来源页](https://www.pexels.com/photo/close-up-photo-of-celery-stalks-13044694/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 页面和照片均为芹菜茎；用于芹菜卡片作外观示意。 |
+| `images/products/spinach-pexels.jpg` | Green Spinach in the Colander · Eva Bronzini | [Pexels 来源页](https://www.pexels.com/photo/green-spinach-in-the-colander-6824476/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 页面标注为菠菜叶；用于菠菜卡片作外观示意。 |
+| `images/products/cauliflower-pexels.jpg` | Close-Up Shot of a Cauliflower · Magda Ehlers | [Pexels 来源页](https://www.pexels.com/photo/close-up-shot-of-a-cauliflower-4162149/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 照片和页面均为白花菜；不用于绿色花椰菜商品卡片。 |
+| `images/products/green-mango-pexels.jpg` | Fresh Green Mangoes Displayed at Market · Matheus Bertelli | [Pexels 来源页](https://www.pexels.com/photo/fresh-green-mangoes-displayed-at-market-30893229/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 照片及来源页均标注为青芒果；用于青芒果卡片作外观示意。 |
+| `images/products/white-mushroom-pexels.jpg` | Close Up Photo of Fresh Mushrooms · alleksana | [Pexels 来源页](https://www.pexels.com/photo/close-up-photo-of-fresh-mushrooms-5950421/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 来源页描述及实图均为白色 button mushrooms；用于白蘑菇卡片作外观示意。 |
+| `images/products/mandarin-pexels.jpg` | A Pile of Mandarin Oranges · Agung Pratama | [Pexels 来源页](https://www.pexels.com/photo/a-pile-of-mandarin-oranges-7585959/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 来源页和实图均为橘子/mandarin oranges；用于橘子卡片作外观示意。 |
 | `images/products/image-pending.svg` | 本站原创通用占位图 | 本项目内绘制的 SVG；无外部图片来源或第三方素材。 | 原创矢量图；用于未取得权利证明的商品。核查：2026-10-18。 | 本站原创占位图；无第三方素材。 |
 
 ### 已撤下、等待授权证据的摊主提供图片
