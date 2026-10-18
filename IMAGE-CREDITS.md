@@ -103,7 +103,7 @@ The Wikimedia Commons and Pexels photos below are listed with their source pages
 
 ## 逐张核查登记（2026-10-18）
 
-本次核查范围：网站当前可展示的 45 个许可图片文件（46 个商品卡片引用，其中玉米图用于两个玉米商品）和 1 张本站原创占位图；另核对摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”当作授权证明。
+本次核查范围：网站当前可展示的 52 个图库许可图片和 1 张由摊主提供并声明为 iPhone 实拍的图片（54 个商品卡片引用，其中玉米图用于两个玉米商品）以及 1 张本站原创占位图；另核对其他摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”本身当作授权证明。
 
 ### 当前网站展示
 
@@ -161,6 +161,14 @@ The Wikimedia Commons and Pexels photos below are listed with their source pages
 | `images/products/green-mango-pexels.jpg` | Fresh Green Mangoes Displayed at Market · Matheus Bertelli | [Pexels 来源页](https://www.pexels.com/photo/fresh-green-mangoes-displayed-at-market-30893229/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 照片及来源页均标注为青芒果；用于青芒果卡片作外观示意。 |
 | `images/products/white-mushroom-pexels.jpg` | Close Up Photo of Fresh Mushrooms · alleksana | [Pexels 来源页](https://www.pexels.com/photo/close-up-photo-of-fresh-mushrooms-5950421/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 来源页描述及实图均为白色 button mushrooms；用于白蘑菇卡片作外观示意。 |
 | `images/products/mandarin-pexels.jpg` | A Pile of Mandarin Oranges · Agung Pratama | [Pexels 来源页](https://www.pexels.com/photo/a-pile-of-mandarin-oranges-7585959/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 来源页和实图均为橘子/mandarin oranges；用于橘子卡片作外观示意。 |
+| `images/products/asparagus-pexels.jpg` | Fresh Asparagus on Wooden Surface · douglas miller | [Pexels 来源页](https://www.pexels.com/photo/fresh-asparagus-on-wooden-surface-5462122/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 来源页及实图均为鲜芦笋；用于芦笋卡片作外观示意。 |
+| `images/products/napa-cabbage-pexels.jpg` | Fresh Napa Cabbage Bunches in Natural Light · Lily Lili | [Pexels 来源页](https://www.pexels.com/photo/fresh-napa-cabbage-bunches-in-natural-light-36282128/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 来源页及实图均为大白菜/Napa cabbage；用于大白菜卡片作外观示意。 |
+| `images/products/mint-pexels.jpg` | Fresh Mint Leaves with Vibrant Green Hues · Hami Durgut | [Pexels 来源页](https://www.pexels.com/photo/fresh-mint-leaves-with-vibrant-green-hues-34990728/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-18。 | 页面说明为薄荷叶；用于薄荷卡片作外观示意。 |
+| `images/products/chili-sauce-owner-iphone.png` | 摊主提供的 iPhone 实拍图 | 摊主说明由其 iPhone 拍摄，并明确提供用于 Cilli Bo 辣椒酱商品卡片；非图库图片。 | 保留原图，未做图片编辑。 | 实图包装可辨认 Cilli Bo 品牌；用于对应辣椒酱商品卡。图片权利依据摊主对拍摄来源的说明。 |
+| `images/products/sweet-potato-pexels.jpg` | Close-up of Fresh Sweet Potatoes at Market · Yender Fonseca | [Pexels 来源页](https://www.pexels.com/photo/close-up-of-fresh-sweet-potatoes-at-market-36198154/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-19。 | 来源页及实图均为番薯；只作外观示意，不确认本店番薯品种或产地。 |
+| `images/products/jicama-pexels.jpg` | Fresh Jicama Tubers Piled in a Market Display · L. Lum | [Pexels 来源页](https://www.pexels.com/photo/fresh-jicama-tubers-piled-in-a-market-display-35614101/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-19。 | 来源页及实图均为凉薯/jicama；用于对应商品卡片作外观示意。 |
+| `images/products/french-beans-pexels.jpg` | Fresh Green Beans Piled Together Closeup · Ram Kondisetti | [Pexels 来源页](https://www.pexels.com/photo/fresh-green-beans-piled-together-closeup-34387471/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-19。 | 来源页标签及实图均为 green/French beans；用于四季豆卡片作外观示意，不确认具体本地品种。 |
+| `images/products/winged-bean-cc0.jpg` | Winged bean fruit.jpg · Bim24 | [Wikimedia Commons 来源页](https://commons.wikimedia.org/wiki/File:Winged_bean_fruit.jpg) · [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/deed.en) | 原图下载，未编辑；作者及来源作为礼貌性记录。核查：2026-10-19。 | 来源页及实图为 winged bean pods/四棱豆；用于四角豆卡片作外观示意。 |
 | `images/products/image-pending.svg` | 本站原创通用占位图 | 本项目内绘制的 SVG；无外部图片来源或第三方素材。 | 原创矢量图；用于未取得权利证明的商品。核查：2026-10-18。 | 本站原创占位图；无第三方素材。 |
 
 ### 已撤下、等待授权证据的摊主提供图片
