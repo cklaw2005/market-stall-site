@@ -17,7 +17,7 @@ create table if not exists public.profiles (
   restaurant_id uuid references public.restaurants(id) on delete cascade,
   role text not null default 'customer' check (role in ('owner','manager','customer')),
   customer_slot integer check (customer_slot > 0),
-  preferred_product_keys text[] not null default '{}' check (cardinality(preferred_product_keys)<=10),
+  preferred_product_keys text[] not null default '{}' check (cardinality(preferred_product_keys)<=40),
   active boolean not null default true,
   must_change_password boolean not null default true,
   created_at timestamptz not null default now()
@@ -84,6 +84,7 @@ create table if not exists public.order_items (
   request_mode text not null check (request_mode in ('weight','money','count','custom')),
   requested_amount numeric(10,2) not null check (requested_amount > 0),
   requested_unit_price numeric(10,2),
+  split_count integer check (split_count is null or split_count >= 2),
   is_custom boolean not null default false,
   availability text not null default 'pending' check (availability in ('pending','available','unavailable')),
   final_quantity numeric(10,3),
@@ -170,9 +171,10 @@ begin
   insert into public.orders(restaurant_id,customer_id,customer_phone,customer_name,pickup_note,customer_note)
   values(target_restaurant,auth.uid(),left(coalesce(customer_phone,''),40),left(coalesce(customer_name,''),120),left(coalesce(pickup_note,''),200),left(coalesce(customer_note,''),1000))
   returning * into created_order;
-  insert into public.order_items(order_id,product_key,product_name,unit,request_mode,requested_amount,requested_unit_price,is_custom)
+  insert into public.order_items(order_id,product_key,product_name,unit,request_mode,requested_amount,requested_unit_price,split_count,is_custom)
   select created_order.id, nullif(x->>'product_key',''), left(coalesce(x->>'product_name',''),120), left(coalesce(x->>'unit',''),40),
-    x->>'request_mode', (x->>'requested_amount')::numeric, nullif(x->>'requested_unit_price','')::numeric, coalesce((x->>'is_custom')::boolean,false)
+    x->>'request_mode', (x->>'requested_amount')::numeric, nullif(x->>'requested_unit_price','')::numeric,
+    nullif(x->>'split_count','')::integer, coalesce((x->>'is_custom')::boolean,false)
   from jsonb_array_elements(items) x
   where (x->>'requested_amount')::numeric>0 and x->>'request_mode' in ('weight','money','count','custom');
   get diagnostics inserted_count = row_count;
