@@ -39,6 +39,7 @@ window.PRODUCT_IMAGES = {
   "white-mushroom": "images/products/white-mushroom-pexels.jpg",
   "king-oyster-mushroom": "images/products/king-oyster-pexels-new.jpg",
   "shimeji-mushroom": "images/products/shimeji-white-cc0.jpg",
+  "shiitake-mushroom": null,
   "tomato": "images/products/tomato.jpg",
   "jerry-tomato": null,
   "cabbage": "images/products/cabbage.jpg",

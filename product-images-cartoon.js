@@ -38,6 +38,7 @@ window.PRODUCT_IMAGES = {
   "white-mushroom": "images/cartoon/white-mushroom.jpg",
   "king-oyster-mushroom": "images/cartoon/king-oyster-mushroom.jpg",
   "shimeji-mushroom": "images/cartoon/shimeji-mushroom.jpg",
+  "shiitake-mushroom": "images/cartoon/fresh-shiitake-mushroom-v1.jpg",
   "tomato": "images/cartoon/tomato.jpg",
   "jerry-tomato": "images/cartoon/jerry-tomato.jpg",
   "cabbage": "images/cartoon/cabbage.jpg",

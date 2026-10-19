@@ -286,12 +286,12 @@ The Wikimedia Commons and Pexels photos below are listed with their source pages
 images/products/cartoon-assortment.png is a generic market-food cartoon illustration generated with OpenAI image_gen on 2026-10-18 for temporary use on products whose photo permissions are unconfirmed. It has no external image source and is not a product-specific photo or accurate depiction.
 
 
-Current catalogue review: 104 products are listed. Product-specific photos are shown only where a matching image and reusable source have been recorded; all other product image slots are intentionally left blank until a suitable source is verified.
+Current catalogue review: 105 products are listed. Product-specific photos are shown only where a matching image and reusable source have been recorded; all other product image slots are intentionally left blank until a suitable source is verified.
 | `images/products/amaranth-pexels.jpg` | Fresh Green Amaranth in White Bowl Close-Up · Elena Aellgie | [Pexels 来源页](https://www.pexels.com/photo/fresh-green-amaranth-in-white-bowl-close-up-32286724/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-19。 | 来源页说明及实图为新鲜绿苋菜；用于苋菜商品卡作外观示意。 |
 
 ## AI-generated cartoon illustrations
 
-These eight original illustrations were generated with OpenAI image_gen for the market-stall site on 2026-10-19. They use no external photo or stock-art source. The Cai Dan, tree greens, and Indonesian sweet potato illustrations follow shapes in reference photos supplied by the stall owner; they do not reproduce the photos themselves. The illustrations do not claim to show the stall's exact supplier, packaging, brand, or product specifications.
+These nine original illustrations were generated with OpenAI image_gen for the market-stall site. They use no external photo or stock-art source. The Cai Dan, tree greens, Indonesian sweet potato, and shiitake illustrations follow shapes in reference photos supplied by the stall owner; they do not reproduce the photos themselves. The illustrations do not claim to show the stall's exact supplier, packaging, brand, or product specifications.
 
 - `images/products/fish-cake-cartoon.png` — cartoon slices of fish cake.
 - `images/products/meat-ball-cartoon.png` — cartoon Asian meatballs.
@@ -299,6 +299,7 @@ These eight original illustrations were generated with OpenAI image_gen for the 
 - `images/products/japanese-tofu-cartoon.png` — cartoon tube-style Japanese egg tofu, unbranded.
 - `images/products/chaozhou-tofu-cartoon.png` — cartoon plain tofu blocks as a generic dried-tofu illustration.
 - `images/cartoon/cai-dan-v2.jpg` — original cartoon illustration of a broad leafy Cai Dan bunch, guided by the owner's reference image; the reference photo itself is not reproduced.
+- `images/cartoon/fresh-shiitake-mushroom-v1.jpg` — fresh shiitake mushrooms, guided by the owner's reference image; the reference photo itself is not reproduced.
 - `images/cartoon/tree-greens-v2.jpg` — leafy Sauropus androgynus bunch, guided by the owner's reference image; the reference photo itself is not reproduced.
 - `images/cartoon/sweet-potato-indo-v2.jpg` — Indonesian sweet potatoes with orange flesh, guided by the owner's reference image; the reference photo itself is not reproduced.
 

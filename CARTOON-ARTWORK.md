@@ -44,6 +44,7 @@ Generated illustrations are not a guarantee that no similar work exists or that 
 | white-mushroom | 鲍鱼菇 | [white-mushroom.jpg](images/cartoon/white-mushroom.jpg) |
 | king-oyster-mushroom | 杏鲍菇 | [king-oyster-mushroom.jpg](images/cartoon/king-oyster-mushroom.jpg) |
 | shimeji-mushroom | 白玉菇 | [shimeji-mushroom.jpg](images/cartoon/shimeji-mushroom.jpg) |
+| shiitake-mushroom | 鲜香菇 | [fresh-shiitake-mushroom-v1.jpg](images/cartoon/fresh-shiitake-mushroom-v1.jpg) |
 | tomato | 番茄 | [tomato.jpg](images/cartoon/tomato.jpg) |
 | jerry-tomato | 小番茄 | [jerry-tomato.jpg](images/cartoon/jerry-tomato.jpg) |
 | cabbage | 包菜 | [cabbage.jpg](images/cartoon/cabbage.jpg) |

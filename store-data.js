@@ -351,6 +351,15 @@ window.STALL = {
         "icon": "🍄"
     },
     {
+        "id": "shiitake-mushroom",
+        "name": "鲜香菇",
+        "category": "菌菇",
+        "unit": "个",
+        "price": 5.0,
+        "icon": "🍄",
+        "note": "来自订货单；供应以当天为准"
+    },
+    {
         "id": "tomato",
         "name": "番茄",
         "category": "瓜果",
@@ -998,6 +1007,7 @@ window.PRODUCT_EN_NAMES = {
   "white-mushroom": "Abalone Mushroom",
   "king-oyster-mushroom": "King Oyster Mushroom",
   "shimeji-mushroom": "Shimeji Mushroom",
+  "shiitake-mushroom": "Fresh Shiitake Mushroom",
   "tomato": "Tomato",
   "jerry-tomato": "Cherry Tomato",
   "cabbage": "Cabbage (Cameron Highlands)",
