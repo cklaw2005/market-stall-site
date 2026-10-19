@@ -51,7 +51,7 @@ window.PRODUCT_IMAGES = {
   "celery-stalk": "images/products/celery-stalk-pexels.jpg",
   "garlic-shoots": "images/products/garlic-scape-cc0.jpg",
   "ying-cai": "images/products/water-spinach-pexels.jpg",
-  "xing-cai": null,
+  "xing-cai": "images/products/amaranth-pexels.jpg",
   "da-cai": "images/products/mustard-greens-commons.jpg",
   "choy-sum": null,
   "kailan-shoots": null,
@@ -84,9 +84,9 @@ window.PRODUCT_IMAGES = {
   "small-onion": "images/products/shallots-pexels.jpg",
   "white-onion": "images/products/white-onion-pexels.jpg",
   "chili-sauce": "images/products/chili-sauce-owner-iphone.png",
-  "fish-cake": null,
+  "fish-cake": "images/products/fish-cake-cartoon.png",
   "fish-ball": "images/products/fish-ball-cc0.jpg",
-  "meat-ball": null,
+  "meat-ball": "images/products/meat-ball-cartoon.png",
   "soya-drink": "images/products/soy-milk-pexels.jpg",
   "dried-bean-curd": "images/products/tofu-skin-commons.png",
   "pandan-leaf": "images/products/pandan-leaf-pexels.jpg",
@@ -102,7 +102,7 @@ window.PRODUCT_IMAGES = {
   "rice-vermicelli": "images/products/rice-vermicelli-commons.jpg",
   "luffa": "images/products/luffa-pexels.jpg",
   "sweet-corn": "images/products/corn-openverse.jpg",
-  "coconut-milk": null,
-  "japanese-tofu": null,
-  "chaozhou-dried-tofu": null
+  "coconut-milk": "images/products/coconut-milk-cartoon.png",
+  "japanese-tofu": "images/products/japanese-tofu-cartoon.png",
+  "chaozhou-dried-tofu": "images/products/chaozhou-tofu-cartoon.png"
 };

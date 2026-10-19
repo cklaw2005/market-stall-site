@@ -287,3 +287,14 @@ images/products/cartoon-assortment.png is a generic market-food cartoon illustra
 
 
 Current catalogue review: 104 products are listed. Product-specific photos are shown only where a matching image and reusable source have been recorded; all other product image slots are intentionally left blank until a suitable source is verified.
+| `images/products/amaranth-pexels.jpg` | Fresh Green Amaranth in White Bowl Close-Up · Elena Aellgie | [Pexels 来源页](https://www.pexels.com/photo/fresh-green-amaranth-in-white-bowl-close-up-32286724/) · [Pexels License](https://www.pexels.com/license/) | 原图下载，未编辑；署名为礼貌性记录。核查：2026-10-19。 | 来源页说明及实图为新鲜绿苋菜；用于苋菜商品卡作外观示意。 |
+
+## AI-generated cartoon illustrations
+
+These five original illustrations were generated with OpenAI image_gen for the market-stall site on 2026-10-19. They use no external photo or stock-art source. They are generic illustrations only and do not claim to show the stall's exact supplier, packaging, brand, or product specifications.
+
+- `images/products/fish-cake-cartoon.png` — cartoon slices of fish cake.
+- `images/products/meat-ball-cartoon.png` — cartoon Asian meatballs.
+- `images/products/coconut-milk-cartoon.png` — cartoon coconut milk and coconut.
+- `images/products/japanese-tofu-cartoon.png` — cartoon tube-style Japanese egg tofu, unbranded.
+- `images/products/chaozhou-tofu-cartoon.png` — cartoon plain tofu blocks as a generic dried-tofu illustration.
