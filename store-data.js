@@ -229,7 +229,7 @@ window.STALL = {
     },
     {
         "id": "beetroot",
-        "name": "红菜头/红萝卜",
+        "name": "红菜根",
         "category": "根茎",
         "unit": "公斤",
         "price": 4.0,
@@ -244,6 +244,15 @@ window.STALL = {
         "price": 5.0,
         "icon": "🥕",
         "note": "来自订货单；供应以当天为准"
+    },
+    {
+        "id": "china-carrot",
+        "name": "中国红萝卜",
+        "category": "根茎",
+        "unit": "公斤",
+        "price": 4.0,
+        "icon": "🥕",
+        "note": "顾客新增商品；供应以当天为准"
     },
     {
         "id": "corn",
@@ -349,6 +358,15 @@ window.STALL = {
         "price": 6.0,
         "icon": "🥬",
         "note": "来自订货单；供应以当天为准"
+    },
+    {
+        "id": "jerry-tomato",
+        "name": "小番茄",
+        "category": "瓜果",
+        "unit": "公斤",
+        "price": 12.0,
+        "icon": "🍅",
+        "note": "顾客新增商品；供应以当天为准"
     },
     {
         "id": "cabbage",
@@ -966,8 +984,9 @@ window.PRODUCT_EN_NAMES = {
   "taro": "Taro",
   "jicama": "Jicama (Yam Bean)",
   "dandong-potato": "Potato (Local Name: Dandong Potato)",
-  "beetroot": "Beetroot / Red Carrot (China)",
+  "beetroot": "Beetroot",
   "carrot-australia": "Carrot (Australia)",
+  "china-carrot": "China Carrot",
   "corn": "Corn on the Cob",
   "green-cauliflower": "Broccoli",
   "celery": "Celery",
@@ -980,6 +999,7 @@ window.PRODUCT_EN_NAMES = {
   "king-oyster-mushroom": "King Oyster Mushroom",
   "shimeji-mushroom": "Shimeji Mushroom",
   "tomato": "Tomato",
+  "jerry-tomato": "Jerry Tomato",
   "cabbage": "Cabbage (Cameron Highlands)",
   "cabbage-beijing": "Cabbage (Beijing)",
   "yuan-bai": "Yuan Bai / Chinese Cabbage",

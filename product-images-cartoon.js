@@ -26,6 +26,7 @@ window.PRODUCT_IMAGES = {
   "dandong-potato": "images/cartoon/dandong-potato.jpg",
   "beetroot": "images/cartoon/beetroot.jpg",
   "carrot-australia": "images/cartoon/carrot-australia.jpg",
+  "china-carrot": "images/cartoon/china-carrot.jpg",
   "corn": "images/cartoon/corn.jpg",
   "green-cauliflower": "images/cartoon/green-cauliflower.jpg",
   "celery": "images/cartoon/celery.jpg",
@@ -38,6 +39,7 @@ window.PRODUCT_IMAGES = {
   "king-oyster-mushroom": "images/cartoon/king-oyster-mushroom.jpg",
   "shimeji-mushroom": "images/cartoon/shimeji-mushroom.jpg",
   "tomato": "images/cartoon/tomato.jpg",
+  "jerry-tomato": "images/cartoon/jerry-tomato.jpg",
   "cabbage": "images/cartoon/cabbage.jpg",
   "cabbage-beijing": "images/cartoon/cabbage-beijing.jpg",
   "yuan-bai": "images/cartoon/yuan-bai.jpg",
@@ -103,4 +105,4 @@ window.PRODUCT_IMAGES = {
   "coconut-milk": "images/cartoon/coconut-milk.jpg",
   "japanese-tofu": "images/cartoon/japanese-tofu.jpg",
   "chaozhou-dried-tofu": "images/cartoon/chaozhou-dried-tofu.jpg"
-};\n
+};

@@ -30,8 +30,9 @@ Generated illustrations are not a guarantee that no similar work exists or that 
 | taro | 芋头 | [taro.jpg](images/cartoon/taro.jpg) |
 | jicama | 芒光（沙葛） | [jicama.jpg](images/cartoon/jicama.jpg) |
 | dandong-potato | 干冬薯/马铃薯 | [dandong-potato.jpg](images/cartoon/dandong-potato.jpg) |
-| beetroot | 红菜头/红萝卜 | [beetroot.jpg](images/cartoon/beetroot.jpg) |
+| beetroot | 红菜根 | [beetroot.jpg](images/cartoon/beetroot.jpg) |
 | carrot-australia | 澳洲红萝卜 | [carrot-australia.jpg](images/cartoon/carrot-australia.jpg) |
+| china-carrot | 中国红萝卜 | [china-carrot.jpg](images/cartoon/china-carrot.jpg) |
 | corn | 玉米心 | [corn.jpg](images/cartoon/corn.jpg) |
 | green-cauliflower | 青花/芥兰花 | [green-cauliflower.jpg](images/cartoon/green-cauliflower.jpg) |
 | celery | 西芹 | [celery.jpg](images/cartoon/celery.jpg) |
@@ -44,6 +45,7 @@ Generated illustrations are not a guarantee that no similar work exists or that 
 | king-oyster-mushroom | 杏鲍菇 | [king-oyster-mushroom.jpg](images/cartoon/king-oyster-mushroom.jpg) |
 | shimeji-mushroom | 白玉菇 | [shimeji-mushroom.jpg](images/cartoon/shimeji-mushroom.jpg) |
 | tomato | 番茄 | [tomato.jpg](images/cartoon/tomato.jpg) |
+| jerry-tomato | 小番茄 | [jerry-tomato.jpg](images/cartoon/jerry-tomato.jpg) |
 | cabbage | 包菜 | [cabbage.jpg](images/cartoon/cabbage.jpg) |
 | cabbage-beijing | 包菜 | [cabbage-beijing.jpg](images/cartoon/cabbage-beijing.jpg) |
 | yuan-bai | 元白/大白菜 | [yuan-bai.jpg](images/cartoon/yuan-bai.jpg) |
