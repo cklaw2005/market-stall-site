@@ -99,7 +99,7 @@ window.PRODUCT_IMAGES = {
   "pineapple": "images/products/pineapple-openverse.jpg",
   "green-mango": "images/products/green-mango-pexels.jpg",
   "ripe-mango": "images/products/ripe-mango-pexels.jpg",
-  "rice-vermicelli": null,
+  "rice-vermicelli": "images/products/rice-vermicelli-commons.jpg",
   "luffa": "images/products/luffa-pexels.jpg",
   "sweet-corn": "images/products/corn-openverse.jpg",
   "coconut-milk": null,
