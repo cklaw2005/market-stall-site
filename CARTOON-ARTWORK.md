@@ -70,7 +70,7 @@ Generated illustrations are not a guarantee that no similar work exists or that 
 | watercress | 西洋菜 | [watercress.jpg](images/cartoon/watercress.jpg) |
 | emperor-greens | 帝王菜 | [emperor-greens.jpg](images/cartoon/emperor-greens.jpg) |
 | sweet-potato-leaves | 番薯菜 | [sweet-potato-leaves.jpg](images/cartoon/sweet-potato-leaves.jpg) |
-| tree-greens | 树菜 | [tree-greens.jpg](images/cartoon/tree-greens.jpg) |
+| tree-greens | 树仔菜 | [tree-greens-v2.jpg](images/cartoon/tree-greens-v2.jpg) |
 | spinach | 菠菜 | [spinach.jpg](images/cartoon/spinach.jpg) |
 | oil-scallion | 油冲 | [oil-scallion.jpg](images/cartoon/oil-scallion.jpg) |
 | garlic | 蒜头 | [garlic.jpg](images/cartoon/garlic.jpg) |
@@ -82,7 +82,7 @@ Generated illustrations are not a guarantee that no similar work exists or that 
 | lettuce | 生菜 | [lettuce.jpg](images/cartoon/lettuce.jpg) |
 | asparagus | 芦笋 | [asparagus.jpg](images/cartoon/asparagus.jpg) |
 | sweet-potato | 番薯 | [sweet-potato.jpg](images/cartoon/sweet-potato.jpg) |
-| sweet-potato-indo | 印尼番薯 | [sweet-potato-indo.jpg](images/cartoon/sweet-potato-indo.jpg) |
+| sweet-potato-indo | 印尼番薯 | [sweet-potato-indo-v2.jpg](images/cartoon/sweet-potato-indo-v2.jpg) |
 | white-carrot | 白萝卜 | [white-carrot.jpg](images/cartoon/white-carrot.jpg) |
 | chinese-chives | 韭菜 | [chinese-chives.jpg](images/cartoon/chinese-chives.jpg) |
 | water-chestnut | 马蹄/荸荠 | [water-chestnut.jpg](images/cartoon/water-chestnut.jpg) |
