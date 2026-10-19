@@ -29,7 +29,6 @@ window.PRODUCT_IMAGES = {
   "corn": "images/cartoon/corn.jpg",
   "green-cauliflower": "images/cartoon/green-cauliflower.jpg",
   "celery": "images/cartoon/celery.jpg",
-  "ren-bean": "images/cartoon/ren-bean.jpg",
   "sweet-peas": "images/cartoon/sweet-peas.jpg",
   "pea-shoots": "images/cartoon/pea-shoots.jpg",
   "cauliflower": "images/cartoon/cauliflower.jpg",
@@ -104,4 +103,4 @@ window.PRODUCT_IMAGES = {
   "coconut-milk": "images/cartoon/coconut-milk.jpg",
   "japanese-tofu": "images/cartoon/japanese-tofu.jpg",
   "chaozhou-dried-tofu": "images/cartoon/chaozhou-dried-tofu.jpg"
-};
+};\n

@@ -1,6 +1,6 @@
 # Original cartoon artwork inventory
 
-Each product entry has one purpose-generated cartoon illustration. These illustrations were generated for this sites cartoon edition and do not come from stock-photo websites. No third-party brand marks, packaging artwork, characters, or reference photos were used as generation inputs. The chili sauce illustration includes the seller-provided name CilliBo.
+Each product entry has one purpose-generated cartoon illustration. These illustrations were generated for this site’s cartoon edition and do not come from stock-photo websites. No third-party brand marks, packaging artwork, or characters were used as generation inputs. Seller-provided vegetable photos guided the appearance of selected original illustrations; the photos themselves are not used on the site. The chili sauce illustration includes the seller-provided name CilliBo.
 
 Generated illustrations are not a guarantee that no similar work exists or that no legal claim can ever arise. OpenAI terms assign output to the user to the extent permitted by applicable law; users remain responsible for their inputs and uses.
 
@@ -35,13 +35,12 @@ Generated illustrations are not a guarantee that no similar work exists or that 
 | corn | 玉米心 | [corn.jpg](images/cartoon/corn.jpg) |
 | green-cauliflower | 青花/芥兰花 | [green-cauliflower.jpg](images/cartoon/green-cauliflower.jpg) |
 | celery | 西芹 | [celery.jpg](images/cartoon/celery.jpg) |
-| ren-bean | 仁豆 | [ren-bean.jpg](images/cartoon/ren-bean.jpg) |
 | sweet-peas | 甜豆 | [sweet-peas.jpg](images/cartoon/sweet-peas.jpg) |
 | pea-shoots | 豆苗 | [pea-shoots.jpg](images/cartoon/pea-shoots.jpg) |
 | cauliflower | 菜花 | [cauliflower.jpg](images/cartoon/cauliflower.jpg) |
 | chive-flowers | 韭菜花 | [chive-flowers.jpg](images/cartoon/chive-flowers.jpg) |
 | enoki-mushroom | 金针菇 | [enoki-mushroom.jpg](images/cartoon/enoki-mushroom.jpg) |
-| white-mushroom | 白菇 | [white-mushroom.jpg](images/cartoon/white-mushroom.jpg) |
+| white-mushroom | 鲍鱼菇 | [white-mushroom.jpg](images/cartoon/white-mushroom.jpg) |
 | king-oyster-mushroom | 杏鲍菇 | [king-oyster-mushroom.jpg](images/cartoon/king-oyster-mushroom.jpg) |
 | shimeji-mushroom | 白玉菇 | [shimeji-mushroom.jpg](images/cartoon/shimeji-mushroom.jpg) |
 | tomato | 番茄 | [tomato.jpg](images/cartoon/tomato.jpg) |
@@ -50,13 +49,13 @@ Generated illustrations are not a guarantee that no similar work exists or that 
 | yuan-bai | 元白/大白菜 | [yuan-bai.jpg](images/cartoon/yuan-bai.jpg) |
 | winter-melon | 冬瓜 | [winter-melon.jpg](images/cartoon/winter-melon.jpg) |
 | french-bean | 四季豆 | [french-bean.jpg](images/cartoon/french-bean.jpg) |
-| field-bean | 菜豆 | [field-bean.jpg](images/cartoon/field-bean.jpg) |
+| field-bean | 长豆 | [field-bean.jpg](images/cartoon/field-bean.jpg) |
 | lemongrass | 冲茅 | [lemongrass.jpg](images/cartoon/lemongrass.jpg) |
 | qing-chong | 青葱 | [qing-chong.jpg](images/cartoon/qing-chong.jpg) |
 | celery-stalk | 芹菜 | [celery-stalk.jpg](images/cartoon/celery-stalk.jpg) |
 | garlic-shoots | 蒜仔 | [garlic-shoots.jpg](images/cartoon/garlic-shoots.jpg) |
 | ying-cai | 英才/空心菜 | [ying-cai.jpg](images/cartoon/ying-cai.jpg) |
-| xing-cai | 兴才/苋菜 | [xing-cai.jpg](images/cartoon/xing-cai.jpg) |
+| xing-cai | 苋菜苗 | [xing-cai.jpg](images/cartoon/xing-cai.jpg) |
 | da-cai | 大菜 | [da-cai.jpg](images/cartoon/da-cai.jpg) |
 | choy-sum | 菜心 | [choy-sum.jpg](images/cartoon/choy-sum.jpg) |
 | kailan-shoots | 芥蓝仔 | [kailan-shoots.jpg](images/cartoon/kailan-shoots.jpg) |

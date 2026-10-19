@@ -30,7 +30,6 @@ window.PRODUCT_IMAGES = {
   "corn": "images/products/corn-openverse.jpg",
   "green-cauliflower": null,
   "celery": "images/products/celery.jpg",
-  "ren-bean": null,
   "sweet-peas": "images/products/snow-peas-cc0.jpg",
   "pea-shoots": null,
   "cauliflower": "images/products/cauliflower-pexels.jpg",
