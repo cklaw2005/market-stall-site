@@ -584,7 +584,7 @@ window.STALL = {
     },
     {
         "id": "tree-greens",
-        "name": "树菜",
+        "name": "树仔菜",
         "category": "叶菜",
         "unit": "公斤",
         "price": 8.0,
@@ -1024,7 +1024,7 @@ window.PRODUCT_EN_NAMES = {
   "watercress": "Watercress",
   "emperor-greens": "Emperor Greens (Local Name)",
   "sweet-potato-leaves": "Sweet Potato Leaves",
-  "tree-greens": "Tree Greens (Local Name)",
+  "tree-greens": "Sauropus androgynus",
   "spinach": "Spinach",
   "oil-scallion": "Fried Shallots",
   "garlic": "Garlic",

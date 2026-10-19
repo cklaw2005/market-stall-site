@@ -291,7 +291,7 @@ Current catalogue review: 104 products are listed. Product-specific photos are s
 
 ## AI-generated cartoon illustrations
 
-These six original illustrations were generated with OpenAI image_gen for the market-stall site on 2026-10-19. They use no external photo or stock-art source. The Cai Dan illustration follows the shape in a reference photo supplied by the stall owner; it does not reproduce the photo itself. The illustrations do not claim to show the stall's exact supplier, packaging, brand, or product specifications.
+These eight original illustrations were generated with OpenAI image_gen for the market-stall site on 2026-10-19. They use no external photo or stock-art source. The Cai Dan, tree greens, and Indonesian sweet potato illustrations follow shapes in reference photos supplied by the stall owner; they do not reproduce the photos themselves. The illustrations do not claim to show the stall's exact supplier, packaging, brand, or product specifications.
 
 - `images/products/fish-cake-cartoon.png` — cartoon slices of fish cake.
 - `images/products/meat-ball-cartoon.png` — cartoon Asian meatballs.
@@ -299,5 +299,7 @@ These six original illustrations were generated with OpenAI image_gen for the ma
 - `images/products/japanese-tofu-cartoon.png` — cartoon tube-style Japanese egg tofu, unbranded.
 - `images/products/chaozhou-tofu-cartoon.png` — cartoon plain tofu blocks as a generic dried-tofu illustration.
 - `images/cartoon/cai-dan-v2.jpg` — original cartoon illustration of a broad leafy Cai Dan bunch, guided by the owner's reference image; the reference photo itself is not reproduced.
+- `images/cartoon/tree-greens-v2.jpg` — leafy Sauropus androgynus bunch, guided by the owner's reference image; the reference photo itself is not reproduced.
+- `images/cartoon/sweet-potato-indo-v2.jpg` — Indonesian sweet potatoes with orange flesh, guided by the owner's reference image; the reference photo itself is not reproduced.
 
 | `images/products/ginger-flower-commons.jpg` | White ginger lily.jpg · Nativeplants garden | [Wikimedia Commons 来源页](https://commons.wikimedia.org/wiki/File:White_ginger_lily.jpg) · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | 原图缩略尺寸下载，未编辑；署名、来源及许可已列明。核查：2026-10-19。 | 来源页与实图均为 white ginger lily / Hedychium coronarium（姜花）。 |
