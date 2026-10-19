@@ -103,12 +103,14 @@ The Wikimedia Commons and Pexels photos below are listed with their source pages
 
 ## 逐张核查登记（2026-10-18）
 
-本次核查范围：网站当前可展示的 74 个图库许可图片和 1 张由摊主提供并声明为 iPhone 实拍的图片（76 个商品卡片引用，共 75 张不同图片，其中玉米图用于两个玉米商品）以及 1 张本站原创占位图；另核对其他摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”本身当作授权证明。
+本次核查范围：网站当前可展示的 76 个图库许可图片和 1 张由摊主提供并声明为 iPhone 实拍的图片（78 个商品卡片引用，共 77 张不同图片，其中玉米图用于两个玉米商品）以及 1 张本站原创占位图；另核对其他摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”本身当作授权证明。
 
 ### 当前网站展示
 
 | 网站文件路径 | 作者 / 图片 | 来源与许可 | 修改 | 核查结果 |
 |---|---|---|---|---|
+| `images/products/old-cucumbers-commons.jpg` | Old cucumbers.jpg · Fumikas Sagisavas | [来源页](https://commons.wikimedia.org/wiki/File:Old_cucumbers.jpg) · [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | 原图下载，未编辑；来源页标注为 Old cucumbers，实图为成熟黄瓜。核查：2026-10-19。 |
+| `images/products/japanese-cucumber-commons.jpg` | Japanese cucumber.jpg · Susan Slater | [来源页](https://commons.wikimedia.org/wiki/File:Japanese_cucumber.jpg) · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | 原图下载，未编辑；保留作者、来源和许可信息。核查：2026-10-19。 | 来源页明确为 Japanese cucumber/日本产黄瓜；实图为新鲜黄瓜。 |
 | `images/products/calamansi-cc0.jpg` | Calamansi (Philippines).jpg · Obsidian Soul | [来源页](https://commons.wikimedia.org/wiki/File:Calamansi_%28Philippines%29.jpg) · [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | 原图下载，未编辑；作者和来源作为礼貌性署名保留。核查：2026-10-19。 | 来源页与图像均明确为菲律宾酸柑/calamansi。 |
 | `images/products/chive-flowers-cc0.jpg` | 山东韭菜花 garlic chive flower from Shandong.jpg · Cartonfox | [来源页](https://commons.wikimedia.org/wiki/File:%E5%B1%B1%E4%B8%9C%E9%9F%AD%E8%8F%9C%E8%8A%B1_garlic_chive_flower_from_Shandong.jpg) · [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | 原图下载，未编辑；作者和来源作为礼貌性署名保留。核查：2026-10-19。 | 来源页说明为山东韭菜花（Allium tuberosum）；实图为韭菜花束。 |
 | `images/products/mustard-greens-commons.jpg` | Mustardgreensraw.jpg · thebittenword.com | [来源页](https://commons.wikimedia.org/wiki/File:Mustardgreensraw.jpg) · [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) | 原图下载，未编辑；署名和来源保留。核查：2026-10-19。 | Commons 来源页明确为 mustard greens；实图为新鲜芥菜叶。 |
