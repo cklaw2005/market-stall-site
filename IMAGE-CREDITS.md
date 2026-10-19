@@ -291,12 +291,13 @@ Current catalogue review: 104 products are listed. Product-specific photos are s
 
 ## AI-generated cartoon illustrations
 
-These five original illustrations were generated with OpenAI image_gen for the market-stall site on 2026-10-19. They use no external photo or stock-art source. They are generic illustrations only and do not claim to show the stall's exact supplier, packaging, brand, or product specifications.
+These six original illustrations were generated with OpenAI image_gen for the market-stall site on 2026-10-19. They use no external photo or stock-art source. They are generic illustrations only and do not claim to show the stall's exact supplier, packaging, brand, or product specifications.
 
 - `images/products/fish-cake-cartoon.png` — cartoon slices of fish cake.
 - `images/products/meat-ball-cartoon.png` — cartoon Asian meatballs.
 - `images/products/coconut-milk-cartoon.png` — cartoon coconut milk and coconut.
 - `images/products/japanese-tofu-cartoon.png` — cartoon tube-style Japanese egg tofu, unbranded.
 - `images/products/chaozhou-tofu-cartoon.png` — cartoon plain tofu blocks as a generic dried-tofu illustration.
+- `images/cartoon/cai-dan-v2.jpg` — broad leafy Cai Dan bunch, guided by the owner's reference image; the reference photo itself is not reproduced.
 
 | `images/products/ginger-flower-commons.jpg` | White ginger lily.jpg · Nativeplants garden | [Wikimedia Commons 来源页](https://commons.wikimedia.org/wiki/File:White_ginger_lily.jpg) · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | 原图缩略尺寸下载，未编辑；署名、来源及许可已列明。核查：2026-10-19。 | 来源页与实图均为 white ginger lily / Hedychium coronarium（姜花）。 |
