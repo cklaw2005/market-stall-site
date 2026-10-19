@@ -999,7 +999,7 @@ window.PRODUCT_EN_NAMES = {
   "king-oyster-mushroom": "King Oyster Mushroom",
   "shimeji-mushroom": "Shimeji Mushroom",
   "tomato": "Tomato",
-  "jerry-tomato": "Jerry Tomato",
+  "jerry-tomato": "Cherry Tomato",
   "cabbage": "Cabbage (Cameron Highlands)",
   "cabbage-beijing": "Cabbage (Beijing)",
   "yuan-bai": "Yuan Bai / Chinese Cabbage",
