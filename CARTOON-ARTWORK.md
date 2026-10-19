@@ -52,7 +52,7 @@ Generated illustrations are not a guarantee that no similar work exists or that 
 | winter-melon | 冬瓜 | [winter-melon.jpg](images/cartoon/winter-melon.jpg) |
 | french-bean | 四季豆 | [french-bean.jpg](images/cartoon/french-bean.jpg) |
 | field-bean | 长豆 | [field-bean.jpg](images/cartoon/field-bean.jpg) |
-| lemongrass | 冲茅 | [lemongrass.jpg](images/cartoon/lemongrass.jpg) |
+| lemongrass | 香茅 | [lemongrass.jpg](images/cartoon/lemongrass.jpg) |
 | qing-chong | 青葱 | [qing-chong.jpg](images/cartoon/qing-chong.jpg) |
 | celery-stalk | 芹菜 | [celery-stalk.jpg](images/cartoon/celery-stalk.jpg) |
 | garlic-shoots | 蒜仔 | [garlic-shoots.jpg](images/cartoon/garlic-shoots.jpg) |

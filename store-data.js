@@ -423,7 +423,7 @@ window.STALL = {
     },
     {
         "id": "lemongrass",
-        "name": "冲茅",
+        "name": "香茅",
         "category": "根茎",
         "unit": "公斤",
         "price": 5.0,
