@@ -602,12 +602,12 @@ window.STALL = {
     },
     {
         "id": "oil-scallion",
-        "name": "油冲",
+        "name": "油葱",
         "category": "香料",
         "unit": "个",
         "price": 7.0,
         "icon": "🌿",
-        "note": "订货单原名，请摊主核对是否为油葱"
+        "note": "袋装炸葱酥；供应以当天为准"
     },
     {
         "id": "garlic",
@@ -1026,7 +1026,7 @@ window.PRODUCT_EN_NAMES = {
   "sweet-potato-leaves": "Sweet Potato Leaves",
   "tree-greens": "Tree Greens (Local Name)",
   "spinach": "Spinach",
-  "oil-scallion": "Fried Shallot (Local Name)",
+  "oil-scallion": "Fried Shallots",
   "garlic": "Garlic",
   "four-corner-bean": "Four-Corner Bean (Local Name)",
   "hairy-gourd": "Hairy Gourd",
