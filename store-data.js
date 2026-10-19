@@ -77,12 +77,12 @@ window.STALL = {
     },
     {
         "id": "fragrant-herb",
-        "name": "香花",
+        "name": "姜花（香花）",
         "category": "香料",
         "unit": "个",
         "price": 2.0,
         "icon": "🌿",
-        "note": "订货单原名，请摊主核对具体品种"
+        "note": "摊主确认：订货单所写香花即姜花"
     },
     {
         "id": "lime-leaves",
@@ -279,7 +279,7 @@ window.STALL = {
         "unit": "个",
         "price": 4.0,
         "icon": "🥬",
-        "note": "订货单原名，请摊主核对具体品种"
+        "note": "摊主确认：订货单所写香花即姜花"
     },
     {
         "id": "sweet-peas",
@@ -446,7 +446,7 @@ window.STALL = {
         "unit": "公斤",
         "price": 16.0,
         "icon": "🌿",
-        "note": "订货单原名，请摊主核对具体品种"
+        "note": "摊主确认：订货单所写香花即姜花"
     },
     {
         "id": "ying-cai",
@@ -509,7 +509,7 @@ window.STALL = {
         "unit": "公斤",
         "price": 12.0,
         "icon": "🥬",
-        "note": "订货单原名，请摊主核对具体品种"
+        "note": "摊主确认：订货单所写香花即姜花"
     },
     {
         "id": "xiang-cai-dan",
@@ -518,7 +518,7 @@ window.STALL = {
         "unit": "公斤",
         "price": 10.0,
         "icon": "🥬",
-        "note": "订货单原名，请摊主核对具体品种"
+        "note": "摊主确认：订货单所写香花即姜花"
     },
     {
         "id": "glass-lettuce",
@@ -616,7 +616,7 @@ window.STALL = {
         "unit": "公斤",
         "price": 12.0,
         "icon": "🥬",
-        "note": "订货单原名，请摊主核对具体品种"
+        "note": "摊主确认：订货单所写香花即姜花"
     },
     {
         "id": "hairy-gourd",

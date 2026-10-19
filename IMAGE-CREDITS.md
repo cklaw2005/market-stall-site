@@ -298,3 +298,5 @@ These five original illustrations were generated with OpenAI image_gen for the m
 - `images/products/coconut-milk-cartoon.png` — cartoon coconut milk and coconut.
 - `images/products/japanese-tofu-cartoon.png` — cartoon tube-style Japanese egg tofu, unbranded.
 - `images/products/chaozhou-tofu-cartoon.png` — cartoon plain tofu blocks as a generic dried-tofu illustration.
+
+| `images/products/ginger-flower-commons.jpg` | White ginger lily.jpg · Nativeplants garden | [Wikimedia Commons 来源页](https://commons.wikimedia.org/wiki/File:White_ginger_lily.jpg) · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | 原图缩略尺寸下载，未编辑；署名、来源及许可已列明。核查：2026-10-19。 | 来源页与实图均为 white ginger lily / Hedychium coronarium（姜花）。 |

@@ -8,7 +8,7 @@ window.PRODUCT_IMAGES = {
   "capsicum-green": "images/products/capsicum-green-pexels.jpg",
   "capsicum": "images/products/capsicum.jpg",
   "coriander": "images/products/coriander.jpg",
-  "fragrant-herb": null,
+  "fragrant-herb": "images/products/ginger-flower-commons.jpg",
   "lime-leaves": "images/products/lime-leaves.jpg",
   "young-ginger": "images/products/young-ginger-cc0.jpg",
   "galangal": "images/products/galangal.jpg",
