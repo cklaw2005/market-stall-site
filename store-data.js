@@ -958,7 +958,7 @@ window.PRODUCT_EN_NAMES = {
   "capsicum-green": "Green Bell Pepper",
   "capsicum": "Red Bell Pepper",
   "coriander": "Coriander (Cilantro)",
-  "fragrant-herb": "Fragrant Herb (Stall Name)",
+  "fragrant-herb": "Ginger Lily",
   "lime-leaves": "Kaffir Lime Leaves",
   "young-ginger": "Young Ginger",
   "galangal": "Galangal",
