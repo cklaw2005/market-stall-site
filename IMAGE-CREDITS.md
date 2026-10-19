@@ -103,12 +103,14 @@ The Wikimedia Commons and Pexels photos below are listed with their source pages
 
 ## 逐张核查登记（2026-10-18）
 
-本次核查范围：网站当前可展示的 78 个图库许可图片和 1 张由摊主提供并声明为 iPhone 实拍的图片（80 个商品卡片引用，共 79 张不同图片，其中玉米图用于两个玉米商品）以及 1 张本站原创占位图；另核对其他摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”本身当作授权证明。
+本次核查范围：网站当前可展示的 80 个图库许可图片和 1 张由摊主提供并声明为 iPhone 实拍的图片（82 个商品卡片引用，共 81 张不同图片，其中玉米图用于两个玉米商品）以及 1 张本站原创占位图；另核对其他摊主提供但未有授权证明的图片，以及 4 张有 Commons 许可记录但未被菜单引用的旧文件。未把“可下载”或“摊主提供”本身当作授权证明。
 
 ### 当前网站展示
 
 | 网站文件路径 | 作者 / 图片 | 来源与许可 | 修改 | 核查结果 |
 |---|---|---|---|---|
+| `images/products/spring-onions-commons.jpg` | Spring onions on sale at the Monday Market in Kakuri, Kaduna 02.jpg · Kambai Akau | [来源页](https://commons.wikimedia.org/wiki/File:Spring_onions_on_sale_at_the_Monday_Market_in_Kakuri,_Kaduna_02.jpg) · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | 原图下载，未编辑；来源页标注为市场售卖的 spring onions，实图为带茎鲜葱。核查：2026-10-19。 |
+| `images/products/baby-napa-cabbage-commons.jpg` | Mini Tientsin Pakchoi ~ Baby napa cabbage.jpg · Fumikas Sagisavas | [来源页](https://commons.wikimedia.org/wiki/File:Mini_Tientsin_Pakchoi_%7E_Baby_napa_cabbage.jpg) · [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | 原图下载，未编辑；来源页标注为 baby napa cabbage，实图为新鲜大白菜。核查：2026-10-19。 |
 | `images/products/hairy-gourd-commons.jpg` | HK food green vegetable 蔬菜 毛瓜 hairy gourd July 2021 SS2 03 · NhRaomzui MMP | [来源页](https://commons.wikimedia.org/w/index.php?curid=107760137) · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | 原图下载，未编辑；来源页明确为毛瓜/hairy gourd，图中为新鲜毛瓜。核查：2026-10-19。 |
 | `images/products/rice-vermicelli-commons.jpg` | Rice vermicelli.jpg · Popo le Chien | [来源页](https://commons.wikimedia.org/wiki/File:Rice_vermicelli.jpg) · [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) | 原图下载，未编辑；来源页标注为米粉，实图为干燥细米粉。核查：2026-10-19。 |
 | `images/products/old-cucumbers-commons.jpg` | Old cucumbers.jpg · Fumikas Sagisavas | [来源页](https://commons.wikimedia.org/wiki/File:Old_cucumbers.jpg) · [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | 原图下载，未编辑；来源页标注为 Old cucumbers，实图为成熟黄瓜。核查：2026-10-19。 |
