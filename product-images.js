@@ -69,7 +69,7 @@ window.PRODUCT_IMAGES = {
   "oil-scallion": null,
   "garlic": "images/products/garlic.jpg",
   "four-corner-bean": "images/products/winged-bean-cc0.jpg",
-  "hairy-gourd": null,
+  "hairy-gourd": "images/products/hairy-gourd-commons.jpg",
   "zhang-liu": null,
   "mint": "images/products/mint-pexels.jpg",
   "curry-leaves": "images/products/curry-leaves-pexels.jpg",
