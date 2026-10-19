@@ -62,7 +62,7 @@ Generated illustrations are not a guarantee that no similar work exists or that 
 | choy-sum | 菜心 | [choy-sum.jpg](images/cartoon/choy-sum.jpg) |
 | kailan-shoots | 芥蓝仔 | [kailan-shoots.jpg](images/cartoon/kailan-shoots.jpg) |
 | pak-choi | 小白菜 | [pak-choi.jpg](images/cartoon/pak-choi.jpg) |
-| cai-dan | 菜旦 | [cai-dan.jpg](images/cartoon/cai-dan.jpg) |
+| cai-dan | 菜旦 | [cai-dan-v2.jpg](images/cartoon/cai-dan-v2.jpg) |
 | xiang-cai-dan | 香菜旦/油麦菜 | [xiang-cai-dan.jpg](images/cartoon/xiang-cai-dan.jpg) |
 | glass-lettuce | 玻璃生菜 | [glass-lettuce.jpg](images/cartoon/glass-lettuce.jpg) |
 | lotus-root | 莲藕 | [lotus-root.jpg](images/cartoon/lotus-root.jpg) |

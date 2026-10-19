@@ -56,7 +56,7 @@ window.PRODUCT_IMAGES = {
   "choy-sum": "images/cartoon/choy-sum.jpg",
   "kailan-shoots": "images/cartoon/kailan-shoots.jpg",
   "pak-choi": "images/cartoon/pak-choi.jpg",
-  "cai-dan": "images/cartoon/cai-dan.jpg",
+  "cai-dan": "images/cartoon/cai-dan-v2.jpg",
   "xiang-cai-dan": "images/cartoon/xiang-cai-dan.jpg",
   "glass-lettuce": "images/cartoon/glass-lettuce.jpg",
   "lotus-root": "images/cartoon/lotus-root.jpg",
