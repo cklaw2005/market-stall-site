@@ -301,7 +301,7 @@ window.STALL = {
     },
     {
         "id": "cauliflower",
-        "name": "菜花",
+        "name": "椰菜花",
         "category": "瓜果",
         "unit": "公斤",
         "price": 14.0,

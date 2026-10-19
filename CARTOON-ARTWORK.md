@@ -38,7 +38,7 @@ Generated illustrations are not a guarantee that no similar work exists or that 
 | celery | 西芹 | [celery.jpg](images/cartoon/celery.jpg) |
 | sweet-peas | 甜豆 | [sweet-peas.jpg](images/cartoon/sweet-peas.jpg) |
 | pea-shoots | 豆苗 | [pea-shoots.jpg](images/cartoon/pea-shoots.jpg) |
-| cauliflower | 菜花 | [cauliflower.jpg](images/cartoon/cauliflower.jpg) |
+| cauliflower | 椰菜花 | [cauliflower.jpg](images/cartoon/cauliflower.jpg) |
 | chive-flowers | 韭菜花 | [chive-flowers.jpg](images/cartoon/chive-flowers.jpg) |
 | enoki-mushroom | 金针菇 | [enoki-mushroom.jpg](images/cartoon/enoki-mushroom.jpg) |
 | white-mushroom | 鲍鱼菇 | [white-mushroom.jpg](images/cartoon/white-mushroom.jpg) |
