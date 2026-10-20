@@ -112,3 +112,10 @@ Generated illustrations are not a guarantee that no similar work exists or that 
 | coconut-milk | 椰浆 | [coconut-milk.jpg](images/cartoon/coconut-milk.jpg) |
 | japanese-tofu | 日本豆腐 | [japanese-tofu.jpg](images/cartoon/japanese-tofu.jpg) |
 | chaozhou-dried-tofu | 潮州豆干 | [chaozhou-dried-tofu.jpg](images/cartoon/chaozhou-dried-tofu.jpg) |
+
+
+## 大河粉（2026-10-20）
+
+新增大河粉（宽条鲜河粉），RM5/公斤。参考用户提供的包装形态，用内置 image_gen 生成原创水彩卡通图；原包装品牌、202 字样及认证标识不沿用。通用标签为「大河粉 / Wide Rice Noodles」。图为卡通示意，不是实物照片。
+
+商品图：[wide-rice-noodles-v1.jpg](images/cartoon/wide-rice-noodles-v1.jpg)。

@@ -1,6 +1,7 @@
 // Only list a photo when its source and product match have been checked.
 // Unconfirmed products are explicitly blank; do not fall back to a generic image.
 window.PRODUCT_IMAGES = {
+  "wide-rice-noodles": "images/cartoon/wide-rice-noodles-v1.jpg",
   "red-pepper": "images/products/red-pepper.jpg",
   "green-pepper": "images/products/green-pepper-pexels.jpg",
   "small-pepper": "images/products/small-pepper.jpg",

@@ -1,5 +1,6 @@
 // Original AI-generated cartoon art mapping for the separate cartoon edition.
 window.PRODUCT_IMAGES = {
+  "wide-rice-noodles": "images/cartoon/wide-rice-noodles-v1.jpg",
   "red-pepper": "images/cartoon/red-pepper.jpg",
   "green-pepper": "images/cartoon/green-pepper.jpg",
   "small-pepper": "images/cartoon/small-pepper.jpg",

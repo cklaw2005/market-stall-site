@@ -907,6 +907,16 @@ window.STALL = {
         "note": "代购参考价；网页金额不是最终价钱，实际价格以摊主代买后确认为准。"
     },
     {
+        "id": "wide-rice-noodles",
+        "name": "大河粉",
+        "category": "面类",
+        "unit": "公斤",
+        "price": 5.0,
+        "icon": "🍜",
+        "daigou": true,
+        "note": "宽条鲜河粉；代购参考价，实际价格以摊主确认为准。"
+    },
+    {
         "id": "rice-vermicelli",
         "name": "米粉",
         "category": "面类",
@@ -1069,6 +1079,7 @@ window.PRODUCT_EN_NAMES = {
   "pineapple": "Pineapple",
   "green-mango": "Green Mango",
   "ripe-mango": "Ripe Mango",
+  "wide-rice-noodles": "Wide Rice Noodles",
   "rice-vermicelli": "Rice Vermicelli",
   "luffa": "Luffa (Ridge Gourd)",
   "sweet-corn": "Sweet Corn",
