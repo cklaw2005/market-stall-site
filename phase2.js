@@ -16,6 +16,8 @@ let preferredProductKeys = [];
 const selected = new Map();
 const restaurantSlug = new URLSearchParams(location.search).get('restaurant') || config?.restaurantSlug || 'dad-vegetable-stall';
 const money = (value) => `RM ${Number(value || 0).toFixed(2)}`;
+const isWeightUnit = (unit) => ['公斤', 'kg', 'KG'].includes(String(unit || ''));
+const formatKgFromGrams = (grams) => (Number(grams || 0) / 1000).toFixed(3).replace(/\.?0+$/, '');
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const productEnglishName = (product) => String(product?.name_en || window.PRODUCT_EN_NAMES?.[product?.product_key] || '').trim();
 
@@ -96,10 +98,12 @@ async function loadCatalog() {
   const orderedCatalog = [...catalog].sort((a,b) => Number(assigned.has(b.product_key))-Number(assigned.has(a.product_key)));
   $('#catalog').innerHTML = orderedCatalog.map((p) => {
     const pref = prefs.get(p.product_key), isAssigned = assigned.has(p.product_key);
-    const unitOptions = p.unit === '公斤' || p.unit === 'kg' ? `<option value="weight" ${pref?.mode === 'weight' ? 'selected' : ''}>按重量（克）</option><option value="money" ${pref?.mode === 'money' ? 'selected' : ''}>按预算（RM）</option>` : `<option value="count" ${pref?.mode === 'count' ? 'selected' : ''}>按件/包</option><option value="money" ${pref?.mode === 'money' ? 'selected' : ''}>按预算（RM）</option>`;
-    const suggestion = pref ? `常买 ${escapeHtml(pref.usual_amount)}（本次请重新输入）` : '输入数量/金额';
-    const splitField = p.unit === '公斤' || p.unit === 'kg' ? `<label class="muted">平均分成几份（可选）<input type="number" min="2" step="1" inputmode="numeric" placeholder="不分装" data-split="${escapeHtml(p.product_key)}"></label>` : '';
-    return `<div class="item"><strong>${escapeHtml(p.name_zh)}<small>${isAssigned ? '★ 常买 · ' : ''}${escapeHtml(p.name_en)} · ${escapeHtml(p.category)} · ${p.unit_price ? money(p.unit_price)+' / '+escapeHtml(p.unit) : '摊主确认当天价格'}</small></strong><select data-mode="${escapeHtml(p.product_key)}">${unitOptions}</select><input type="number" min="0.1" step="0.1" placeholder="${suggestion}" value="" data-amount="${escapeHtml(p.product_key)}">${splitField}</div>`;
+    const isWeight = isWeightUnit(p.unit);
+    const unitOptions = isWeight ? `<option value="weight" ${pref?.mode === 'weight' ? 'selected' : ''}>按重量（Kg）</option><option value="money" ${pref?.mode === 'money' ? 'selected' : ''}>按预算（RM）</option>` : `<option value="count" ${pref?.mode === 'count' ? 'selected' : ''}>按件/包</option><option value="money" ${pref?.mode === 'money' ? 'selected' : ''}>按预算（RM）</option>`;
+    const previousAmount = pref?.mode === 'weight' ? formatKgFromGrams(pref.usual_amount) : pref?.usual_amount;
+    const suggestion = pref ? `常买 ${escapeHtml(previousAmount)}${pref.mode === 'weight' ? ' Kg' : ''}（本次请重新输入）` : '输入数量/金额';
+    const splitField = isWeight ? `<label class="muted">平均分成几份（可选）<input type="number" min="2" step="1" inputmode="numeric" placeholder="不分装" data-split="${escapeHtml(p.product_key)}"></label>` : '';
+    return `<div class="item"><strong>${escapeHtml(p.name_zh)}<small>${isAssigned ? '★ 常买 · ' : ''}${escapeHtml(p.name_en)} · ${escapeHtml(p.category)} · ${p.unit_price ? money(p.unit_price)+' / '+escapeHtml(p.unit) : '摊主确认当天价格'}</small></strong><select data-mode="${escapeHtml(p.product_key)}">${unitOptions}</select><input type="number" min="0.1" step="0.1" aria-label="${isWeight ? '重量（Kg）或预算（RM）' : '数量或预算（RM）'}" placeholder="${suggestion}" value="" data-amount="${escapeHtml(p.product_key)}">${splitField}</div>`;
   }).join('');
 }
 
@@ -115,7 +119,8 @@ $('#submit-order').addEventListener('click', async () => {
     const splitCount = splitValue ? Number(splitValue) : null;
     if (splitValue && (!Number.isInteger(splitCount) || splitCount < 2)) { splitInput.setCustomValidity('请输入 2 或以上的整数份数。'); splitInput.reportValidity(); splitInput.focus(); return; }
     if (splitInput) splitInput.setCustomValidity('');
-    items.push({ product_key: p.product_key, product_name: p.name_zh, unit: p.unit || '公斤', request_mode: mode, requested_amount: amount, requested_unit_price: p.unit_price || null, split_count: splitCount, is_custom: false });
+    const requestedAmount = mode === 'weight' ? Math.round(amount * 1000) : amount;
+    items.push({ product_key: p.product_key, product_name: p.name_zh, unit: p.unit || '公斤', request_mode: mode, requested_amount: requestedAmount, requested_unit_price: p.unit_price || null, split_count: splitCount, is_custom: false });
   }
   const custom = $('#custom-items').value.split(/\n+/).map((x) => x.trim()).filter(Boolean);
   custom.forEach((text) => items.push({ product_name: text.slice(0,120), unit: '手写商品', request_mode: 'custom', requested_amount: 1, is_custom: true }));
@@ -227,16 +232,57 @@ $('#create-customer').addEventListener('click', async () => {
   const button = $('#create-customer'); button.disabled = true; status.textContent = '正在创建账号…';
   try {
     const result = await invokeCustomerAdmin({ action: 'create', display_name, phone, preferred_product_keys });
-    status.innerHTML = `账号已创建。请把以下临时密码交给顾客（只显示这一次）：<br><strong>${escapeHtml(result.temporary_password)}</strong> <button class="secondary" data-copy-temp>复制密码</button>`;
+    status.innerHTML = `账号已创建。请把以下临时密码交给顾客（只显示这一次）：<br><strong>${escapeHtml(result.temporary_password)}</strong> <button type="button" class="secondary" data-copy-temp>复制密码</button> <span class="muted" data-copy-feedback role="status" aria-live="polite"></span>`;
     $('#new-customer-name').value = ''; $('#new-customer-phone').value = '';
     await renderPreferenceChoices(); await loadCustomerAccounts();
   } catch (error) { status.textContent = `创建失败：${error.message}`; }
   button.disabled = false;
 });
 
+$('#temp-password-result').addEventListener('click', async (event) => {
+  const copyButton = event.target.closest('[data-copy-temp]');
+  if (!copyButton) return;
+  const password = $('#temp-password-result strong')?.textContent;
+  if (!password) return;
+  const feedback = $('#temp-password-result [data-copy-feedback]');
+  copyButton.disabled = true;
+  feedback.textContent = '正在复制…';
+  try {
+    await copyText(password);
+    copyButton.textContent = '已复制';
+    feedback.textContent = '临时密码已复制，可以粘贴给顾客。';
+  } catch (error) {
+    feedback.textContent = `自动复制失败：${error.message}。请手动选择上方密码复制。`;
+  } finally {
+    copyButton.disabled = false;
+  }
+});
+
+async function copyText(value) {
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(value);
+      return;
+    }
+  } catch { /* Fall through to the selection-based copy path. */ }
+  const field = document.createElement('textarea');
+  field.value = value;
+  field.setAttribute('readonly', '');
+  field.style.position = 'fixed';
+  field.style.opacity = '0';
+  document.body.append(field);
+  let copied = false;
+  try {
+    field.select();
+    copied = document.execCommand('copy');
+  } finally {
+    field.remove();
+  }
+  if (!copied) throw new Error('浏览器未允许剪贴板访问');
+}
+
 $('#managed-customers').addEventListener('click', async (event) => {
   const reset = event.target.closest('[data-reset-customer]'), deactivate = event.target.closest('[data-deactivate-customer]');
-  if (event.target.closest('[data-copy-temp]')) { await navigator.clipboard.writeText($('#temp-password-result strong').textContent); return; }
   const savePrefs = event.target.closest('[data-save-account-prefs]'), reactivate = event.target.closest('[data-reactivate-customer]');
   if (!reset && !deactivate && !savePrefs && !reactivate) return;
   const status = $('#temp-password-result');
@@ -248,11 +294,11 @@ $('#managed-customers').addEventListener('click', async (event) => {
       status.textContent = '常买偏好已保存。'; await loadCustomerAccounts();
     } else if (reactivate) {
       const result = await invokeCustomerAdmin({ action: 'reactivate', customer_id: reactivate.dataset.reactivateCustomer });
-      status.innerHTML = `账号已重新启用。新临时密码（只显示这一次）：<br><strong>${escapeHtml(result.temporary_password)}</strong> <button class="secondary" data-copy-temp>复制密码</button>`;
+      status.innerHTML = `账号已重新启用。新临时密码（只显示这一次）：<br><strong>${escapeHtml(result.temporary_password)}</strong> <button type="button" class="secondary" data-copy-temp>复制密码</button> <span class="muted" data-copy-feedback role="status" aria-live="polite"></span>`;
       await loadCustomerAccounts();
     } else if (reset) {
       const result = await invokeCustomerAdmin({ action: 'reset', customer_id: reset.dataset.resetCustomer });
-      status.innerHTML = `新临时密码（只显示这一次）：<br><strong>${escapeHtml(result.temporary_password)}</strong> <button class="secondary" data-copy-temp>复制密码</button>`;
+      status.innerHTML = `新临时密码（只显示这一次）：<br><strong>${escapeHtml(result.temporary_password)}</strong> <button type="button" class="secondary" data-copy-temp>复制密码</button> <span class="muted" data-copy-feedback role="status" aria-live="polite"></span>`;
     } else if (confirm('确定停用这个顾客账号？历史订单会保留。')) {
       await invokeCustomerAdmin({ action: 'deactivate', customer_id: deactivate.dataset.deactivateCustomer });
       status.textContent = '顾客账号已停用。'; await loadCustomerAccounts();
@@ -260,7 +306,7 @@ $('#managed-customers').addEventListener('click', async (event) => {
   } catch (error) { status.textContent = `操作失败：${error.message}`; }
 });
 
-function requestLabel(line) { const base = line.request_mode === 'money' ? `预算 RM ${Number(line.requested_amount).toFixed(2)}` : line.request_mode === 'weight' ? `${line.requested_amount} 克（要求重量）` : line.request_mode === 'count' ? `${line.requested_amount} 件/包` : '请摊主确认'; return line.split_count ? `${base}；请平均分 ${line.split_count} 份${line.request_mode === 'weight' && line.unit === '公斤' ? `（约每份 ${(Number(line.requested_amount) / 1000 / line.split_count).toFixed(2)} 公斤）` : ''}` : base; }
+function requestLabel(line) { const base = line.request_mode === 'money' ? `预算 RM ${Number(line.requested_amount).toFixed(2)}` : line.request_mode === 'weight' ? `${formatKgFromGrams(line.requested_amount)} Kg（要求重量）` : line.request_mode === 'count' ? `${line.requested_amount} 件/包` : '请摊主确认'; return line.split_count ? `${base}；请平均分 ${line.split_count} 份${line.request_mode === 'weight' && isWeightUnit(line.unit) ? `（约每份 ${(Number(line.requested_amount) / 1000 / line.split_count).toFixed(2)} Kg）` : ''}` : base; }
 function statusName(value) { return ({submitted:'已提交，待摊主处理',owner_review:'摊主核价中',awaiting_customer_confirmation:'待你确认最终金额',customer_requested_change:'你已要求修改',confirmed:'你已确认',fulfilled:'已完成',cancelled:'已取消'})[value] || value; }
 
 async function seedAndLoadMenu() {
