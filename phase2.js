@@ -421,7 +421,10 @@ async function loadOwnerOrders() {
   if (error) { $('#owner-orders').textContent = `订单读取失败：${error.message}`; return; }
   $('#owner-orders').innerHTML = data?.length ? data.map((o) => `<article class="order" data-owner-order="${o.id}"><div class="row" style="justify-content:space-between"><h3>${escapeHtml(o.order_no)} · ${escapeHtml(o.customer_name || '顾客')}</h3><span class="pill">${escapeHtml(statusName(o.status))}</span></div><p class="muted">顾客电话：${escapeHtml(o.customer_phone || '未提供')} · ${new Date(o.created_at).toLocaleString()} · ${escapeHtml(o.pickup_note || '未提供取货时间')}</p>${o.parent_order_no ? `<p class="muted">追加单 · 关联原订单 ${escapeHtml(o.parent_order_no)}</p>` : ''}${o.cancel_requested_at && !o.cancel_decided_at ? `<div class="card"><strong>顾客申请取消此单</strong><div class="row" style="margin-top:8px"><button data-cancel-decision="approve" data-order="${o.id}">确认取消</button><button class="secondary" data-cancel-decision="decline" data-order="${o.id}">拒绝取消，保留订单</button></div></div>` : o.cancel_requested_at ? `<p class="muted">取消申请处理结果：${o.cancel_approved ? '已确认取消' : '已拒绝取消'}</p>` : ''}<p class="muted">备注：${escapeHtml(o.customer_note || '无')}</p>${(o.order_items||[]).map((line) => {
     const weight = isWeightUnit(line.unit), requested = requestLabel(line);
-    const actualValue = line.final_quantity == null ? '' : (weight ? formatKgFromGrams(line.final_quantity) : line.final_quantity);
+    const defaultQuantity = line.request_mode === 'weight' && weight ? line.requested_amount : line.request_mode === 'count' ? line.requested_amount : '';
+    const actualValue = line.final_quantity != null
+      ? (weight ? formatKgFromGrams(line.final_quantity) : line.final_quantity)
+      : (defaultQuantity === '' ? '' : (weight ? formatKgFromGrams(defaultQuantity) : defaultQuantity));
     const priceValue = line.is_custom ? (line.final_amount ?? '') : (line.final_unit_price ?? line.requested_unit_price ?? '');
     const priceLocked = !line.is_custom && line.requested_unit_price != null;
     const unitLabel = weight ? 'Kg' : line.unit;
