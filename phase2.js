@@ -174,25 +174,18 @@ async function loadCustomerOrders() {
     const revision = (o.order_revisions || []).sort((a,b) => b.revision_no-a.revision_no)[0];
     const revisionLines = revision?.lines || [];
     const itemById = new Map((o.order_items || []).map((line) => [line.id, line]));
-    const cancelAction = !['fulfilled','cancelled'].includes(o.status) && !o.cancel_requested_at ? `<button class="secondary" data-cancel-request="${o.id}">申请取消</button>` : '';
     const cancelMessage = o.cancel_requested_at ? `<p class="muted ${o.cancel_approved === false ? 'danger' : ''}">${o.cancel_decided_at ? (o.cancel_approved ? '摊主已确认取消此单。' : '摊主拒绝了取消申请，订单仍有效。') : '取消申请已送出，等待摊主确认。'}</p>` : '';
     const parentLabel = o.parent_order_no ? `<p class="muted">追加单 · 关联原订单 ${escapeHtml(o.parent_order_no)}</p>` : '';
     const originalOrder = revision ? '' : `<div>${(o.order_items || []).map((line) => `<div class="muted">${escapeHtml(line.product_name)}：${escapeHtml(requestLabel(line))}</div>`).join('')}</div>`;
     const summary = orderSummary(o.order_items || []);
-    return `<article class="order"><div class="row" style="justify-content:space-between"><h3>${escapeHtml(o.order_no)}</h3><span class="pill">${escapeHtml(statusName(o.status))}</span></div><p class="muted">${new Date(o.created_at).toLocaleString()} · ${escapeHtml(o.pickup_note || '取货时间待确认')}</p>${parentLabel}${cancelMessage}${summary}${originalOrder}${revision ? `<hr><h4 class="invoice-heading">摊主最终确认</h4>${invoiceBlock(o, revision, itemById, '顾客账单')}${o.status === 'awaiting_customer_confirmation' ? `<div class="row" style="margin-top:12px"><button data-decision="yes" data-order="${o.id}" data-revision="${revision.id}">确认最终订单</button><button class="secondary" data-decision="no" data-order="${o.id}" data-revision="${revision.id}">请摊主修改</button></div>` : ''}` : ''}<div class="row" style="margin-top:12px">${cancelAction}</div></article>`;
+    const itemChangeHint = !['fulfilled','cancelled'].includes(o.status) ? '<p class="muted">需要取消某一项商品时，请联系摊主；摊主会将该项标记为“没货”，其他商品照常处理。</p>' : '';
+    return `<article class="order"><div class="row" style="justify-content:space-between"><h3>${escapeHtml(o.order_no)}</h3><span class="pill">${escapeHtml(statusName(o.status))}</span></div><p class="muted">${new Date(o.created_at).toLocaleString()} · ${escapeHtml(o.pickup_note || '取货时间待确认')}</p>${parentLabel}${cancelMessage}${summary}${itemChangeHint}${originalOrder}${revision ? `<hr><h4 class="invoice-heading">摊主最终确认</h4>${invoiceBlock(o, revision, itemById, '顾客账单')}${o.status === 'awaiting_customer_confirmation' ? `<div class="row" style="margin-top:12px"><button data-decision="yes" data-order="${o.id}" data-revision="${revision.id}">确认最终订单</button><button class="secondary" data-decision="no" data-order="${o.id}" data-revision="${revision.id}">请摊主修改</button></div>` : ''}` : ''}</article>`;
   }).join('') : '<p class="muted">还没有网站订单。</p>';
 }
 
 $('#customer-orders').addEventListener('click', async (event) => {
   const saveInvoice = event.target.closest('[data-save-invoice]');
   if (saveInvoice) { printInvoice(saveInvoice); return; }
-  const cancel = event.target.closest('[data-cancel-request]');
-  if (cancel) {
-    if (!confirm('要向摊主提交这张订单的取消申请吗？订单不会立即删除，摊主确认后才会取消。')) return;
-    const { error } = await supabase.rpc('customer_request_order_cancel', { target_order: cancel.dataset.cancelRequest });
-    if (error) alert(`取消申请未送出：${error.message}`); else await loadCustomerOrders();
-    return;
-  }
   const button = event.target.closest('[data-decision]');
   if (!button) return;
   const { error } = await supabase.rpc('customer_decide_order', { target_order: button.dataset.order, target_revision: button.dataset.revision, accept: button.dataset.decision === 'yes' });
