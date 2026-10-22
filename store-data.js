@@ -973,6 +973,24 @@ window.STALL = {
         "icon": "🌿",
         "daigou": true,
         "note": "代购参考价；网页金额不是最终价钱，实际价格以摊主代买后确认为准。"
+    },
+    {
+        "id": "green-dragon-chives",
+        "name": "青龙菜",
+        "category": "叶菜",
+        "unit": "个",
+        "price": 4.0,
+        "icon": "🥬",
+        "note": "按个计价；供应以当天为准"
+    },
+    {
+        "id": "parsley",
+        "name": "巴西里",
+        "category": "叶菜",
+        "unit": "公斤",
+        "price": 25.0,
+        "icon": "🥬",
+        "note": "按公斤计价；供应以当天为准"
     }
 ]
 };
@@ -1085,6 +1103,8 @@ window.PRODUCT_EN_NAMES = {
   "sweet-corn": "Sweet Corn",
   "coconut-milk": "Coconut Milk",
   "japanese-tofu": "Japanese Tofu",
-  "chaozhou-dried-tofu": "Chaozhou Dried Tofu"
+  "chaozhou-dried-tofu": "Chaozhou Dried Tofu",
+  "green-dragon-chives": "Green Dragon Chives",
+  "parsley": "Parsley"
 };
 

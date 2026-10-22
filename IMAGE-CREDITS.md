@@ -302,5 +302,7 @@ These nine original illustrations were generated with OpenAI image_gen for the m
 - `images/cartoon/fresh-shiitake-mushroom-v1.jpg` — fresh shiitake mushrooms, guided by the owner's reference image; the reference photo itself is not reproduced.
 - `images/cartoon/tree-greens-v2.jpg` — leafy Sauropus androgynus bunch, guided by the owner's reference image; the reference photo itself is not reproduced.
 - `images/cartoon/sweet-potato-indo-v2.jpg` — Indonesian sweet potatoes with orange flesh, guided by the owner's reference image; the reference photo itself is not reproduced.
+- `images/cartoon/green-dragon-chives.png` — cartoon illustration of bundled green dragon chives, guided by the owner's reference image; the reference photo itself is not reproduced.
+- `images/cartoon/parsley.png` — cartoon illustration of fresh parsley, guided by the owner's reference image; the reference photo itself is not reproduced.
 
 | `images/products/ginger-flower-commons.jpg` | White ginger lily.jpg · Nativeplants garden | [Wikimedia Commons 来源页](https://commons.wikimedia.org/wiki/File:White_ginger_lily.jpg) · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | 原图缩略尺寸下载，未编辑；署名、来源及许可已列明。核查：2026-10-19。 | 来源页与实图均为 white ginger lily / Hedychium coronarium（姜花）。 |

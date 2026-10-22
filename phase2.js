@@ -428,7 +428,7 @@ async function loadOwnerOrders() {
     const priceValue = line.is_custom ? (line.final_amount ?? '') : (line.final_unit_price ?? line.requested_unit_price ?? '');
     const priceLocked = !line.is_custom && line.requested_unit_price != null;
     const unitLabel = weight ? 'Kg' : line.unit;
-    return `<div class="ownerline" data-line="${line.id}" data-unit="${escapeHtml(line.unit)}" data-split="${escapeHtml(line.split_count ?? '')}" data-custom="${line.is_custom}"><strong>${escapeHtml(line.product_name)}</strong><div class="weight-cell"><small>顾客原订</small><strong>${escapeHtml(requested)}</strong></div><label class="weight-cell">${weight ? '实际称重 (Kg)' : '实际数量'}<input type="number" min="0" step="${weight ? '0.001' : '1'}" inputmode="decimal" data-final-qty value="${escapeHtml(actualValue)}" placeholder="${weight ? '如 2.1' : '输入数量'}"></label><select aria-label="${escapeHtml(line.product_name)}有货状态" data-availability><option value="pending" ${line.availability==='pending'?'selected':''}>待确认</option><option value="available" ${line.availability==='available'?'selected':''}>有货</option><option value="unavailable" ${line.availability==='unavailable'?'selected':''}>缺货</option></select><label class="price-cell">${line.is_custom ? '代购最终金额 (RM)' : `网页单价 (RM/${escapeHtml(unitLabel)})`}<input type="number" min="0" step="0.01" data-final-price value="${escapeHtml(priceValue)}" placeholder="${line.is_custom ? '最终金额 RM' : '网页未提供单价'}" ${priceLocked ? 'readonly' : ''}>${priceLocked ? '<small>自动沿用顾客下单时网页显示的价格</small>' : ''}</label><small class="muted" data-portion-preview>${line.split_count && line.final_quantity && weight ? `实称后每份约 ${(Number(line.final_quantity)/1000/line.split_count).toFixed(2)} Kg；分装不改变总价。` : line.split_count ? `平均分 ${line.split_count} 份；分装不改变总价。` : ''}</small></div>`;
+    return `<div class="ownerline" data-line="${line.id}" data-unit="${escapeHtml(line.unit)}" data-split="${escapeHtml(line.split_count ?? '')}" data-custom="${line.is_custom}"><strong>${escapeHtml(line.product_name)}</strong><div class="weight-cell"><small>顾客原订</small><strong>${escapeHtml(requested)}</strong></div><label class="weight-cell">${weight ? '实际称重 (Kg)' : '实际数量'}<input type="number" min="0" step="${weight ? '0.1' : '1'}" inputmode="decimal" data-final-qty value="${escapeHtml(actualValue)}" placeholder="${weight ? '每次调整 0.1 Kg（100 克）' : '输入数量'}"></label><select aria-label="${escapeHtml(line.product_name)}有货状态" data-availability><option value="pending" ${line.availability==='pending'?'selected':''}>请选择有/缺货</option><option value="available" ${line.availability==='available'?'selected':''}>有货</option><option value="unavailable" ${line.availability==='unavailable'?'selected':''}>缺货</option></select><label class="price-cell">${line.is_custom ? '代购最终金额 (RM)' : `网页单价 (RM/${escapeHtml(unitLabel)})`}<input type="number" min="0" step="0.01" data-final-price value="${escapeHtml(priceValue)}" placeholder="${line.is_custom ? '最终金额 RM' : '网页未提供单价'}" ${priceLocked ? 'readonly' : ''}>${priceLocked ? '<small>自动沿用顾客下单时网页显示的价格</small>' : ''}</label><small class="muted" data-portion-preview>${line.split_count && line.final_quantity && weight ? `实称后每份约 ${(Number(line.final_quantity)/1000/line.split_count).toFixed(2)} Kg；分装不改变总价。` : line.split_count ? `平均分 ${line.split_count} 份；分装不改变总价。` : ''}</small></div>`;
   }).join('')}${!o.cancel_requested_at || o.cancel_decided_at ? ['submitted','owner_review','customer_requested_change'].includes(o.status) ? `<button data-publish="${o.id}">计算并发给顾客确认</button>` : o.status==='confirmed' ? `<button data-fulfill="${o.id}">标记已备货/完成</button>` : '' : ''}<div class="status" data-order-status></div></article>`).join('') : '<p class="muted">目前没有待处理订单。</p>';
 }
 
@@ -458,6 +458,15 @@ $('#owner-orders').addEventListener('click', async (event) => {
   }
   const button = event.target.closest('[data-publish]'); if (!button) return;
   const card = button.closest('[data-owner-order]');
+  const invalidWeight = [...card.querySelectorAll('[data-line]')].some((row) => {
+    const isWeight = ['公斤', 'kg', 'KG'].includes(row.dataset.unit);
+    const available = row.querySelector('[data-availability]').value === 'available';
+    const quantity = Number(row.querySelector('[data-final-qty]').value);
+    return isWeight && available && (!Number.isFinite(quantity) || quantity <= 0 || Math.abs(quantity * 10 - Math.round(quantity * 10)) > 1e-8);
+  });
+  if (invalidWeight) {
+    card.querySelector('[data-order-status]').textContent = '实际重量请按 0.1 Kg（100 克）递增填写，例如 2.0、2.1、2.2 Kg。'; return;
+  }
   const lines = [...card.querySelectorAll('[data-line]')].map((row) => {
     const rawQuantity = row.querySelector('[data-final-qty]').value;
     const quantityInDatabaseUnits = row.dataset.unit === '公斤' || row.dataset.unit === 'kg' || row.dataset.unit === 'KG'

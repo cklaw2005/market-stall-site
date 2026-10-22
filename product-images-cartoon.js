@@ -106,5 +106,7 @@ window.PRODUCT_IMAGES = {
   "sweet-corn": "images/cartoon/sweet-corn.jpg",
   "coconut-milk": "images/cartoon/coconut-milk.jpg",
   "japanese-tofu": "images/cartoon/japanese-tofu.jpg",
-  "chaozhou-dried-tofu": "images/cartoon/chaozhou-dried-tofu.jpg"
+  "chaozhou-dried-tofu": "images/cartoon/chaozhou-dried-tofu.jpg",
+  "green-dragon-chives": "images/cartoon/green-dragon-chives.png",
+  "parsley": "images/cartoon/parsley.png"
 };
