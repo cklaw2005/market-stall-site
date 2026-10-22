@@ -174,16 +174,18 @@ async function loadCustomerOrders() {
     const revision = (o.order_revisions || []).sort((a,b) => b.revision_no-a.revision_no)[0];
     const revisionLines = revision?.lines || [];
     const itemById = new Map((o.order_items || []).map((line) => [line.id, line]));
-    const lineNames = new Map((o.order_items || []).map((line) => [line.id, line.product_name]));
     const cancelAction = !['fulfilled','cancelled'].includes(o.status) && !o.cancel_requested_at ? `<button class="secondary" data-cancel-request="${o.id}">申请取消</button>` : '';
     const cancelMessage = o.cancel_requested_at ? `<p class="muted ${o.cancel_approved === false ? 'danger' : ''}">${o.cancel_decided_at ? (o.cancel_approved ? '摊主已确认取消此单。' : '摊主拒绝了取消申请，订单仍有效。') : '取消申请已送出，等待摊主确认。'}</p>` : '';
     const parentLabel = o.parent_order_no ? `<p class="muted">追加单 · 关联原订单 ${escapeHtml(o.parent_order_no)}</p>` : '';
     const originalOrder = revision ? '' : `<div>${(o.order_items || []).map((line) => `<div class="muted">${escapeHtml(line.product_name)}：${escapeHtml(requestLabel(line))}</div>`).join('')}</div>`;
-    return `<article class="order"><div class="row" style="justify-content:space-between"><h3>${escapeHtml(o.order_no)}</h3><span class="pill">${escapeHtml(statusName(o.status))}</span></div><p class="muted">${new Date(o.created_at).toLocaleString()} · ${escapeHtml(o.pickup_note || '取货时间待确认')}</p>${parentLabel}${cancelMessage}${originalOrder}${revision ? `<hr><h4 class="invoice-heading">摊主最终确认</h4>${invoiceTable(revisionLines, itemById, revision.total)}${o.status === 'awaiting_customer_confirmation' ? `<div class="row" style="margin-top:12px"><button data-decision="yes" data-order="${o.id}" data-revision="${revision.id}">确认最终订单</button><button class="secondary" data-decision="no" data-order="${o.id}" data-revision="${revision.id}">请摊主修改</button></div>` : ''}` : ''}<div class="row" style="margin-top:12px">${cancelAction}</div></article>`;
+    const summary = orderSummary(o.order_items || []);
+    return `<article class="order"><div class="row" style="justify-content:space-between"><h3>${escapeHtml(o.order_no)}</h3><span class="pill">${escapeHtml(statusName(o.status))}</span></div><p class="muted">${new Date(o.created_at).toLocaleString()} · ${escapeHtml(o.pickup_note || '取货时间待确认')}</p>${parentLabel}${cancelMessage}${summary}${originalOrder}${revision ? `<hr><h4 class="invoice-heading">摊主最终确认</h4>${invoiceBlock(o, revision, itemById, '顾客账单')}${o.status === 'awaiting_customer_confirmation' ? `<div class="row" style="margin-top:12px"><button data-decision="yes" data-order="${o.id}" data-revision="${revision.id}">确认最终订单</button><button class="secondary" data-decision="no" data-order="${o.id}" data-revision="${revision.id}">请摊主修改</button></div>` : ''}` : ''}<div class="row" style="margin-top:12px">${cancelAction}</div></article>`;
   }).join('') : '<p class="muted">还没有网站订单。</p>';
 }
 
 $('#customer-orders').addEventListener('click', async (event) => {
+  const saveInvoice = event.target.closest('[data-save-invoice]');
+  if (saveInvoice) { printInvoice(saveInvoice); return; }
   const cancel = event.target.closest('[data-cancel-request]');
   if (cancel) {
     if (!confirm('要向摊主提交这张订单的取消申请吗？订单不会立即删除，摊主确认后才会取消。')) return;
@@ -323,7 +325,7 @@ $('#managed-customers').addEventListener('click', async (event) => {
 
 function requestLabel(line) { const base = line.request_mode === 'money' ? `预算 RM ${Number(line.requested_amount).toFixed(2)}` : line.request_mode === 'weight' ? `${formatKgFromGrams(line.requested_amount)} Kg` : line.request_mode === 'count' ? `${line.requested_amount} 件/包` : '请摊主确认'; return line.split_count ? `${base}；请平均分 ${line.split_count} 份${line.request_mode === 'weight' && isWeightUnit(line.unit) ? `（约每份 ${(Number(line.requested_amount) / 1000 / line.split_count).toFixed(2)} Kg）` : ''}` : base; }
 function invoiceTable(revisionLines, itemById, total) {
-  const rows = revisionLines.map((line) => {
+  const rows = revisionLines.map((line, index) => {
     const item = itemById.get(line.id);
     const name = escapeHtml(item?.product_name || '商品');
     const requested = item ? invoiceRequested(item) : '—';
@@ -340,15 +342,36 @@ function invoiceTable(revisionLines, itemById, total) {
       const price = Number(line.final_unit_price ?? item.requested_unit_price);
       if (Number.isFinite(price)) unitPrice = `${money(price)}/${escapeHtml(item.unit)}`;
     }
-    return `<tr><th scope="row">${name}</th><td>${escapeHtml(requested)}</td><td>${actual}</td><td>${unitPrice}</td><td class="invoice-money">${money(line.final_amount)}</td></tr>`;
+    return `<tr><td class="invoice-number">${index + 1}</td><th scope="row">${name}</th><td>${escapeHtml(requested)}</td><td>${actual}</td><td>${unitPrice}</td><td class="invoice-money">${money(line.final_amount)}</td></tr>`;
   }).join('');
-  return `<div class="invoice-scroll"><table class="invoice-table"><thead><tr><th>商品</th><th>顾客原订</th><th>最终重量／数量</th><th>单价</th><th>小计</th></tr></thead><tbody>${rows}</tbody><tfoot><tr><th colspan="4">应付总额</th><td class="invoice-money">${money(total)}</td></tr></tfoot></table></div>`;
+  return `<div class="invoice-scroll"><table class="invoice-table"><thead><tr><th>序号</th><th>商品</th><th>顾客原订</th><th>最终重量／数量</th><th>单价</th><th>小计</th></tr></thead><tbody>${rows}</tbody><tfoot><tr><th colspan="5">应付总额</th><td class="invoice-money">${money(total)}</td></tr></tfoot></table></div>`;
 }
 function invoiceRequested(item) {
   if (item.request_mode === 'weight' && isWeightUnit(item.unit)) return `${formatKgFromGrams(item.requested_amount)} Kg`;
   if (item.request_mode === 'money') return `预算 ${money(item.requested_amount)}`;
   if (item.request_mode === 'count') return `${item.requested_amount} ${escapeHtml(item.unit)}`;
   return escapeHtml(requestLabel(item));
+}
+function invoiceBlock(order, revision, itemById, audience) {
+  const date = new Date(revision.created_at || order.created_at).toLocaleString();
+  return `<section class="invoice-copy"><div class="invoice-meta"><strong>${escapeHtml(audience)} · ${escapeHtml(order.order_no)}</strong><span>账单日期：${escapeHtml(date)} · 第 ${Number(revision.revision_no || 1)} 版</span></div>${invoiceTable(revision.lines || [], itemById, revision.total)}<div class="invoice-actions"><button type="button" data-save-invoice>打印／保存账单</button></div></section>`;
+}
+function orderSummary(lines) {
+  const weighted = lines.filter((line) => line.request_mode === 'weight' && isWeightUnit(line.unit));
+  const weightKg = weighted.reduce((total, line) => total + Number(line.requested_amount || 0), 0) / 1000;
+  const counted = lines.filter((line) => line.request_mode === 'count');
+  const countUnits = counted.reduce((total, line) => total + Number(line.requested_amount || 0), 0);
+  return `<div class="order-summary"><strong>订货摘要：共 ${lines.length} 项商品</strong>${weighted.length ? `<span>按重量：${weighted.length} 项，共 ${weightKg.toFixed(2)} Kg</span>` : ''}${counted.length ? `<span>按件／包：${counted.length} 项，共 ${countUnits} 件／包</span>` : ''}</div>`;
+}
+function printInvoice(button) {
+  const invoice = button.closest('.invoice-copy');
+  if (!invoice) return;
+  const content = invoice.cloneNode(true);
+  content.querySelectorAll('[data-save-invoice]').forEach((action) => action.remove());
+  const printWindow = window.open('', '_blank', 'width=900,height=700');
+  if (!printWindow) { alert('浏览器拦截了打印窗口，请允许此网站打开弹出窗口后再试。'); return; }
+  printWindow.document.write(`<!doctype html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>账单</title><style>body{font:14px system-ui,"Microsoft YaHei",sans-serif;color:#18372b;padding:24px}.invoice-meta{display:flex;justify-content:space-between;gap:16px;margin-bottom:14px}.invoice-scroll{overflow:visible}.invoice-table{width:100%;border-collapse:collapse;font-size:13px}.invoice-table th,.invoice-table td{padding:9px;border:1px solid #ccd5c8;text-align:left;vertical-align:top}.invoice-table thead th,.invoice-table tfoot th,.invoice-table tfoot td{background:#f1f4e9;font-weight:700}.invoice-money{text-align:right!important;white-space:nowrap}.invoice-unavailable{color:#9b493d;font-weight:700}.invoice-table small{display:block}.invoice-number{text-align:center}</style></head><body>${content.outerHTML}<script>window.addEventListener('load',()=>setTimeout(()=>window.print(),200));</script></body></html>`);
+  printWindow.document.close();
 }
 function statusName(value) { return ({submitted:'已提交，待摊主处理',owner_review:'摊主核价中',awaiting_customer_confirmation:'待你确认最终金额',customer_requested_change:'你已要求修改',confirmed:'你已确认',fulfilled:'已完成',cancelled:'已取消'})[value] || value; }
 
@@ -430,20 +453,31 @@ function sheetDate(value) {
 }
 
 async function loadOwnerOrders() {
-  const { data, error } = await supabase.from('orders').select('id,order_no,status,created_at,customer_name,customer_phone,customer_id,pickup_note,customer_note,parent_order_id,parent_order_no,cancel_requested_at,cancel_decided_at,cancel_approved,order_items(*)').eq('restaurant_id', restaurant.id).neq('status','fulfilled').order('created_at',{ascending:false}).limit(100);
+  const { data, error } = await supabase.from('orders').select('id,order_no,status,created_at,customer_name,customer_phone,customer_id,pickup_note,customer_note,parent_order_id,parent_order_no,cancel_requested_at,cancel_decided_at,cancel_approved,order_items(*),order_revisions(*)').eq('restaurant_id', restaurant.id).order('created_at',{ascending:false}).limit(100);
   if (error) { $('#owner-orders').textContent = `订单读取失败：${error.message}`; return; }
-  $('#owner-orders').innerHTML = data?.length ? data.map((o) => `<article class="order" data-owner-order="${o.id}"><div class="row" style="justify-content:space-between"><h3>${escapeHtml(o.order_no)} · ${escapeHtml(o.customer_name || '顾客')}</h3><span class="pill">${escapeHtml(statusName(o.status))}</span></div><p class="muted">顾客电话：${escapeHtml(o.customer_phone || '未提供')} · ${new Date(o.created_at).toLocaleString()} · ${escapeHtml(o.pickup_note || '未提供取货时间')}</p>${o.parent_order_no ? `<p class="muted">追加单 · 关联原订单 ${escapeHtml(o.parent_order_no)}</p>` : ''}${o.cancel_requested_at && !o.cancel_decided_at ? `<div class="card"><strong>顾客申请取消此单</strong><div class="row" style="margin-top:8px"><button data-cancel-decision="approve" data-order="${o.id}">确认取消</button><button class="secondary" data-cancel-decision="decline" data-order="${o.id}">拒绝取消，保留订单</button></div></div>` : o.cancel_requested_at ? `<p class="muted">取消申请处理结果：${o.cancel_approved ? '已确认取消' : '已拒绝取消'}</p>` : ''}<p class="muted">备注：${escapeHtml(o.customer_note || '无')}</p>${(o.order_items||[]).map((line) => {
-    const weight = isWeightUnit(line.unit), requested = requestLabel(line);
-    const defaultQuantity = line.request_mode === 'weight' && weight ? line.requested_amount : line.request_mode === 'count' ? line.requested_amount : '';
-    const actualValue = line.final_quantity != null
-      ? (weight ? formatKgFromGrams(line.final_quantity) : line.final_quantity)
-      : (defaultQuantity === '' ? '' : (weight ? formatKgFromGrams(defaultQuantity) : defaultQuantity));
-    const priceValue = line.is_custom ? (line.final_amount ?? '') : (line.final_unit_price ?? line.requested_unit_price ?? '');
-    const priceHint = line.is_custom ? '填写摊主实际代购金额；每次调整 RM 0.10' : '默认沿用顾客下单时网页单价；可按 RM 0.10 调整';
-    const unitLabel = weight ? 'Kg' : line.unit;
-    const availability = line.availability || 'pending';
-    return `<div class="ownerline" data-line="${line.id}" data-unit="${escapeHtml(line.unit)}" data-split="${escapeHtml(line.split_count ?? '')}" data-custom="${line.is_custom}"><strong>${escapeHtml(line.product_name)}</strong><div class="weight-cell"><small>顾客原订</small><strong>${escapeHtml(requested)}</strong></div><label class="weight-cell">${weight ? '实际称重 (Kg)' : '实际数量'}<input type="number" min="0" step="${weight ? '0.1' : '1'}" inputmode="decimal" data-final-qty value="${escapeHtml(actualValue)}" placeholder="${weight ? '每次调整 0.1 Kg（100 克）' : '输入数量'}"></label><div class="availability-toggle" role="group" aria-label="${escapeHtml(line.product_name)}有货状态"><button type="button" data-availability="available" aria-pressed="${availability === 'available'}">有货</button><button type="button" data-availability="unavailable" aria-pressed="${availability === 'unavailable'}">没货</button></div><label class="price-cell">${line.is_custom ? '代购最终金额 (RM)' : `网页单价 (RM/${escapeHtml(unitLabel)})`}<input type="number" min="0" step="0.1" data-final-price value="${escapeHtml(priceValue)}" placeholder="${line.is_custom ? '最终金额 RM' : '网页未提供单价'}"><small>${priceHint}</small></label><small class="muted" data-portion-preview>${line.split_count && line.final_quantity && weight ? `实称后每份约 ${(Number(line.final_quantity)/1000/line.split_count).toFixed(2)} Kg；分装不改变总价。` : line.split_count ? `平均分 ${line.split_count} 份；分装不改变总价。` : ''}</small></div>`;
-  }).join('')}${!o.cancel_requested_at || o.cancel_decided_at ? ['submitted','owner_review','customer_requested_change'].includes(o.status) ? `<button data-publish="${o.id}">计算并发给顾客确认</button>` : o.status==='confirmed' ? `<button data-fulfill="${o.id}">标记已备货/完成</button>` : '' : ''}<div class="status" data-order-status></div></article>`).join('') : '<p class="muted">目前没有待处理订单。</p>';
+  $('#owner-orders').innerHTML = data?.length ? data.map((o) => {
+    const revisions = (o.order_revisions || []).sort((a, b) => b.revision_no - a.revision_no);
+    const latestRevision = revisions[0];
+    const itemById = new Map((o.order_items || []).map((line) => [line.id, line]));
+    const canEdit = ['submitted', 'owner_review', 'customer_requested_change'].includes(o.status);
+    const summary = orderSummary(o.order_items || []);
+    const ownerRows = canEdit ? (o.order_items || []).map((line) => {
+      const weight = isWeightUnit(line.unit), requested = requestLabel(line);
+      const defaultQuantity = line.request_mode === 'weight' && weight ? line.requested_amount : line.request_mode === 'count' ? line.requested_amount : '';
+      const actualValue = line.final_quantity != null
+        ? (weight ? formatKgFromGrams(line.final_quantity) : line.final_quantity)
+        : (defaultQuantity === '' ? '' : (weight ? formatKgFromGrams(defaultQuantity) : defaultQuantity));
+      const priceValue = line.is_custom ? (line.final_amount ?? '') : (line.final_unit_price ?? line.requested_unit_price ?? '');
+      const priceHint = line.is_custom ? '填写摊主实际代购金额；每次调整 RM 0.10' : '默认沿用顾客下单时网页单价；可按 RM 0.10 调整';
+      const unitLabel = weight ? 'Kg' : line.unit;
+      const availability = line.availability || 'pending';
+      return `<div class="ownerline" data-line="${line.id}" data-unit="${escapeHtml(line.unit)}" data-split="${escapeHtml(line.split_count ?? '')}" data-custom="${line.is_custom}"><strong>${escapeHtml(line.product_name)}</strong><div class="weight-cell"><small>顾客原订</small><strong>${escapeHtml(requested)}</strong></div><label class="weight-cell">${weight ? '实际称重 (Kg)' : '实际数量'}<input type="number" min="0" step="${weight ? '0.1' : '1'}" inputmode="decimal" data-final-qty value="${escapeHtml(actualValue)}" placeholder="${weight ? '每次调整 0.1 Kg（100 克）' : '输入数量'}"></label><div class="availability-toggle" role="group" aria-label="${escapeHtml(line.product_name)}有货状态"><button type="button" data-availability="available" aria-pressed="${availability === 'available'}">有货</button><button type="button" data-availability="unavailable" aria-pressed="${availability === 'unavailable'}">没货</button></div><label class="price-cell">${line.is_custom ? '代购最终金额 (RM)' : `网页单价 (RM/${escapeHtml(unitLabel)})`}<input type="number" min="0" step="0.1" data-final-price value="${escapeHtml(priceValue)}" placeholder="${line.is_custom ? '最终金额 RM' : '网页未提供单价'}"><small>${priceHint}</small></label><small class="muted" data-portion-preview>${line.split_count && line.final_quantity && weight ? `实称后每份约 ${(Number(line.final_quantity)/1000/line.split_count).toFixed(2)} Kg；分装不改变总价。` : line.split_count ? `平均分 ${line.split_count} 份；分装不改变总价。` : ''}</small></div>`;
+    }).join('') : '';
+    const history = revisions.length > 1 ? `<details class="invoice-history"><summary>查看之前账单（${revisions.length - 1} 版）</summary>${revisions.slice(1).map((revision) => invoiceBlock(o, revision, itemById, '摊主历史账单')).join('')}</details>` : '';
+    const cancelControls = o.cancel_requested_at && !o.cancel_decided_at ? `<div class="card"><strong>顾客申请取消此单</strong><div class="row" style="margin-top:8px"><button data-cancel-decision="approve" data-order="${o.id}">确认取消</button><button class="secondary" data-cancel-decision="decline" data-order="${o.id}">拒绝取消，保留订单</button></div></div>` : o.cancel_requested_at ? `<p class="muted">取消申请处理结果：${o.cancel_approved ? '已确认取消' : '已拒绝取消'}</p>` : '';
+    const action = !o.cancel_requested_at || o.cancel_decided_at ? canEdit ? `<button data-publish="${o.id}">计算并发给顾客确认</button>` : o.status === 'confirmed' ? `<button data-fulfill="${o.id}">标记已备货/完成</button>` : '' : '';
+    return `<article class="order" data-owner-order="${o.id}"><div class="row" style="justify-content:space-between"><h3>${escapeHtml(o.order_no)} · ${escapeHtml(o.customer_name || '顾客')}</h3><span class="pill">${escapeHtml(statusName(o.status))}</span></div><p class="muted">顾客电话：${escapeHtml(o.customer_phone || '未提供')} · ${new Date(o.created_at).toLocaleString()} · ${escapeHtml(o.pickup_note || '未提供取货时间')}</p>${o.parent_order_no ? `<p class="muted">追加单 · 关联原订单 ${escapeHtml(o.parent_order_no)}</p>` : ''}${cancelControls}<p class="muted">备注：${escapeHtml(o.customer_note || '无')}</p>${summary}${ownerRows}${action}${latestRevision ? `<hr><h4 class="invoice-heading">摊主留存账单</h4>${invoiceBlock(o, latestRevision, itemById, '摊主账单')}${history}` : ''}<div class="status" data-order-status></div></article>`;
+  }).join('') : '<p class="muted">目前没有订单记录。</p>';
 }
 
 $('#owner-orders').addEventListener('input', (event) => {
@@ -455,6 +489,8 @@ $('#owner-orders').addEventListener('input', (event) => {
 });
 
 $('#owner-orders').addEventListener('click', async (event) => {
+  const saveInvoice = event.target.closest('[data-save-invoice]');
+  if (saveInvoice) { printInvoice(saveInvoice); return; }
   const availabilityChoice = event.target.closest('[data-availability]');
   if (availabilityChoice) {
     const row = availabilityChoice.closest('[data-line]');
