@@ -66,6 +66,8 @@ window.PRODUCT_IMAGES = {
   "emperor-greens": null,
   "sweet-potato-leaves": "images/products/sweet-potato-leaves-pexels.jpg",
   "tree-greens": null,
+  "green-dragon-chives": "images/products/green-dragon-chives.png",
+  "parsley": "images/products/parsley.png",
   "spinach": "images/products/spinach-pexels.jpg",
   "oil-scallion": null,
   "garlic": "images/products/garlic.jpg",

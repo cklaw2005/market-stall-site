@@ -592,6 +592,24 @@ window.STALL = {
         "note": "来自订货单；供应以当天为准"
     },
     {
+        "id": "green-dragon-chives",
+        "name": "青龙菜",
+        "category": "叶菜",
+        "unit": "个",
+        "price": 4.0,
+        "icon": "🥬",
+        "note": "按个计价；供应以当天为准"
+    },
+    {
+        "id": "parsley",
+        "name": "巴西里",
+        "category": "叶菜",
+        "unit": "公斤",
+        "price": 25.0,
+        "icon": "🌿",
+        "note": "按公斤计价；供应以当天为准"
+    },
+    {
         "id": "spinach",
         "name": "菠菜",
         "category": "叶菜",
@@ -1025,6 +1043,8 @@ window.PRODUCT_EN_NAMES = {
   "emperor-greens": "Emperor Greens (Local Name)",
   "sweet-potato-leaves": "Sweet Potato Leaves",
   "tree-greens": "Sauropus androgynus",
+  "green-dragon-chives": "Green Dragon Chives",
+  "parsley": "Parsley",
   "spinach": "Spinach",
   "oil-scallion": "Fried Shallot (Local Name)",
   "garlic": "Garlic",
