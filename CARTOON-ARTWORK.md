@@ -112,6 +112,9 @@ Generated illustrations are not a guarantee that no similar work exists or that 
 | coconut-milk | 椰浆 | [coconut-milk.jpg](images/cartoon/coconut-milk.jpg) |
 | japanese-tofu | 日本豆腐 | [japanese-tofu.jpg](images/cartoon/japanese-tofu.jpg) |
 | chaozhou-dried-tofu | 潮州豆干 | [chaozhou-dried-tofu.jpg](images/cartoon/chaozhou-dried-tofu.jpg) |
+| green-dragon-chives | 青龙菜 | [green-dragon-chives.jpg](images/cartoon/green-dragon-chives.jpg) |
+| parsley | 巴西里 | [parsley.jpg](images/cartoon/parsley.jpg) |
+| wide-rice-noodles | 大河粉 | [wide-rice-noodles-v1.jpg](images/cartoon/wide-rice-noodles-v1.jpg) |
 
 
 ## 大河粉（2026-10-20）
@@ -119,3 +122,20 @@ Generated illustrations are not a guarantee that no similar work exists or that 
 新增大河粉（宽条鲜河粉），RM5/公斤。参考用户提供的包装形态，用内置 image_gen 生成原创水彩卡通图；原包装品牌、202 字样及认证标识不沿用。通用标签为「大河粉 / Wide Rice Noodles」。图为卡通示意，不是实物照片。
 
 商品图：[wide-rice-noodles-v1.jpg](images/cartoon/wide-rice-noodles-v1.jpg)。
+
+## 复核记录（2026-10-27）
+
+重新核对 `store-data.js` 商品目录、`product-images-cartoon.js` 图片映射，以及 `images/cartoon/` 本地素材，并逐张查看卡通版当前使用的 109 张插图。目录与映射为 109 对 109，图片文件全部存在；没有未映射商品、缺失图片或多余映射。
+
+| 商品类别 | 商品数 | 有对应插图 |
+|---|---:|---:|
+| 瓜果 | 26 | 26 |
+| 香料 | 22 | 22 |
+| 根茎 | 20 | 20 |
+| 叶菜 | 27 | 27 |
+| 菌菇 | 5 | 5 |
+| 以上蔬菜及菌菇类别合计 | 100 | 100 |
+
+目视检查结果：卡通版使用的商品图整体保持原创水彩/手绘卡通插画风格和浅色背景；未发现混入写实商品照片的条目。包菜使用圆形包菜造型；元白/大白菜使用独立的大白菜造型，两者在画面上可区分。少数商品图呈现食品本身的常见包装/捆扎形态，仍是插画示意图，不代表实际包装或品牌。
+
+以上是对仓库当前素材和页面映射的复核；仅凭视觉检查无法独立证明图像生成来源，也不构成法律上的版权保证。商品品种以页面商品名称及摊主实际供应为准。
