@@ -117,8 +117,17 @@ async function loadCatalog() {
     const previousAmount = pref?.mode === 'weight' ? formatKgFromGrams(pref.usual_amount) : pref?.usual_amount;
     const suggestion = pref ? `常买 ${escapeHtml(previousAmount)}${pref.mode === 'weight' ? ' Kg' : ''}（本次请重新输入）` : '输入数量/金额';
     const splitField = isWeight ? `<label class="muted">平均分成几份（可选）<input type="number" min="2" step="1" inputmode="numeric" placeholder="不分装" data-split="${escapeHtml(p.product_key)}"></label>` : '';
-    return `<div class="item"><strong>${escapeHtml(p.name_zh)}<small>${isAssigned ? '★ 常买 · ' : ''}${escapeHtml(p.name_en)} · ${escapeHtml(p.category)} · ${p.unit_price ? money(p.unit_price)+' / '+escapeHtml(p.unit) : '摊主确认当天价格'}</small></strong><select data-mode="${escapeHtml(p.product_key)}">${unitOptions}</select><input type="number" min="0.1" step="0.1" aria-label="${isWeight ? '重量（Kg）或预算（RM）' : '数量或预算（RM）'}" placeholder="${suggestion}" value="" data-amount="${escapeHtml(p.product_key)}">${splitField}</div>`;
+    const initialMode = pref?.mode || (isWeight ? 'weight' : 'count');
+    const amountUnit = initialMode === 'weight' ? 'Kg' : initialMode === 'money' ? 'RM' : p.unit;
+    return `<div class="item" data-unit-label="${escapeHtml(p.unit)}"><strong>${escapeHtml(p.name_zh)}<small>${isAssigned ? '★ 常买 · ' : ''}${escapeHtml(p.name_en)} · ${escapeHtml(p.category)} · ${p.unit_price ? money(p.unit_price)+' / '+escapeHtml(p.unit) : '摊主确认当天价格'}</small></strong><select data-mode="${escapeHtml(p.product_key)}">${unitOptions}</select><div class="amount-input-wrap"><input type="number" min="0.1" step="0.1" aria-label="${isWeight ? '重量（Kg）或预算（RM）' : '数量或预算（RM）'}" placeholder="${suggestion}" value="" data-amount="${escapeHtml(p.product_key)}"><span class="amount-unit" data-amount-unit>${escapeHtml(amountUnit)}</span></div>${splitField}</div>`;
   }).join('');
+  $('#catalog').onchange = (event) => {
+    const select = event.target.closest('[data-mode]');
+    if (!select) return;
+    const row = select.closest('.item');
+    const suffix = row.querySelector('[data-amount-unit]');
+    suffix.textContent = select.value === 'weight' ? 'Kg' : select.value === 'money' ? 'RM' : row.dataset.unitLabel;
+  };
 }
 
 $('#submit-order').addEventListener('click', async () => {
