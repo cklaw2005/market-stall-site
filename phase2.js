@@ -96,7 +96,11 @@ async function openApp() {
     if (profile.role !== 'customer') { authStatus.textContent = '此账号没有顾客下单权限。'; return; }
     $('#customer-view').classList.remove('hidden');
     await loadCatalog();
-    await loadCustomerOrders();
+    const nowParts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kuala_Lumpur', year: 'numeric', month: '2-digit' }).formatToParts(new Date());
+    const currentMonth = `${nowParts.find((part) => part.type === 'year').value}-${nowParts.find((part) => part.type === 'month').value}`;
+    $('#statement-month').value = currentMonth;
+    $('#statement-month').max = currentMonth;
+    await Promise.all([loadCustomerOrders(), loadMonthlySummary()]);
   }
 }
 
@@ -171,8 +175,55 @@ $('#submit-order').addEventListener('click', async () => {
     : `订单已保存，编号 ${data?.[0]?.order_no || ''}。摊主核价后，可在下方查看并确认。`;
   $('#add-to-order').value = '';
   $('#custom-items').value = '';
-  await loadCustomerOrders();
+  await Promise.all([loadCustomerOrders(), loadMonthlySummary()]);
 });
+
+$('#statement-month').addEventListener('change', loadMonthlySummary);
+
+function localOrderDate(value) {
+  const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kuala_Lumpur', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date(value));
+  return `${parts.find((part) => part.type === 'year').value}-${parts.find((part) => part.type === 'month').value}-${parts.find((part) => part.type === 'day').value}`;
+}
+
+async function loadMonthlySummary() {
+  const box = $('#monthly-summary');
+  const month = $('#statement-month').value;
+  if (!/^\d{4}-\d{2}$/.test(month)) { box.textContent = '请选择有效月份。'; return; }
+  const [year, monthNumber] = month.split('-').map(Number);
+  const nextMonth = new Date(Date.UTC(year, monthNumber, 1)).toISOString().slice(0, 10);
+  const start = `${month}-01T00:00:00+08:00`;
+  const end = `${nextMonth}T00:00:00+08:00`;
+  box.textContent = '正在整理月结摘要…';
+  const orders = [];
+  const pageSize = 500;
+  for (let from = 0; ; from += pageSize) {
+    const { data, error } = await supabase.from('orders')
+      .select('id,order_no,status,created_at,confirmed_revision_id,cancel_approved,order_revisions(id,total)')
+      .eq('customer_id', user.id).eq('restaurant_id', restaurant.id)
+      .gte('created_at', start).lt('created_at', end)
+      .order('created_at', { ascending: true }).range(from, from + pageSize - 1);
+    if (error) { box.textContent = `月结摘要载入失败：${error.message}`; return; }
+    orders.push(...(data || []));
+    if (!data || data.length < pageSize) break;
+  }
+  const daily = new Map();
+  for (const order of orders) {
+    if (!['confirmed', 'fulfilled'].includes(order.status) || !order.confirmed_revision_id) continue;
+    const revision = (order.order_revisions || []).find((item) => item.id === order.confirmed_revision_id);
+    if (!revision) continue;
+    const day = localOrderDate(order.created_at);
+    const entry = daily.get(day) || { totalCents: 0, orders: [] };
+    entry.totalCents += Math.round(Number(revision.total || 0) * 100);
+    entry.orders.push(order.order_no);
+    daily.set(day, entry);
+  }
+  if (!daily.size) { box.innerHTML = `<p>所选月份还没有已确认的账单。</p>`; return; }
+  const rows = [...daily.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([day, entry], index) =>
+    `<tr><td>${index + 1}</td><td>${day}</td><td>${entry.orders.length} 单<small>${entry.orders.map(escapeHtml).join('、')}</small></td><td class="invoice-money">${money(entry.totalCents / 100)}</td></tr>`
+  ).join('');
+  const monthTotalCents = [...daily.values()].reduce((total, entry) => total + entry.totalCents, 0);
+  box.innerHTML = `<div class="invoice-scroll"><table class="invoice-table"><thead><tr><th>序号</th><th>下单日期</th><th>订单</th><th>当日金额</th></tr></thead><tbody>${rows}</tbody><tfoot><tr><th colspan="3">本月已确认账单合计</th><td class="invoice-money">${money(monthTotalCents / 100)}</td></tr></tfoot></table></div>`;
+}
 
 async function loadCustomerOrders() {
   const { data: orders, error } = await supabase.from('orders').select('id,order_no,status,created_at,pickup_note,customer_note,parent_order_id,parent_order_no,cancel_requested_at,cancel_decided_at,cancel_approved,order_items(*),order_revisions(*)').eq('customer_id', user.id).eq('restaurant_id', restaurant.id).order('created_at', { ascending: false }).limit(30);
@@ -198,7 +249,7 @@ $('#customer-orders').addEventListener('click', async (event) => {
   const button = event.target.closest('[data-decision]');
   if (!button) return;
   const { error } = await supabase.rpc('customer_decide_order', { target_order: button.dataset.order, target_revision: button.dataset.revision, accept: button.dataset.decision === 'yes' });
-  if (error) alert(`保存失败：${error.message}`); else await loadCustomerOrders();
+  if (error) alert(`保存失败：${error.message}`); else await Promise.all([loadCustomerOrders(), loadMonthlySummary()]);
 });
 
 function normalizePhone(value) {
